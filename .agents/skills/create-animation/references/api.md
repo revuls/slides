@@ -24,7 +24,7 @@ For inline `"code"` use only the body (no wrapper).
 | `pointer` | `{ x, y, down }` mouse position in canvas coordinates (`-999` when outside) and button state. |
 | `static` | `true` when rendering a snapshot (overview thumbnail, PDF export): the engine calls `frame` ~90–150 times at 30 fps, then freezes. |
 | `reduced` | `true` if the OS asks for reduced motion (the engine renders a still frame). |
-| `theme` | Active theme name (`ing`, `ocean`…). |
+| `theme` | Active theme name (`classic`, `ocean`…). |
 
 ## Utilities
 

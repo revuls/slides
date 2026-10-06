@@ -6,7 +6,7 @@ A **JSON-driven web presentation engine**: write a deck as one JSON file and pre
 - **40 slide types** — covers, KPIs, charts, timelines, Gantt, funnels, org charts, comparisons, galleries, code, video and more.
 - **Animated by default** — directional transitions, staggered entrances, counters that count up, drawing charts, word-by-word titles, tilt cards.
 - **Looping canvas animations** that fill a whole slide, to explain processes, algorithms and systems visually.
-- **6 themes** (`ing`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`) switchable live.
+- **6 themes** (`classic`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`) switchable live.
 - **Agent-ready**: skills, agents, validator and an in-browser audit that any AI tool can run.
 
 > The sample decks in `data/` are written in Spanish; the engine, tooling and documentation are in English.
@@ -35,12 +35,12 @@ No Node? `python3 -m http.server 8765` works too. You can also open `index.html`
 |---|---|---|---|---|
 | `data/sistema-solar.json` | The Solar System | 20 | 4 | `violeta` |
 | `data/segunda-guerra-mundial.json` | World War II | 24 | 3 | `marino` |
-| `data/llm-wiki-karpathy.json` | Karpathy's "LLM Wiki" pattern | 14 | 2 | `ing` |
+| `data/llm-wiki-karpathy.json` | Karpathy's "LLM Wiki" pattern | 14 | 2 | `classic` |
 | `data/historia-ia-generativa.json` | History of generative AI | 26 | 0 | `violeta` |
 | `data/revolucion-francesa.json` | The French Revolution | 29 | 0 | `carmin` |
-| `data/demo-animaciones.json` | Animation showcase | 5 | 3 | `ing` |
-| `data/plantilla-animacion.json` | **Template** for a deck with an animation | 3 | 1 | `ing` |
-| `data/llm-wiki.json` | Original sample (LLM Wiki, compiled vs RAG) | 11 | 0 | `ing` |
+| `data/demo-animaciones.json` | Animation showcase | 5 | 3 | `classic` |
+| `data/plantilla-animacion.json` | **Template** for a deck with an animation | 3 | 1 | `classic` |
+| `data/llm-wiki.json` | Original sample (LLM Wiki, compiled vs RAG) | 11 | 0 | `classic` |
 
 With no `?src=` the engine shows a built-in demo deck.
 
@@ -109,7 +109,7 @@ node scripts/validate-deck.mjs data/my-deck.json
 
 ### Themes
 
-`meta.theme`: `ing` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). Only `ing`/`marino` show the "ING" wordmark; for other themes set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
+`meta.theme`: `classic` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
 
 ---
 

@@ -17,9 +17,9 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 {
   "meta": {
     "title": "Short title (footer and browser tab)", "date": "Month Year", "author": "Name or team",
-    "theme": "ing | marino | ocean | esmeralda | violeta | carmin",
+    "theme": "classic | marino | ocean | esmeralda | violeta | carmin",
     "transition": "slide | fade | zoom",
-    "brand": "Text shown as the logo (themes other than ing/marino)", "logo": "https://… image URL"
+    "brand": "Text shown as the logo (none by default)", "logo": "https://… image URL"
   },
   "slides": [ ]
 }

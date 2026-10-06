@@ -33,7 +33,7 @@ html[data-theme="esmeralda"]{--brand:#0A8754;--brand-t:#34C98B;--brand-l:#2FBF84
 html[data-theme="violeta"]{--brand:#6D28D9;--brand-t:#A78BFA;--brand-l:#9461F0;--brand-xl:#CDB6F7;--brand-d:#4E1AA6;--brand-rgb:109,40,217;--ink:#17102E;--ink-rgb:23,16,46;--sec:#DB2777;--tint-warm:#F3ECFF;--tint-blue:#F6F2FD}
 html[data-theme="carmin"]{--brand:#D81B4A;--brand-t:#FF6B8A;--brand-l:#FF5C7F;--brand-xl:#FFB3C2;--brand-d:#A9103A;--brand-rgb:216,27,74;--ink:#1C0B12;--ink-rgb:28,11,18;--sec:#D97706;--tint-warm:#FFF0F3;--tint-blue:#FBF4F6}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:#0c0c0c;font-family:'ING Me','INGMe','Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#333}
+html,body{margin:0;height:100%;overflow:hidden;background:#0c0c0c;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#333}
 button{font:inherit;cursor:pointer}
 i.ph,i.ph-fill,i.ph-bold{font-style:normal;line-height:1}
 
@@ -65,14 +65,14 @@ body.fs #stage{border-radius:0;box-shadow:none}
   transition:transform .8s var(--ease);background:linear-gradient(90deg,var(--brand),var(--brand-l));box-shadow:0 0 28px rgba(var(--brand-rgb),.9);z-index:50}
 
 /* ============================================================
-   SLIDE BASE + THEMES  (ING: naranja var(--brand) · tinta var(--ink) · morado var(--sec))
+   SLIDE BASE + THEMES  (marca var(--brand) · tinta var(--ink) · secundario var(--sec))
    light · dark · orange
    ============================================================ */
 .slide{
   --bg:#fff;--fg:var(--ink);--text:#333333;--muted:#696969;--card:#fff;--card-bd:rgba(var(--ink-rgb),.09);
   --soft:var(--tint-blue);--line:#E4E7EB;--shadow:0 24px 56px -30px rgba(var(--ink-rgb),.32);--ic-navy:var(--ink);
   --accent:var(--brand);--tag-bg:var(--tint-warm);--tag-fg:var(--brand);--ringc:var(--brand);--logo:var(--brand);--ringline:rgba(var(--ink-rgb),.16);
-  --ing-head:'ING Display','INGDisplay','ING Me','INGMe','Inter',system-ui,sans-serif;
+  --font-head:'Inter',system-ui,sans-serif;
   position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;color:var(--text);
   background:radial-gradient(1100px 700px at 100% -10%,var(--tint-warm),transparent 65%),radial-gradient(900px 600px at -5% 110%,var(--tint-blue),transparent 65%),#fff;
 }
@@ -111,7 +111,7 @@ body.fs #stage{border-radius:0;box-shadow:none}
 /* chrome (logo / footer / page) */
 .chrome{inset:0;pointer-events:none;z-index:6}
 .chrome>*{position:absolute}
-.logo{top:50px;right:72px;font-weight:800;font-size:46px;letter-spacing:-.05em;color:var(--logo);font-family:var(--ing-head);display:flex;align-items:center}
+.logo{top:50px;right:72px;font-weight:800;font-size:46px;letter-spacing:-.05em;color:var(--logo);font-family:var(--font-head);display:flex;align-items:center}
 .logo img{height:56px;display:block}
 .foot{left:120px;bottom:46px;font-size:18px;color:var(--muted);display:flex;gap:16px;align-items:center;letter-spacing:.02em}
 .foot s{width:4px;height:4px;border-radius:50%;background:var(--accent);display:block}
@@ -176,14 +176,14 @@ body.fs #stage{border-radius:0;box-shadow:none}
 /* ============================================================
    TYPOGRAPHY
    ============================================================ */
-.mega{font-family:var(--ing-head);font-size:116px;line-height:1.02;letter-spacing:-.04em;font-weight:800;color:var(--fg);margin:0 0 36px;max-width:1300px;text-wrap:balance}
+.mega{font-family:var(--font-head);font-size:116px;line-height:1.02;letter-spacing:-.04em;font-weight:800;color:var(--fg);margin:0 0 36px;max-width:1300px;text-wrap:balance}
 .mega.md{font-size:96px}.mega.sm{font-size:92px}
 .lead{font-size:36px;line-height:1.45;font-weight:300;color:var(--text);max-width:1100px;margin:0}
 .kicker{display:inline-flex;align-items:center;gap:12px;font-size:20px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--tag-fg);background:var(--tag-bg);padding:12px 26px;border-radius:999px;margin-bottom:26px;align-self:flex-start}
 .acc{width:76px;height:8px;border-radius:4px;background:var(--accent);margin-bottom:30px}
 .acc.big{width:110px;height:10px;margin-bottom:44px}
 .hd{margin-bottom:44px;flex:none}
-.hd h2{font-family:var(--ing-head);font-size:66px;line-height:1.06;letter-spacing:-.03em;font-weight:700;color:var(--fg);margin:0 0 16px;max-width:1680px;text-wrap:balance}
+.hd h2{font-family:var(--font-head);font-size:66px;line-height:1.06;letter-spacing:-.03em;font-weight:700;color:var(--fg);margin:0 0 16px;max-width:1680px;text-wrap:balance}
 .hd .sub{font-size:28px;line-height:1.45;color:var(--muted);margin:0;max-width:1400px}
 .hd .kicker{margin-bottom:18px}
 .metarow{display:flex;align-items:center;gap:26px;margin-top:64px;font-size:24px;color:var(--muted)}
@@ -479,7 +479,7 @@ strong{color:var(--fg);font-weight:700}
 
 /* statement */
 .statement{justify-content:center}
-.stmt{font-family:var(--ing-head);font-size:104px;line-height:1.08;letter-spacing:-.035em;font-weight:700;color:var(--fg);margin:0 0 48px;max-width:1560px;text-wrap:balance}
+.stmt{font-family:var(--font-head);font-size:104px;line-height:1.08;letter-spacing:-.035em;font-weight:700;color:var(--fg);margin:0 0 48px;max-width:1560px;text-wrap:balance}
 .stmt em{font-style:normal;color:var(--accent)}
 .orange .stmt em{color:var(--ink)}
 
@@ -672,7 +672,7 @@ strong{color:var(--fg);font-weight:700}
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);color:#fff}
 .slide:not(.dark):not(.orange) .an-ov{background:rgba(255,255,255,.72);border-color:var(--card-bd)}
 .an-ov .kicker{margin-bottom:14px;font-size:16px;padding:8px 18px}
-.an-ov h3{font-family:var(--ing-head);font-size:46px;line-height:1.08;font-weight:700;margin:0;letter-spacing:-.025em;color:var(--fg)}
+.an-ov h3{font-family:var(--font-head);font-size:46px;line-height:1.08;font-weight:700;margin:0;letter-spacing:-.025em;color:var(--fg)}
 .an-ov p{font-size:24px;line-height:1.45;margin:10px 0 0;color:var(--muted)}
 .an-err{left:120px;right:120px;top:50%;margin-top:-90px;z-index:5;padding:32px 40px;border-radius:24px;background:rgba(0,0,0,.72);color:#fff;text-align:center;border:2px solid var(--brand)}
 .an-err b{display:block;font-size:34px;margin-bottom:10px;color:var(--brand-l)}
@@ -834,7 +834,7 @@ body.drag #drop{opacity:1}
    1. DATOS POR DEFECTO  (demo con todos los tipos de slide)
    ============================================================ */
 const defaultJSON = {
-  meta: { title: "Resultados y Estrategia H2", date: "Junio 2026", author: "Dirección General", transition: "slide" },
+  meta: { title: "Resultados y Estrategia H2", brand: "Demo", date: "Junio 2026", author: "Dirección General", transition: "slide" },
   slides: [
     { type: "cover", title: "Resultados y Estrategia H2", subtitle: "Visión consolidada y hoja de ruta operativa para el segundo semestre.",
       notes: "Bienvenida. Contexto: cierre del primer semestre y prioridades de H2." },
@@ -922,7 +922,7 @@ const defaultJSON = {
         { title: "Datos e inteligencia", desc: "Decisiones en tiempo real" },
         { title: "Plataforma tecnológica", desc: "Cloud, APIs y seguridad" }
       ] },
-    { type: "venn", title: "Donde se cruzan nuestras capacidades", subtitle: "La ventaja competitiva nace en la intersección.", center: "Ventaja ING",
+    { type: "venn", title: "Donde se cruzan nuestras capacidades", subtitle: "La ventaja competitiva nace en la intersección.", center: "Ventaja competitiva",
       sets: [ { title: "Tecnología", desc: "Plataforma cloud-native y APIs abiertas" }, { title: "Datos", desc: "Modelos de IA sobre información propia" }, { title: "Cliente", desc: "Confianza y experiencia diferencial" } ] },
     { type: "plans", title: "Propuesta de valor por segmento", subtitle: "Tres niveles de servicio, una misma experiencia.",
       plans: [
@@ -1481,14 +1481,14 @@ const TYPES = {
    ============================================================ */
 const stage = $('#stage'), slidesEl = $('#slides');
 const THEMES = {
-  ing:       { label: 'ING',       a: '#FF6200', b: '#151515', logo: 'ING' },
-  marino:    { label: 'Marino',    a: '#FF6200', b: '#0B1A4A', logo: 'ING' },
+  classic:   { label: 'Clásico',   a: '#FF6200', b: '#151515' },
+  marino:    { label: 'Marino',    a: '#FF6200', b: '#0B1A4A' },
   ocean:     { label: 'Océano',    a: '#0072CE', b: '#0B1F33' },
   esmeralda: { label: 'Esmeralda', a: '#0A8754', b: '#0E2A21' },
   violeta:   { label: 'Violeta',   a: '#6D28D9', b: '#17102E' },
   carmin:    { label: 'Carmín',    a: '#D81B4A', b: '#1C0B12' }
 };
-const G = { theme: 'ing', anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [] };
+const G = { theme: 'classic', anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [] };
 
 function slideHTML(s, i, isStatic = false) {
   const T = TYPES[s.type];
@@ -1504,14 +1504,14 @@ function slideHTML(s, i, isStatic = false) {
   }
   const mode = ['light', 'dark', 'orange'].includes(s.theme) ? s.theme : (T?.theme || 'light');
   const cls = mode === 'light' && G.forceDark ? 'dark' : mode === 'light' ? '' : mode;
-  const logo = meta.logo ? `<img src="${meta.logo}" alt="logo">` : (meta.brand || THEMES[G.theme]?.logo || '');
+  const logo = meta.logo ? `<img src="${meta.logo}" alt="logo">` : (meta.brand || '');
   const deckTitle = strip(meta.title || G.deck.slides[0]?.title || '');
   const foot = (T && T.nofoot) || s.chrome === false ? '' : `<div class="foot"><span>${deckTitle}</span>${meta.date ? `<s></s><span>${meta.date}</span>` : ''}</div><div class="pg"><b>${pad(i + 1)}</b> / ${pad(total)}</div>`;
   const fx = T && T.fx && s.fx !== false ? '<canvas class="fx"></canvas>' : '';
   return `<section class="slide t-${s.type} ${cls} ${isStatic ? 'static' : ''}" data-i="${i}" data-mode="${mode}">
     <div class="blob"></div><div class="orb o1"></div><div class="orb o2"></div>${fx}
     ${body}
-    <div class="chrome">${s.chrome === false ? '' : `<div class="logo" ${!meta.logo && !meta.brand ? 'data-auto' : ''}>${logo}</div>`}${foot}</div>
+    <div class="chrome">${s.chrome === false || !logo ? '' : `<div class="logo">${logo}</div>`}${foot}</div>
   </section>`;
 }
 
@@ -1530,7 +1530,7 @@ function fitSlide(el) {
 function buildPresentation(data) {
   stopAll();
   G.deck = data;
-  setTheme(new URLSearchParams(location.search).get('theme') || data.meta?.theme || 'ing', true);
+  setTheme(new URLSearchParams(location.search).get('theme') || data.meta?.theme || 'classic', true);
   let sec = 0;
   G.secNo = data.slides.map(s => s.type === 'section' ? ++sec : 0);
   stage.dataset.tr = ['slide', 'fade', 'zoom'].includes(data.meta?.transition) ? data.meta.transition : 'slide';
@@ -1879,9 +1879,8 @@ $('#overview').addEventListener('click', e => { if (e.target.id === 'overview') 
 
 /* ---------- acciones ---------- */
 function setTheme(name, quiet) {
-  if (!THEMES[name]) name = 'ing';
+  if (!THEMES[name]) name = 'classic';
   G.theme = name; document.documentElement.dataset.theme = name;
-  $$('.logo[data-auto]').forEach(l => { l.textContent = THEMES[name].logo || ''; });
   $$('#themes button').forEach(b => b.classList.toggle('on', b.dataset.t === name));
   if (!quiet && G.els.length) { G.fx.get(G.cur)?.stop(); G.fx.get(G.cur)?.start(); G.anims.get(G.cur)?.start(); resetCharts(false); }
   if (!quiet) toast('Tema: ' + THEMES[name].label);

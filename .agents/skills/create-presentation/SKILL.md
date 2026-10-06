@@ -13,7 +13,7 @@ A deck is one JSON file `{ "meta": {...}, "slides": [...] }` in `data/`, rendere
    audience, goal, duration (≈ 1 slide per minute; 12–20 slides is typical), language, tone, must-include facts. Write slide text in the language of the request.
 2. **Gather facts** for factual topics (history, science, technology, business) with the `research-topic` skill. Never invent statistics, quotes, dates or sources. Mark estimates with `≈` or ranges and say so in the slide or `notes`.
 3. **Outline the story** before writing JSON: hook → context → 3–5 sections → takeaway → close. One idea per slide. Choose the slide type for each beat from the table below; read [`references/slide-types.md`](references/slide-types.md) for exact fields and limits.
-4. **Pick a theme** with the `theming` skill (default `ing`). Set `meta.brand` for themes other than `ing`/`marino`.
+4. **Pick a theme** with the `theming` skill (default `classic`). Set `meta.brand` (text) or `meta.logo` (image URL) if the deck should show a logo.
 5. **Add 1–3 animation slides** where motion teaches something (see *Where animation helps*). Prefer an existing file in `animations/` via `"src"`; otherwise use the `create-animation` skill.
 6. **Write the file** `data/<kebab-case-name>.json` (UTF-8, 2-space indent). Add `notes` to key slides.
 7. **Validate**: `node scripts/validate-deck.mjs data/<file>.json` — fix every error and review every warning.

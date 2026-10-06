@@ -3,7 +3,8 @@
     "title": "LLM Wiki",
     "date": "Octubre 2026",
     "author": "Data & AI Engineering Tribe",
-    "theme": "ing",
+    "theme": "classic",
+    "brand": "LLM Wiki",
     "transition": "slide"
   },
   "slides": [

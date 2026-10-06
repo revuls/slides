@@ -11,7 +11,7 @@ STRICT RULES
 7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`, `animation`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Use 1–3 `animation` slides only where motion teaches something.
 8. Add `notes` (speaker notes) to the important slides.
 
-THEMES (`meta.theme`): `ing` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. Themes other than `ing`/`marino` show `meta.brand` as the logo text if you set it.
+THEMES (`meta.theme`): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
 
 # Slide type catalog
 
@@ -32,9 +32,9 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 {
   "meta": {
     "title": "Short title (footer and browser tab)", "date": "Month Year", "author": "Name or team",
-    "theme": "ing | marino | ocean | esmeralda | violeta | carmin",
+    "theme": "classic | marino | ocean | esmeralda | violeta | carmin",
     "transition": "slide | fade | zoom",
-    "brand": "Text shown as the logo (themes other than ing/marino)", "logo": "https://… image URL"
+    "brand": "Text shown as the logo (none by default)", "logo": "https://… image URL"
   },
   "slides": [ ]
 }
@@ -327,7 +327,7 @@ For inline `"code"` use only the body (no wrapper).
 | `pointer` | `{ x, y, down }` mouse position in canvas coordinates (`-999` when outside) and button state. |
 | `static` | `true` when rendering a snapshot (overview thumbnail, PDF export): the engine calls `frame` ~90–150 times at 30 fps, then freezes. |
 | `reduced` | `true` if the OS asks for reduced motion (the engine renders a still frame). |
-| `theme` | Active theme name (`ing`, `ocean`…). |
+| `theme` | Active theme name (`classic`, `ocean`…). |
 
 ## Utilities
 

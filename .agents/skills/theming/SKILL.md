@@ -1,6 +1,6 @@
 ---
 name: theming
-description: Choose, apply or create color themes for the slides engine (ing, marino, ocean, esmeralda, violeta, carmin), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
+description: Choose, apply or create color themes for the slides engine (classic, marino, ocean, esmeralda, violeta, carmin), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
 ---
 
 # Theming
@@ -9,7 +9,7 @@ description: Choose, apply or create color themes for the slides engine (ing, ma
 
 | `meta.theme` | Look | Good for |
 |---|---|---|
-| `ing` *(default)* | Orange `#FF6200` + near-black ink `#151515`, purple secondary | Corporate, finance, general business |
+| `classic` *(default)* | Orange `#FF6200` + near-black ink `#151515`, purple secondary | General business, finance, product |
 | `marino` | Orange + navy `#0B1A4A` | Corporate with a classic blue-and-orange feel |
 | `ocean` | Blue `#0072CE` + deep ink | Technology, cloud, trust |
 | `esmeralda` | Green `#0A8754` | Sustainability, health, nature |
@@ -26,7 +26,7 @@ Match the theme to the subject; keep one theme per deck.
 
 ## Logo
 
-`ing` and `marino` show the text wordmark "ING" by default. Other themes show nothing unless the deck sets `meta.brand` (text) or `meta.logo` (image URL). Never fabricate a real company's logo; use text or an official asset the user provides.
+No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) in the deck. Never fabricate a real company's logo; use text or an official asset the user provides.
 
 ## How tokens work
 

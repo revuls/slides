@@ -10,4 +10,4 @@ STRICT RULES
 7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`, `animation`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Use 1–3 `animation` slides only where motion teaches something.
 8. Add `notes` (speaker notes) to the important slides.
 
-THEMES (`meta.theme`): `ing` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. Themes other than `ing`/`marino` show `meta.brand` as the logo text if you set it.
+THEMES (`meta.theme`): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.

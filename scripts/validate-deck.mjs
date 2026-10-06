@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const THEMES = ['ing', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin'];
+const THEMES = ['classic', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin'];
 const MODES = ['light', 'dark', 'orange'];
 const TRANSITIONS = ['slide', 'fade', 'zoom'];
 const COLORS = ['orange', 'navy', 'blue', 'amber', 'sky', 'gray'];
@@ -84,7 +84,6 @@ function validateDeck(deck, file) {
   if (meta.theme && !THEMES.includes(meta.theme)) E(0, `meta.theme "${meta.theme}" is not one of: ${THEMES.join(', ')}`);
   if (meta.transition && !TRANSITIONS.includes(meta.transition)) E(0, `meta.transition "${meta.transition}" is not one of: ${TRANSITIONS.join(', ')}`);
   if (!meta.title) W(0, 'meta.title is missing (used in the footer and the browser tab)');
-  if (!['ing', 'marino'].includes(meta.theme ?? 'ing') && !meta.brand && !meta.logo) W(0, 'Themes other than "ing"/"marino" show no logo unless meta.brand or meta.logo is set');
 
   const slides = deck.slides, n = slides.length;
   const types = slides.map(s => s?.type);
