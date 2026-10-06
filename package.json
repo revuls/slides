@@ -1,0 +1,17 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JSON-driven web presentation engine with animated slides, themes, and AI agent skills",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "validate": "node scripts/validate-deck.mjs",
+    "validate:strict": "node scripts/validate-deck.mjs --strict",
+    "sync": "node scripts/sync-agents.mjs",
+    "sync:copy": "node scripts/sync-agents.mjs --copy-skills",
+    "check": "node scripts/sync-agents.mjs --check",
+    "test": "npm run check && npm run validate"
+  }
+}

@@ -1223,7 +1223,7 @@ const TYPES = {
   table: { render: (s) => {
     const rows = s.rows || [], hs = s.headers || [];
     const tf = rows.length > 6 ? 21 : rows.length > 4 ? 23 : 26, tp = rows.length > 6 ? 14 : rows.length > 4 ? 18 : 24;
-    const green = /^(positivo|excelente|alto|bueno|ok|sí|si)$/i, amber = /^(estable|medio|neutral|pendiente)$/i, red = /^(negativo|bajo|crítico|critico|riesgo)$/i;
+    const green = /^(positivo|excelente|alto|bueno|ok|sí|si|positive|excellent|high|good|yes|done)$/i, amber = /^(estable|medio|neutral|pendiente|stable|medium|pending)$/i, red = /^(negativo|bajo|crítico|critico|riesgo|negative|low|critical|risk|no)$/i;
     const fmt = (v, ci) => {
       const t = String(v ?? '').trim();
       if (green.test(t)) return `<span class="chip g">${ic('trend-up', 'bold')}${t}</span>`;
@@ -2010,7 +2010,41 @@ addEventListener('load', async () => {
   }
   buildPresentation(defaultJSON);
 });
-window.Slides = { load: buildPresentation, go, next, prev };
+/* ============================================================
+   11. AUDITORÍA  — Slides.audit(): comprobación automática para humanos y agentes
+   Devuelve { ok, slides, theme, issues:[{slide,type,severity,message}] }. Abre la consola y ejecuta:  await Slides.audit()
+   Revisa: errores de render, desbordes (auto-encogidos), imágenes rotas y animaciones que fallan.
+   ============================================================ */
+async function auditDeck({ animations = true, wait = 1600 } = {}) {
+  const issues = [], prev = G.cur, s = G.scale;
+  const add = (i, severity, message) => issues.push({ slide: i + 1, type: G.deck.slides[i]?.type, severity, message });
+  G.els.forEach((el, i) => {
+    const err = $('.err p', el); if (err) add(i, 'error', 'Slide failed to render: ' + err.textContent);
+    if (!$('.an-cv', el)) {
+      el.classList.add('static');
+      const sr = el.getBoundingClientRect(); let mb = 0, mr = 0;
+      $$('.inner *', el).forEach(n => {
+        if (n.closest('.disc,.fx,.secnum,.chrome,.cy-ring')) return;
+        const r = n.getBoundingClientRect(); if (!r.width && !r.height) return;
+        mb = Math.max(mb, (r.bottom - sr.top) / s); mr = Math.max(mr, (r.right - sr.left) / s);
+      });
+      const z = $$('.body > *', el).map(c => c.style.zoom).find(Boolean);
+      el.classList.remove('static');
+      if (z) add(i, 'warning', `Content overflowed and was auto-shrunk (zoom ${(+z).toFixed(2)}): shorten text or split the slide`);
+      if (mb > 985) add(i, 'warning', `Content reaches y=${Math.round(mb)}px (safe area ends at ~985px)`);
+      if (mr > 1815) add(i, 'warning', `Content reaches x=${Math.round(mr)}px (safe area ends at ~1815px)`);
+    }
+    $$('img', el).forEach(im => { if (im.complete && /placehold\.co/.test(im.currentSrc || im.src) && !/placehold\.co/.test(G.deck.slides[i]?.image || '')) add(i, 'warning', 'An image failed to load and a placeholder is shown: ' + (G.deck.slides[i]?.image || '(see slide)')); });
+  });
+  if (animations) for (const [i, a] of G.anims) {
+    Slides.go(i); await new Promise(r => setTimeout(r, wait));
+    if (a.err && !a.err.hidden) add(i, 'error', 'Animation error: ' + a.err.textContent.replace('Error en la animación', '').trim());
+    else if (!a.run && !reduced) add(i, 'error', 'Animation is not running');
+  }
+  if (animations) Slides.go(prev >= 0 ? prev : 0);
+  return { ok: !issues.some(x => x.severity === 'error'), slides: G.els.length, theme: G.theme, issues };
+}
+window.Slides = { load: buildPresentation, go, next, prev, audit: auditDeck };
 </script>
 </body>
 </html>
