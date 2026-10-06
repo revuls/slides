@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "title": "La Revolución Francesa",
+    "date": "1789 – 1799",
+    "author": "Departamento de Historia",
+    "brand": "Historia",
+    "theme": "carmin",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Historia Moderna",
+      "title": "La Revolución Francesa",
+      "subtitle": "1789–1799: el nacimiento de la ciudadanía moderna",
+      "notes": "Presentación general: causas, desarrollo, Terror, final del ciclo revolucionario y legado."
+    },
+    {
+      "type": "agenda",
+      "title": "Agenda",
+      "subtitle": "Diez años que cambiaron el mundo",
+      "items": [
+        { "title": "El Antiguo Régimen", "desc": "Una sociedad de privilegios" },
+        { "title": "1789: el estallido", "desc": "De los Estados Generales a la Bastilla" },
+        { "title": "Radicalización", "desc": "Monarquía, república y facciones" },
+        { "title": "El Terror", "desc": "La revolución en guerra consigo misma" },
+        { "title": "Termidor y Directorio", "desc": "El camino hacia Napoleón" },
+        { "title": "Legado", "desc": "Ideas que seguimos usando hoy" }
+      ]
+    },
+    {
+      "type": "hero",
+      "kicker": "París, 1789",
+      "title": "El mundo que se vino abajo",
+      "subtitle": "En una década, Francia pasó de una monarquía absoluta de derecho divino a una república fundada en la soberanía del pueblo.",
+      "image": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600&auto=format&fit=crop"
+    },
+    {
+      "type": "section",
+      "title": "El Antiguo Régimen",
+      "subtitle": "Una sociedad organizada en privilegios"
+    },
+    {
+      "type": "pyramid",
+      "title": "Una sociedad dividida en estamentos",
+      "subtitle": "El nacimiento determinaba derechos, impuestos y oportunidades.",
+      "levels": [
+        { "title": "Monarquía absoluta", "desc": "Luis XVI, rey por derecho divino" },
+        { "title": "Primer Estado: el clero", "desc": "Cerca del 0,5 % de la población; exento de impuestos directos" },
+        { "title": "Segundo Estado: la nobleza", "desc": "Alrededor del 1,5 %; privilegios feudales y cargos" },
+        { "title": "Tercer Estado", "desc": "Cerca del 98 %: campesinos, artesanos y burguesía; pagaba casi todos los impuestos" }
+      ],
+      "notes": "Insistir en que el Tercer Estado no era homogéneo: la burguesía ilustrada y el campesinado pobre tenían intereses distintos."
+    },
+    {
+      "type": "number-grid",
+      "title": "Francia en vísperas de la Revolución",
+      "subtitle": "Un país populoso, desigual y al borde de la bancarrota.",
+      "metrics": [
+        { "value": "28M", "label": "Habitantes", "desc": "El país más poblado de Europa occidental" },
+        { "value": "98%", "label": "Tercer Estado", "desc": "Sin privilegios y con la mayor carga fiscal" },
+        { "value": "≈50%", "label": "Gasto en deuda", "desc": "Parte del presupuesto real destinada a pagar intereses" },
+        { "value": "1788", "label": "Mala cosecha", "desc": "El precio del pan se disparó antes del invierno" }
+      ]
+    },
+    {
+      "type": "venn",
+      "title": "Tres corrientes que confluyen",
+      "subtitle": "La Revolución nace donde se cruzan crisis, ideas y malestar.",
+      "center": "Revolución",
+      "sets": [
+        { "title": "Crisis financiera", "desc": "Deuda heredada de la guerra de Independencia americana y un sistema fiscal injusto" },
+        { "title": "Ideas ilustradas", "desc": "Voltaire, Montesquieu y Rousseau: razón, división de poderes y soberanía popular" },
+        { "title": "Malestar social", "desc": "Hambre, precios del pan y rechazo a los privilegios" }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "¿Qué es el Tercer Estado? Todo. ¿Qué ha sido hasta ahora en el orden político? Nada. ¿Qué pide? Llegar a ser algo.",
+      "author": "Emmanuel-Joseph Sieyès",
+      "role": "¿Qué es el Tercer Estado?, enero de 1789"
+    },
+    {
+      "type": "section",
+      "title": "1789: el estallido",
+      "subtitle": "De los Estados Generales a la Declaración de Derechos"
+    },
+    {
+      "type": "timeline",
+      "title": "Los meses que lo cambiaron todo",
+      "subtitle": "Cronología de 1789.",
+      "steps": [
+        { "date": "5 mayo", "title": "Estados Generales", "desc": "Luis XVI los convoca en Versalles por primera vez desde 1614." },
+        { "date": "20 junio", "title": "Juramento del Juego de Pelota", "desc": "Los diputados del Tercer Estado se proclaman Asamblea Nacional." },
+        { "date": "14 julio", "title": "Toma de la Bastilla", "desc": "El pueblo de París asalta el símbolo del despotismo real." },
+        { "date": "4 agosto", "title": "Fin del feudalismo", "desc": "La Asamblea abole los privilegios señoriales." },
+        { "date": "26 agosto", "title": "Declaración de Derechos", "desc": "Se aprueba la Declaración de los Derechos del Hombre y del Ciudadano." },
+        { "date": "5–6 octubre", "title": "Marcha sobre Versalles", "desc": "Miles de parisinas obligan a la familia real a trasladarse a París." }
+      ]
+    },
+    {
+      "type": "big-number",
+      "kicker": "Julio de 1789",
+      "value": "14",
+      "label": "de julio: la Toma de la Bastilla",
+      "desc": "La fortaleza guardaba solo siete prisioneros, pero se convirtió en el símbolo del fin del absolutismo. Hoy es la fiesta nacional de Francia."
+    },
+    {
+      "type": "features",
+      "title": "Los principios de 1789",
+      "subtitle": "La Declaración de Derechos del Hombre y del Ciudadano sentó las bases del nuevo orden.",
+      "cards": [
+        { "icon": "ph-scales", "title": "Igualdad ante la ley", "text": "Se acaban los privilegios de cuna: todos los ciudadanos tienen los mismos derechos y deberes.", "style": "orange" },
+        { "icon": "ph-bird", "title": "Libertad", "text": "Libertad de opinión, de expresión y de prensa, y garantías frente a la detención arbitraria.", "style": "navy" },
+        { "icon": "ph-flag-banner", "title": "Soberanía nacional", "text": "El poder reside en la nación, no en el rey: nace la idea moderna de ciudadanía.", "style": "orange" }
+      ]
+    },
+    {
+      "type": "image-text",
+      "title": "La marcha de las mujeres",
+      "subtitle": "Versalles, 5 y 6 de octubre de 1789",
+      "layout": "left-image",
+      "image": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1400&auto=format&fit=crop",
+      "text": "Impulsadas por la escasez y el precio del pan, miles de mujeres de París marcharon hasta Versalles, seguidas por la Guardia Nacional.\n\nLa familia real fue trasladada al palacio de las Tullerías: desde entonces, el rey vivió bajo la vigilancia directa del pueblo de París."
+    },
+    {
+      "type": "section",
+      "title": "Radicalización",
+      "subtitle": "De la monarquía constitucional a la república"
+    },
+    {
+      "type": "gantt",
+      "title": "Cuatro regímenes en diez años",
+      "subtitle": "Etapas políticas de la Revolución, 1789–1799.",
+      "periods": ["1789", "1790", "1791", "1792", "1793", "1794", "1795", "1796", "1797", "1798", "1799"],
+      "rows": [
+        { "label": "Asamblea Constituyente", "note": "Monarquía constitucional", "start": 0, "end": 2, "color": "orange", "text": "1789–91" },
+        { "label": "Asamblea Legislativa", "note": "Guerra con Austria", "start": 2, "end": 3, "color": "blue", "text": "1791–92" },
+        { "label": "Convención Nacional", "note": "Primera República", "start": 3, "end": 6, "color": "navy", "text": "1792–95" },
+        { "label": "El Terror", "note": "Comité de Salvación Pública", "start": 4, "end": 5, "color": "orange", "text": "1793–94" },
+        { "label": "Directorio", "note": "Cinco directores", "start": 6, "end": 10, "color": "blue", "text": "1795–99" }
+      ]
+    },
+    {
+      "type": "versus",
+      "title": "Girondinos frente a jacobinos",
+      "subtitle": "Dos visiones enfrentadas sobre el rumbo de la Revolución.",
+      "verdict": "Los jacobinos, apoyados por el pueblo de París, se impusieron en 1793",
+      "left": {
+        "title": "Girondinos",
+        "icon": "ph-circle",
+        "items": ["Burguesía de provincias y comerciantes", "Defendían la guerra revolucionaria", "Partidarios de limitar el poder de París", "Cautos con las medidas de excepción"]
+      },
+      "right": {
+        "title": "Jacobinos",
+        "icon": "ph-check-circle",
+        "items": ["Liderados por Robespierre y apoyados por los sans-culottes", "Centralización del poder en la Convención", "Control de precios y movilización general", "Defensa de la república por medios excepcionales"]
+      }
+    },
+    {
+      "type": "table",
+      "title": "Figuras clave",
+      "subtitle": "Protagonistas de la Revolución y su destino.",
+      "highlight": 3,
+      "headers": ["Figura", "Papel", "Facción", "Desenlace"],
+      "rows": [
+        ["Luis XVI", "Rey de Francia", "Monarquía", "Guillotinado el 21 de enero de 1793"],
+        ["Lafayette", "Jefe de la Guardia Nacional", "Monárquicos constitucionales", "Huyó en 1792; encarcelado por Austria"],
+        ["Marat", "Periodista, «El amigo del pueblo»", "Jacobinos", "Asesinado por Charlotte Corday en 1793"],
+        ["Danton", "Orador y ministro de Justicia", "Indulgentes", "Guillotinado en abril de 1794"],
+        ["Robespierre", "Líder del Comité de Salvación Pública", "Jacobinos", "Guillotinado el 28 de julio de 1794"]
+      ]
+    },
+    {
+      "type": "section",
+      "title": "El Terror",
+      "subtitle": "Cuando la revolución se volvió contra sus propios hijos"
+    },
+    {
+      "type": "cycle",
+      "title": "La espiral del Terror",
+      "subtitle": "Cómo la guerra y el miedo a la contrarrevolución alimentaron la radicalización.",
+      "center": "Radicalización",
+      "steps": [
+        { "icon": "sword", "title": "Guerra y amenaza exterior", "desc": "Las monarquías europeas atacan a Francia y hay levantamientos internos como el de la Vendée." },
+        { "icon": "eye", "title": "Miedo a los traidores", "desc": "Se sospecha de nobles, clérigos y de cualquiera que dude de la causa." },
+        { "icon": "gavel", "title": "Poderes excepcionales", "desc": "El Comité de Salvación Pública y los tribunales revolucionarios concentran el poder." },
+        { "icon": "skull", "title": "Purgas y ejecuciones", "desc": "La guillotina alcanza a enemigos reales y también a antiguos aliados." }
+      ]
+    },
+    {
+      "type": "number-grid",
+      "title": "El balance del Terror",
+      "subtitle": "Entre septiembre de 1793 y julio de 1794 (cifras aproximadas).",
+      "metrics": [
+        { "value": "≈17.000", "label": "Ejecuciones oficiales", "desc": "Sentencias dictadas por los tribunales revolucionarios" },
+        { "value": "≈300.000", "label": "Sospechosos detenidos", "desc": "Tras la Ley de Sospechosos de septiembre de 1793" },
+        { "value": "10", "label": "Meses", "desc": "Duración del periodo más intenso del Terror" }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "Vergniaud, 1793",
+      "text": "La Revolución, como Saturno, *devora a sus propios hijos*.",
+      "source": "Pierre Vergniaud, girondino guillotinado en octubre de 1793"
+    },
+    {
+      "type": "section",
+      "title": "Termidor y Directorio",
+      "subtitle": "El final del ciclo revolucionario"
+    },
+    {
+      "type": "process",
+      "title": "De Robespierre a Napoleón",
+      "subtitle": "El péndulo político tras el Terror.",
+      "steps": [
+        { "icon": "calendar-x", "title": "9 de Termidor", "desc": "El 27 de julio de 1794 cae Robespierre y termina el Terror." },
+        { "icon": "arrow-u-up-left", "title": "Reacción termidoriana", "desc": "La burguesía modera la revolución y desmonta el sistema del Terror." },
+        { "icon": "buildings", "title": "El Directorio", "desc": "La Constitución de 1795 crea un gobierno de cinco directores, inestable y corrupto." },
+        { "icon": "crown-simple", "title": "18 de Brumario", "desc": "El 9 de noviembre de 1799, el golpe de Napoleón Bonaparte abre el Consulado." }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Legado",
+      "subtitle": "Ideas que seguimos usando hoy"
+    },
+    {
+      "type": "icons",
+      "title": "Lo que nos dejó la Revolución",
+      "subtitle": "Instituciones y conceptos nacidos entre 1789 y 1799.",
+      "icons": [
+        { "icon": "ph-scales", "title": "Derechos humanos", "desc": "La Declaración de 1789", "color": "orange" },
+        { "icon": "ph-users-three", "title": "Soberanía popular", "desc": "El poder emana del pueblo", "color": "navy" },
+        { "icon": "ph-ruler", "title": "Sistema métrico", "desc": "Metro y kilogramo", "color": "orange" },
+        { "icon": "ph-graduation-cap", "title": "Educación pública", "desc": "Escuela para la ciudadanía", "color": "navy" },
+        { "icon": "ph-church", "title": "Laicidad", "desc": "Separación Iglesia-Estado", "color": "navy" },
+        { "icon": "ph-gavel", "title": "Igualdad legal", "desc": "Fin de los privilegios", "color": "orange" },
+        { "icon": "ph-flag", "title": "Nación y ciudadanía", "desc": "Identidad política moderna", "color": "navy" },
+        { "icon": "ph-chains", "title": "Abolición de la esclavitud", "desc": "Decreto de 1794", "color": "orange" }
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Símbolos de la Revolución",
+      "subtitle": "Imágenes y canciones que sobrevivieron al siglo XVIII.",
+      "items": [
+        { "icon": "ph-flag-banner", "title": "La bandera tricolor", "text": "Azul, blanco y rojo: la unión del emblema de París con el blanco de la monarquía." },
+        { "icon": "ph-music-notes", "title": "La Marsellesa", "text": "Compuesta en 1792; himno nacional de Francia desde 1795." },
+        { "icon": "ph-user-circle", "title": "Marianne", "text": "Personificación femenina de la República y de la libertad." },
+        { "icon": "ph-hand-fist", "title": "El gorro frigio", "text": "Símbolo de la libertad y de los ciudadanos emancipados." }
+      ]
+    },
+    {
+      "type": "faq",
+      "title": "Preguntas frecuentes",
+      "subtitle": "Algunas dudas habituales sobre la Revolución.",
+      "items": [
+        { "q": "¿Cuándo empezó y cuándo terminó?", "a": "Se suele fechar entre 1789 (Estados Generales y Bastilla) y 1799 (golpe de Brumario)." },
+        { "q": "¿Por qué fue tan violenta?", "a": "La guerra exterior, la guerra civil y el miedo a la contrarrevolución radicalizaron el proceso." },
+        { "q": "¿Fue obra solo de la burguesía?", "a": "No: participaron campesinos, artesanos y trabajadores urbanos (los sans-culottes)." },
+        { "q": "¿Qué consiguió a largo plazo?", "a": "Igualdad legal, soberanía nacional y un modelo político imitado en muchos países." }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "Los hombres nacen y permanecen libres e iguales en derechos.",
+      "author": "Declaración de los Derechos del Hombre y del Ciudadano",
+      "role": "Artículo 1, 26 de agosto de 1789"
+    },
+    {
+      "type": "closing",
+      "title": "Liberté, Égalité, Fraternité",
+      "subtitle": "El lema que resume el ideal de una revolución que cambió la historia.",
+      "cta": "Gracias"
+    }
+  ]
+}

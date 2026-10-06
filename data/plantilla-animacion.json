@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Plantilla de animación",
+    "date": "2026",
+    "author": "Autor",
+    "theme": "ing"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Mi presentación",
+      "subtitle": "Con una animación a pantalla completa"
+    },
+    {
+      "type": "animation",
+      "kicker": "Etiqueta (opcional)",
+      "title": "Título de la animación",
+      "caption": "Frase didáctica que explica qué se ve (opcional).",
+      "src": "animations/_plantilla.js",
+      "params": {
+        "count": 80,
+        "speed": 1
+      },
+      "overlay": true,
+      "chrome": true,
+      "theme": "dark",
+      "notes": "Sustituye src por tu archivo o escribe el código en \"code\": [\"línea 1\", \"línea 2\"]."
+    },
+    {
+      "type": "closing",
+      "title": "Gracias",
+      "subtitle": "Fin"
+    }
+  ]
+}

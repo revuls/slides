@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "title": "El Sistema Solar",
+    "date": "Octubre 2026",
+    "author": "Divulgación científica",
+    "brand": "Astronomía",
+    "theme": "violeta",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Astronomía",
+      "title": "El Sistema Solar",
+      "subtitle": "Un viaje desde el Sol hasta el borde del espacio interestelar",
+      "notes": "Datos de referencia habituales (NASA/IAU). Algunas cifras son aproximadas y se indican con «≈»."
+    },
+    {
+      "type": "agenda",
+      "title": "Agenda",
+      "subtitle": "De dónde venimos y qué nos rodea",
+      "items": [
+        {
+          "title": "Origen",
+          "desc": "Cómo nació hace unos 4.600 millones de años"
+        },
+        {
+          "title": "El Sol",
+          "desc": "La estrella que lo domina todo"
+        },
+        {
+          "title": "Los planetas",
+          "desc": "Órbitas, tamaños y características"
+        },
+        {
+          "title": "La Tierra y la Luna",
+          "desc": "Las fases lunares"
+        },
+        {
+          "title": "Más allá de Neptuno",
+          "desc": "Kuiper, heliopausa y Oort"
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "Una cuestión de proporciones",
+      "text": "El *99,86 %* de la masa del Sistema Solar está en una sola estrella: el *Sol*.",
+      "source": "Todo lo demás cabe en el 0,14 % restante"
+    },
+    {
+      "type": "section",
+      "title": "Origen",
+      "subtitle": "De una nube de gas a ocho planetas"
+    },
+    {
+      "type": "animation",
+      "kicker": "Formación",
+      "title": "Así nació el Sistema Solar",
+      "caption": "Una nube de gas y polvo gira, colapsa y se aplana en un disco. En el centro se enciende el Sol y en el disco se agrupan los planetas.",
+      "src": "animations/sol-nacimiento.js",
+      "notes": "Teoría de la nebulosa solar. Esquema simplificado: tamaños y tiempos no están a escala."
+    },
+    {
+      "type": "process",
+      "title": "Del polvo a los planetas",
+      "subtitle": "Los cuatro pasos de la formación.",
+      "steps": [
+        {
+          "icon": "cloud",
+          "title": "Nebulosa solar",
+          "desc": "Una nube de gas y polvo, restos de estrellas anteriores, empieza a contraerse."
+        },
+        {
+          "icon": "arrows-in",
+          "title": "Colapso y disco",
+          "desc": "Al girar más rápido, la nube se aplana en un disco protoplanetario."
+        },
+        {
+          "icon": "sun",
+          "title": "Se enciende el Sol",
+          "desc": "En el centro la presión y la temperatura inician la fusión del hidrógeno."
+        },
+        {
+          "icon": "planet",
+          "title": "Acreción",
+          "desc": "Los granos se unen en cuerpos cada vez mayores hasta formar los planetas."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "El Sol",
+      "subtitle": "Una estrella media que domina el sistema"
+    },
+    {
+      "type": "number-grid",
+      "title": "El Sol en cifras",
+      "subtitle": "Una estrella de tipo G de unos 4.600 millones de años.",
+      "metrics": [
+        {
+          "value": "99,86%",
+          "label": "De la masa total",
+          "desc": "Del Sistema Solar"
+        },
+        {
+          "value": "109×",
+          "label": "El diámetro de la Tierra",
+          "desc": "Unos 1,39 millones de km"
+        },
+        {
+          "value": "≈5.500 °C",
+          "label": "Superficie",
+          "desc": "En el núcleo supera los 15 millones de grados"
+        },
+        {
+          "value": "≈8 min",
+          "label": "Luz hasta la Tierra",
+          "desc": "Unos 150 millones de km (1 UA)"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Los planetas",
+      "subtitle": "Ocho mundos en órbita"
+    },
+    {
+      "type": "animation",
+      "kicker": "Movimiento",
+      "title": "Cada planeta, a su ritmo",
+      "caption": "Periodos orbitales reales. Mercurio da la vuelta en 88 días; Neptuno tarda 165 años. Primero a ritmo lento y luego en avance rápido.",
+      "src": "animations/sol-orbitas.js",
+      "notes": "Las distancias usan una escala comprimida para que quepan los ocho planetas; los periodos orbitales sí son reales."
+    },
+    {
+      "type": "versus",
+      "title": "Rocosos frente a gigantes",
+      "subtitle": "Dos familias muy distintas de planetas.",
+      "verdict": "Más allá del cinturón de asteroides cambian el tamaño, la composición y la cantidad de lunas",
+      "left": {
+        "title": "Planetas rocosos",
+        "icon": "ph-circle",
+        "items": [
+          "Mercurio, Venus, Tierra y Marte",
+          "Superficie sólida y tamaño pequeño",
+          "Cerca del Sol y con pocas lunas (la Tierra una, Marte dos)",
+          "Atmósferas finas o de tamaño moderado"
+        ]
+      },
+      "right": {
+        "title": "Planetas gigantes",
+        "icon": "ph-check-circle",
+        "items": [
+          "Júpiter y Saturno (gaseosos); Urano y Neptuno (helados)",
+          "Sin superficie sólida y mucho mayores",
+          "Lejos del Sol, con anillos",
+          "Muchas lunas: decenas en cada uno"
+        ]
+      }
+    },
+    {
+      "type": "animation",
+      "kicker": "Escala",
+      "title": "¿Cuánto mide cada planeta?",
+      "caption": "Los tamaños están a escala entre sí. Júpiter es once veces más ancho que la Tierra, y el Sol, aún mayor, apenas cabe en pantalla.",
+      "src": "animations/sol-escala.js",
+      "notes": "Diámetros ecuatoriales. Las distancias no están a escala."
+    },
+    {
+      "type": "table",
+      "title": "Los ocho planetas",
+      "subtitle": "Distancia al Sol en unidades astronómicas (1 UA ≈ 150 millones de km).",
+      "highlight": 2,
+      "headers": [
+        "Planeta",
+        "Distancia (UA)",
+        "Año (órbita)",
+        "Dato destacado"
+      ],
+      "rows": [
+        [
+          "Mercurio",
+          "0,39",
+          "88 días",
+          "Un día solar dura 176 días terrestres"
+        ],
+        [
+          "Venus",
+          "0,72",
+          "225 días",
+          "El más caliente: ≈465 °C en superficie"
+        ],
+        [
+          "Tierra",
+          "1,00",
+          "365,25 días",
+          "Único mundo con vida conocida"
+        ],
+        [
+          "Marte",
+          "1,52",
+          "687 días",
+          "Alberga el Monte Olimpo, de ≈22 km de altura"
+        ],
+        [
+          "Júpiter",
+          "5,20",
+          "11,9 años",
+          "Su Gran Mancha Roja es una tormenta gigante"
+        ],
+        [
+          "Saturno",
+          "9,58",
+          "29,5 años",
+          "El sistema de anillos más espectacular"
+        ],
+        [
+          "Urano",
+          "19,2",
+          "84 años",
+          "Gira casi «tumbado»: eje inclinado ≈98°"
+        ],
+        [
+          "Neptuno",
+          "30,1",
+          "165 años",
+          "Vientos de hasta ≈2.100 km/h"
+        ]
+      ]
+    },
+    {
+      "type": "section",
+      "title": "La Tierra y la Luna",
+      "subtitle": "Nuestro vecino más cercano"
+    },
+    {
+      "type": "animation",
+      "kicker": "Nuestro satélite",
+      "title": "Las fases de la Luna",
+      "caption": "La Luna siempre tiene una mitad iluminada. Según dónde esté en su órbita, desde la Tierra vemos más o menos de esa mitad. El ciclo completo dura unos 29,5 días.",
+      "src": "animations/luna-fases.js",
+      "notes": "Ciclo sinódico de 29,53 días acelerado. Vista del hemisferio norte; en el sur, las fases aparecen invertidas."
+    },
+    {
+      "type": "section",
+      "title": "Más allá de Neptuno",
+      "subtitle": "Los confines del Sistema Solar"
+    },
+    {
+      "type": "features",
+      "title": "Tres regiones lejanas",
+      "subtitle": "El Sistema Solar no termina en el último planeta.",
+      "cards": [
+        {
+          "icon": "ph-snowflake",
+          "title": "Cinturón de Kuiper",
+          "text": "Entre 30 y 50 UA. Cuerpos helados y planetas enanos como Plutón, Eris, Haumea y Makemake.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-wind",
+          "title": "Heliopausa",
+          "text": "A unas 120 UA del Sol. Allí el viento solar deja de dominar y comienza el espacio interestelar.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-circles-three",
+          "title": "Nube de Oort",
+          "text": "Hipotética esfera de cometas que podría extenderse hasta decenas de miles de UA.",
+          "style": "navy"
+        }
+      ]
+    },
+    {
+      "type": "big-number",
+      "kicker": "Exploración",
+      "value": "160+",
+      "label": "UA: la distancia de Voyager 1 al Sol",
+      "desc": "Lanzada en 1977, la sonda cruzó la heliopausa en 2012 y es el objeto humano más lejano. Hoy sigue enviando datos desde el espacio interestelar."
+    },
+    {
+      "type": "quote",
+      "text": "Mira de nuevo ese punto: es aquí, es nuestro hogar, somos nosotros.",
+      "author": "Carl Sagan",
+      "role": "Un punto azul pálido, 1994 (traducción libre)"
+    },
+    {
+      "type": "closing",
+      "title": "Nuestro vecindario cósmico",
+      "subtitle": "Un único Sol, ocho planetas y un hogar frágil que merece cuidado."
+    }
+  ]
+}

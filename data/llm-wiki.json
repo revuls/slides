@@ -1,0 +1,229 @@
+{
+"meta": {
+"date": "Junio 2026",
+"author": "Data & AI Engineering Tribe"
+},
+"slides": [
+{
+"type": "cover",
+"title": "LLM Wiki Compilada",
+"subtitle": "La evolución de las bases de conocimiento más allá del RAG"
+},
+{
+"type": "hero",
+"title": "De la Búsqueda a la Compilación",
+"subtitle": "El patrón de Andrej Karpathy para estructurar el conocimiento digital sin vectores ni latencia.",
+"image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
+},
+{
+"type": "number-grid",
+"title": "Impacto en Rendimiento y Costes",
+"subtitle": "Resultados de la migración de búsqueda vectorial a Wiki Compilada en entornos de alta exigencia.",
+"metrics": [
+{
+"value": "-83%",
+"label": "Latencia P95",
+"desc": "Reducción de 1100ms a 180ms por consulta de forma consistente"
+},
+{
+"value": "-80%",
+"label": "Coste Operativo",
+"desc": "De $0.15 a $0.03 por cada 1000 consultas procesadas"
+},
+{
+"value": "1M+",
+"label": "Tokens Ingeridos",
+"desc": "Más de 265k palabras unificadas en un único contexto enriquecido"
+},
+{
+"value": "15s",
+"label": "Mapeo de Contexto",
+"desc": "Drástica aceleración del onboarding frente a las 3 horas habituales"
+}
+]
+},
+{
+"type": "split-text",
+"title": "Cambio de Paradigma: RAG vs. Wiki Compilada",
+"subtitle": "Superando las limitaciones estructurales de la búsqueda vectorial para escalar el conocimiento.",
+"columns": [
+{
+"title": "Enfoque RAG Tradicional",
+"text": "El <strong>modelo</strong> redescubre y sintetiza la información desde cero ante cada petición. Se basa en recuperar fragmentos descontextualizados mediante similitudes vectoriales, lo que genera alta latencia, costes recurrentes y una notable pérdida de la visión holística."
+},
+{
+"title": "Enfoque Wiki Compilada",
+"text": "El agente ingiere la totalidad de las fuentes en una única fase inicial, estructurando un grafo interconectado en Markdown. El conocimiento se consulta de forma lineal, garantizando el contexto semántico completo y reduciendo a cero el tiempo de búsqueda activa."
+}
+]
+},
+{
+"type": "features",
+"title": "Arquitectura Core",
+"subtitle": "Tres pilares tecnológicos innegociables para construir una base de conocimiento viva.",
+"cards": [
+{
+"icon": "ph-file-md",
+"title": "Markdown como Fuente",
+"text": "Sistema de archivos .md altamente versionable y estructurado de forma jerárquica, que descarta el uso de complejas bases de datos o índices vectoriales opacos.",
+"style": "orange"
+},
+{
+"icon": "ph-cpu",
+"title": "Compilación Inicial",
+"text": "El motor LLM procesa la información entrante y la consolida, estableciendo relaciones y referencias cruzadas nativas dentro de la topología existente.",
+"style": "navy"
+},
+{
+"icon": "ph-check-circle",
+"title": "Linting Automatizado",
+"text": "Mecanismos de validación continua orientados a detectar enlaces rotos y evitar contradicciones factoides, salvaguardando la integridad del ecosistema.",
+"style": "orange"
+}
+]
+},
+{
+"type": "quote",
+"text": "Es la diferencia fundamental entre redescubrir la información en cada consulta versus compilarla una sola vez para reutilizarla indefinidamente.",
+"author": "Andrej Karpathy"
+},
+{
+"type": "table",
+"title": "Matriz de Evaluación de Arquitecturas IA",
+"subtitle": "Comparativa directa de los modelos de recuperación de información corporativa.",
+"headers": [
+"Capacidades",
+"LLM Wiki (Compilada)",
+"Enfoque RAG Clásico",
+"NotebookLM"
+],
+"rows": [
+[
+"Mecanismo Operativo",
+"Lectura lineal de markdown estructurado",
+"Búsqueda semántica sobre vectores",
+"Búsqueda semántica fragmentada"
+],
+[
+"Esfuerzo Computacional",
+"Alto en compilación, mínimo en consulta",
+"Bajo inicial, medio-alto por consulta",
+"Medio en cada interacción"
+],
+[
+"Acumulación Estratégica",
+"Sí: el grafo se consolida y evoluciona",
+"No: la síntesis comienza siempre de cero",
+"No: se basa en hallazgos aislados"
+],
+[
+"Escala Recomendada",
+"Proyectos >100 docs o 400k palabras",
+"Volúmenes <100 documentos",
+"Análisis puntuales en contextos reducidos"
+]
+]
+},
+{
+"type": "charts",
+"title": "Eficiencia y Carga Computacional",
+"subtitle": "Análisis comparativo de la latencia y la distribución del esfuerzo del motor.",
+"charts": [
+{
+"id": "chart_1",
+"type": "bar",
+"title": "Latencia P95 por Consulta (ms)",
+"labels": [
+"RAG Tradicional",
+"Wiki Compilada"
+],
+"datasets": [
+{
+"label": "Milisegundos (Menor es mejor)",
+"data": [
+1100,
+180
+],
+"color": "orange"
+}
+]
+},
+{
+"id": "chart_2",
+"type": "doughnut",
+"title": "Distribución del Coste en Wiki Compilada (%)",
+"labels": [
+"Lectura y Compilación Inicial",
+"Integración de Nuevos Datos",
+"Consulta Directa"
+],
+"data": [
+75,
+20,
+5
+]
+}
+]
+},
+{
+"type": "icons",
+"title": "Aplicabilidad Estratégica",
+"subtitle": "Escenarios corporativos de alto impacto para la arquitectura compilada.",
+"icons": [
+{
+"icon": "ph-users-three",
+"title": "Gestión Integral de Tribus",
+"desc": "Centralización de políticas internas, acuerdos de nivel de servicio y flujos de trabajo interconectados para gobernar las dinámicas del equipo.",
+"color": "orange"
+},
+{
+"icon": "ph-terminal-window",
+"title": "Documentación Viva",
+"desc": "Repositorios técnicos de arquitectura que asimilan resoluciones de incidencias de manera autónoma, blindando el conocimiento del área.",
+"color": "navy"
+},
+{
+"icon": "ph-chart-line-up",
+"title": "Inteligencia Estratégica",
+"desc": "Consolidación transversal de informes financieros, marcos regulatorios europeos y análisis de tendencias macroeconómicas del mercado.",
+"color": "orange"
+}
+]
+},
+{
+"type": "image-text",
+"title": "Factores Críticos de Riesgo",
+"subtitle": "Directrices para asegurar un despliegue sin fricciones estructurales.",
+"image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+"text": "Para asegurar la viabilidad y fiabilidad del modelo, resulta crítico no operar la Wiki Compilada como si fuera un motor RAG simplificado. La piedra angular del éxito reside en ejecutar auditorías automatizadas (linting) que prevengan la degradación del grafo por enlaces rotos o contradicciones documentales. Exigir repositorios versionados, junto con la definición de una taxonomía estricta desde el día cero, son normativas innegociables para escalar esta arquitectura a un estándar institucional.",
+"layout": "left-image"
+},
+{
+"type": "timeline",
+"title": "Workstream de Despliegue",
+"subtitle": "Hoja de ruta ejecutiva para la adopción de flujos agenticos.",
+"steps": [
+{
+"date": "Fase 1",
+"title": "Ingesta Unificada",
+"desc": "Digitalización y auditoría inicial de manuales técnicos, políticas y normativas base del departamento."
+},
+{
+"date": "Fase 2",
+"title": "Estructuración Base",
+"desc": "Generación automatizada de las entidades corporativas, directorios temáticos y sus referencias semánticas."
+},
+{
+"date": "Fase 3",
+"title": "Integración del Motor",
+"desc": "Configuración de modelos locales y APIs para lectura directa y segura del sistema de archivos interno."
+},
+{
+"date": "Fase 4",
+"title": "Monitorización Activa",
+"desc": "Activación de procesos de validación de estado e integración iterativa de nuevas directrices corporativas."
+}
+]
+}
+]
+}

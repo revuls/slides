@@ -1,0 +1,245 @@
+{
+  "meta": {
+    "title": "LLM Wiki",
+    "date": "Octubre 2026",
+    "author": "Data & AI Engineering Tribe",
+    "theme": "ing",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Patrón de Andrej Karpathy",
+      "title": "LLM Wiki",
+      "subtitle": "Una base de conocimiento que el LLM compila una vez y que se acumula con el tiempo",
+      "notes": "Fuente: gist «LLM Wiki» de Andrej Karpathy (abril de 2026): https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+    },
+    {
+      "type": "statement",
+      "kicker": "La idea en una frase",
+      "text": "Un asistente no debería *redescubrir* tu conocimiento en cada pregunta: debería *acumularlo*.",
+      "source": "Idea central del patrón LLM Wiki"
+    },
+    {
+      "type": "versus",
+      "title": "RAG frente a LLM Wiki",
+      "subtitle": "Dos formas de dar conocimiento a un LLM.",
+      "verdict": "De buscar en cada pregunta a compilar una vez y reutilizar",
+      "left": {
+        "title": "RAG tradicional",
+        "icon": "ph-circle",
+        "items": [
+          "Recupera fragmentos en cada consulta",
+          "El modelo sintetiza desde cero cada vez",
+          "Nada se acumula entre preguntas",
+          "Requiere embeddings y base vectorial"
+        ]
+      },
+      "right": {
+        "title": "LLM Wiki",
+        "icon": "ph-check-circle",
+        "items": [
+          "El LLM compila las fuentes en un wiki Markdown",
+          "Referencias cruzadas ya construidas",
+          "El conocimiento se acumula y mejora",
+          "Solo ficheros .md, versionables"
+        ]
+      }
+    },
+    {
+      "type": "animation",
+      "kicker": "Cómo funciona",
+      "title": "Compilar una vez, consultar siempre",
+      "caption": "Cada fuente nueva actualiza varias páginas del wiki. Las preguntas se responden leyendo el wiki ya conectado.",
+      "src": "animations/llm-wiki-compilar.js",
+      "notes": "Fase 1 (ingest): el LLM lee cada fuente y actualiza varias páginas. Fase 2 (query): la pregunta pasa por index.md y las páginas relevantes."
+    },
+    {
+      "type": "features",
+      "title": "Tres capas",
+      "subtitle": "El patrón separa lo que es verdad, lo que se compila y las reglas del juego.",
+      "cards": [
+        {
+          "icon": "ph-lock-simple",
+          "title": "Fuentes (raw/)",
+          "text": "Artículos, papers e imágenes tal cual. Son inmutables: el LLM las lee, nunca las modifica.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-file-md",
+          "title": "Wiki (wiki/)",
+          "text": "Páginas Markdown escritas y mantenidas por el LLM, con enlaces entre ellas.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-gear-six",
+          "title": "Schema",
+          "text": "Un documento (p. ej. CLAUDE.md) que define la estructura del wiki y los flujos de trabajo.",
+          "style": "navy"
+        }
+      ]
+    },
+    {
+      "type": "process",
+      "title": "Tres operaciones",
+      "subtitle": "El ciclo de vida del conocimiento en el wiki.",
+      "steps": [
+        {
+          "icon": "download-simple",
+          "title": "Ingest",
+          "desc": "Procesa una fuente nueva, extrae lo importante y actualiza páginas y referencias."
+        },
+        {
+          "icon": "magnifying-glass",
+          "title": "Query",
+          "desc": "Busca en el wiki, sintetiza la respuesta y archiva lo valioso como página nueva."
+        },
+        {
+          "icon": "first-aid-kit",
+          "title": "Lint",
+          "desc": "Revisa la salud del wiki: contradicciones, páginas huérfanas y datos obsoletos."
+        }
+      ]
+    },
+    {
+      "type": "animation",
+      "kicker": "Mantenimiento",
+      "title": "Lint: el wiki se autocorrige",
+      "caption": "Un escáner detecta enlaces rotos, contradicciones, páginas huérfanas y afirmaciones obsoletas; después el LLM las corrige.",
+      "src": "animations/llm-wiki-lint.js",
+      "notes": "El lint es lo que evita que el wiki se degrade con el tiempo."
+    },
+    {
+      "type": "split-text",
+      "title": "Dos ficheros que lo organizan",
+      "subtitle": "Un catálogo para navegar y un diario para auditar.",
+      "connector": false,
+      "columns": [
+        {
+          "title": "index.md",
+          "icon": "ph-list-bullets",
+          "text": "Catálogo del wiki organizado por categorías, con un <strong>resumen de una línea</strong> por página. El LLM lo lee primero para saber dónde buscar."
+        },
+        {
+          "title": "log.md",
+          "icon": "ph-clock-counter-clockwise",
+          "text": "Registro <strong>cronológico y solo de añadir</strong> con cada ingest, consulta y lint. Permite auditar qué ha cambiado y cuándo."
+        }
+      ]
+    },
+    {
+      "type": "big-number",
+      "kicker": "Escala",
+      "value": "≈400.000",
+      "label": "palabras sin base vectorial",
+      "desc": "Según cuenta Karpathy, a esa escala el LLM sigue navegando bien por el índice y los resúmenes, sin embeddings ni búsqueda por similitud."
+    },
+    {
+      "type": "quote",
+      "text": "El wiki es un artefacto persistente que se acumula con el tiempo.",
+      "author": "Andrej Karpathy",
+      "role": "LLM Wiki, 2026 (traducción libre)"
+    },
+    {
+      "type": "icons",
+      "title": "Dónde aplicarlo",
+      "subtitle": "Casos de uso que menciona el patrón.",
+      "icons": [
+        {
+          "icon": "ph-user",
+          "title": "Conocimiento personal",
+          "desc": "Metas, salud, notas propias",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-flask",
+          "title": "Investigación profunda",
+          "desc": "Papers y estado del arte",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-books",
+          "title": "Lectura de libros",
+          "desc": "Capítulos archivados y conectados",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-users-three",
+          "title": "Wiki de equipo",
+          "desc": "Políticas, decisiones y contexto",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-chart-line-up",
+          "title": "Análisis competitivo",
+          "desc": "Mercado y competidores",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-airplane-tilt",
+          "title": "Planificación",
+          "desc": "Viajes y proyectos",
+          "color": "navy"
+        }
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Cómo empezar",
+      "subtitle": "Cinco pasos para tu primer LLM Wiki.",
+      "numbered": true,
+      "items": [
+        {
+          "title": "Crea las carpetas",
+          "text": "raw/ para las fuentes y wiki/ para las páginas; Obsidian sirve como editor."
+        },
+        {
+          "title": "Escribe el schema",
+          "text": "Estructura, convenciones y reglas de trabajo para el LLM."
+        },
+        {
+          "title": "Haz el primer ingest",
+          "text": "Añade una fuente (por ejemplo con Web Clipper) y revisa qué páginas actualiza."
+        },
+        {
+          "title": "Pregunta y archiva",
+          "text": "Guarda las respuestas valiosas como páginas nuevas."
+        },
+        {
+          "title": "Lanza lint a menudo",
+          "text": "Mantén el wiki libre de contradicciones y huecos."
+        }
+      ]
+    },
+    {
+      "type": "split-text",
+      "title": "Cuándo conviene y cuándo no",
+      "subtitle": "Nuestra lectura del patrón.",
+      "connector": "VS",
+      "columns": [
+        {
+          "title": "Encaja bien",
+          "icon": "ph-thumbs-up",
+          "text": "Conocimiento que <strong>crece y se consulta mucho</strong>, con un volumen manejable (cientos de documentos), donde importa acumular y conectar ideas."
+        },
+        {
+          "title": "Precauciones",
+          "icon": "ph-warning",
+          "text": "Un error del LLM queda <strong>escrito en el wiki</strong>: revisa y usa lint. El ingest consume cómputo, y con corpus enormes un RAG sigue siendo útil."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "title": "Compila una vez, pregunta siempre",
+      "subtitle": "Un wiki que el LLM mantiene por ti y que mejora con cada fuente.",
+      "contacts": [
+        {
+          "icon": "ph-github-logo",
+          "text": "gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+        }
+      ],
+      "cta": "Gracias"
+    }
+  ]
+}

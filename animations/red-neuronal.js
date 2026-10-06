@@ -1,0 +1,74 @@
+/* Red neuronal: una señal viaja de la entrada a la salida.
+   params: { layers: [4,6,6,3], names: [...], outputs: [...] } */
+registerAnimation(function (api) {
+  const { ctx, W, H, colors: C, params, rand, hexA, text, TAU } = api;
+  const layers = params.layers || [4, 6, 6, 3];
+  const names = params.names || ['Entrada', 'Capa oculta', 'Capa oculta', 'Salida'];
+  const outputs = params.outputs || ['Gato', 'Perro', 'Pájaro'];
+  const L = layers.length, X0 = 440, X1 = W - 440, GAP = 94;
+
+  const nodes = layers.map((n, l) => Array.from({ length: n }, (_, i) => ({
+    x: X0 + (X1 - X0) * l / (L - 1), y: H / 2 + 110 + (i - (n - 1) / 2) * GAP, a: 0
+  })));
+  const links = [];
+  for (let l = 0; l < L - 1; l++) for (const a of nodes[l]) for (const b of nodes[l + 1]) links.push([a, b]);
+
+  let pulses = [], clock = .4, winner = -1, win = 0;
+
+  function fire(l, i) {
+    const n = nodes[l][i];
+    if (n.a > .5) return;                                  // periodo refractario
+    n.a = 1;
+    if (l === L - 1) { winner = i; win = 1; return; }      // la salida "decide"
+    nodes[l + 1].forEach((_, j) => { if (Math.random() < .7) pulses.push({ l, i, j, p: 0, sp: rand(.55, .85) }); });
+  }
+
+  function frame(dt) {
+    ctx.clearRect(0, 0, W, H);
+    clock -= dt;
+    if (clock <= 0) { fire(0, Math.floor(rand(layers[0]))); clock = 2.4; }   // nueva entrada cada 2,4 s
+
+    // conexiones
+    ctx.lineWidth = 2; ctx.strokeStyle = hexA(C.fg, .1); ctx.beginPath();
+    for (const [a, b] of links) { ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); }
+    ctx.stroke();
+
+    // pulsos viajando
+    for (const q of pulses) q.p += dt * q.sp;
+    const arrived = pulses.filter(q => q.p >= 1);
+    pulses = pulses.filter(q => q.p < 1);
+    arrived.forEach(q => fire(q.l + 1, q.j));
+
+    ctx.lineCap = 'round';
+    for (const q of pulses) {
+      const a = nodes[q.l][q.i], b = nodes[q.l + 1][q.j];
+      const hx = a.x + (b.x - a.x) * q.p, hy = a.y + (b.y - a.y) * q.p;
+      const tp = Math.max(0, q.p - .14), tx = a.x + (b.x - a.x) * tp, ty = a.y + (b.y - a.y) * tp;
+      const g = ctx.createLinearGradient(tx, ty, hx, hy);
+      g.addColorStop(0, hexA(C.brand, 0)); g.addColorStop(1, C.brand);
+      ctx.strokeStyle = g; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
+      ctx.save(); ctx.shadowColor = C.brand; ctx.shadowBlur = 24; ctx.fillStyle = C.brandXl;
+      ctx.beginPath(); ctx.arc(hx, hy, 8, 0, TAU); ctx.fill(); ctx.restore();
+    }
+
+    // neuronas
+    for (const layer of nodes) for (const n of layer) {
+      n.a = Math.max(0, n.a - dt * 1.1);
+      ctx.save();
+      if (n.a > 0) { ctx.shadowColor = C.brand; ctx.shadowBlur = 44 * n.a; }
+      ctx.fillStyle = n.a > 0 ? hexA(C.brand, .2 + n.a * .8) : hexA(C.fg, .06);
+      ctx.strokeStyle = n.a > 0 ? C.brand : hexA(C.fg, .4); ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(n.x, n.y, 30, 0, TAU); ctx.fill(); ctx.stroke();
+      ctx.restore();
+    }
+
+    // etiquetas de capa y de salida
+    names.forEach((nm, l) => text(nm, nodes[l][0].x, H - 112, { size: 28, align: 'center', alpha: .7 }));
+    win = Math.max(0, win - dt * .22);
+    nodes[L - 1].forEach((n, i) => text(outputs[i] ?? '', n.x + 64, n.y, {
+      size: 34, weight: 700, base: 'middle', color: (i === winner && win > 0) ? C.brand : C.fg, alpha: (i === winner && win > 0) ? 1 : .55
+    }));
+  }
+
+  return { frame };
+});

@@ -1,0 +1,413 @@
+{
+  "meta": {
+    "title": "La Segunda Guerra Mundial",
+    "date": "1939 – 1945",
+    "author": "Departamento de Historia",
+    "brand": "Historia",
+    "theme": "marino",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Historia contemporánea",
+      "title": "La Segunda Guerra Mundial",
+      "subtitle": "1939–1945: causas, desarrollo y consecuencias del mayor conflicto de la historia",
+      "notes": "Presentación general. Las cifras de víctimas y producción son estimaciones habituales en la historiografía; conviene contrastarlas con la fuente que uses."
+    },
+    {
+      "type": "agenda",
+      "title": "Agenda",
+      "subtitle": "Seis años en cinco bloques",
+      "items": [
+        {
+          "title": "Causas",
+          "desc": "De Versalles a la invasión de Polonia"
+        },
+        {
+          "title": "La expansión del Eje",
+          "desc": "1939–1941: guerra relámpago"
+        },
+        {
+          "title": "El giro de la guerra",
+          "desc": "1941–1943: Pearl Harbor, Stalingrado y Kursk"
+        },
+        {
+          "title": "La victoria aliada",
+          "desc": "1943–1945: Normandía, Berlín y el Pacífico"
+        },
+        {
+          "title": "Balance y legado",
+          "desc": "Víctimas, memoria y nuevo orden mundial"
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "El conflicto en una frase",
+      "text": "Seis años, decenas de países y entre *70 y 85 millones* de muertos: el conflicto más *mortífero* de la historia.",
+      "source": "Estimación habitual de víctimas totales (militares y civiles)"
+    },
+    {
+      "type": "section",
+      "title": "Causas",
+      "subtitle": "El camino hacia la guerra"
+    },
+    {
+      "type": "timeline",
+      "title": "Del tratado de Versalles a Polonia",
+      "subtitle": "Veinte años de tensiones acumuladas.",
+      "steps": [
+        {
+          "date": "1919",
+          "title": "Tratado de Versalles",
+          "desc": "Impone a Alemania reparaciones y pérdidas territoriales."
+        },
+        {
+          "date": "1929",
+          "title": "Gran Depresión",
+          "desc": "La crisis económica dispara el paro y la inestabilidad."
+        },
+        {
+          "date": "1933",
+          "title": "Hitler, canciller",
+          "desc": "El nazismo llega al poder y rearma el país."
+        },
+        {
+          "date": "1936",
+          "title": "Eje Roma-Berlín",
+          "desc": "Alemania remilitariza Renania y se acerca a la Italia fascista."
+        },
+        {
+          "date": "1938",
+          "title": "Anschluss y Múnich",
+          "desc": "Anexión de Austria y cesión de los Sudetes por apaciguamiento."
+        },
+        {
+          "date": "1939",
+          "title": "Invasión de Polonia",
+          "desc": "El 1 de septiembre Alemania ataca; Reino Unido y Francia declaran la guerra."
+        }
+      ]
+    },
+    {
+      "type": "venn",
+      "title": "Tres corrientes que desembocan en la guerra",
+      "subtitle": "Ninguna causa explica por sí sola el conflicto.",
+      "center": "Guerra",
+      "sets": [
+        {
+          "title": "Resentimiento por Versalles",
+          "desc": "Humillación y reparaciones tras la Primera Guerra Mundial"
+        },
+        {
+          "title": "Crisis económica",
+          "desc": "La Gran Depresión de 1929 radicaliza a las sociedades"
+        },
+        {
+          "title": "Totalitarismos expansionistas",
+          "desc": "Nazismo, fascismo y militarismo japonés buscan expandirse por la fuerza"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "La expansión del Eje",
+      "subtitle": "1939–1941"
+    },
+    {
+      "type": "animation",
+      "kicker": "Los bandos",
+      "title": "Cómo se formaron los bandos",
+      "caption": "Los países se unen a Aliados o Eje en su fecha de entrada. Algunos, como Italia, Rumanía y Bulgaria, acabaron cambiando de bando.",
+      "src": "animations/ww2-bandos.js",
+      "notes": "Fechas aproximadas de entrada en la guerra. China combatía a Japón desde 1937. Italia cambió de bando tras el armisticio de 1943."
+    },
+    {
+      "type": "process",
+      "title": "La guerra relámpago",
+      "subtitle": "Blitzkrieg: ofensivas rápidas con tanques, aviación e infantería motorizada.",
+      "steps": [
+        {
+          "icon": "map-pin",
+          "title": "Polonia",
+          "desc": "Sep 1939. Ataque alemán desde el oeste y soviético desde el este."
+        },
+        {
+          "icon": "anchor",
+          "title": "Escandinavia",
+          "desc": "Abr 1940. Alemania ocupa Dinamarca y Noruega."
+        },
+        {
+          "icon": "flag-banner",
+          "title": "Francia",
+          "desc": "May–jun 1940. Cae Francia en pocas semanas; armisticio el 22 de junio."
+        },
+        {
+          "icon": "airplane-tilt",
+          "title": "Batalla de Inglaterra",
+          "desc": "Jul–oct 1940. La RAF impide la invasión del Reino Unido."
+        },
+        {
+          "icon": "lightning",
+          "title": "Barbarroja",
+          "desc": "22 jun 1941. Alemania invade la Unión Soviética."
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "Nunca en el campo de los conflictos humanos tantos debieron tanto a tan pocos.",
+      "author": "Winston Churchill",
+      "role": "Sobre los pilotos de la RAF, 20 de agosto de 1940"
+    },
+    {
+      "type": "big-number",
+      "kicker": "22 de junio de 1941",
+      "value": "≈3M",
+      "label": "de soldados alemanes cruzan la frontera soviética",
+      "desc": "La Operación Barbarroja abrió el frente más grande y sangriento de la guerra, con millones de soldados de ambos bandos."
+    },
+    {
+      "type": "section",
+      "title": "El giro de la guerra",
+      "subtitle": "1941–1943"
+    },
+    {
+      "type": "timeline",
+      "title": "Los puntos de inflexión",
+      "subtitle": "Entre 1941 y 1943 la iniciativa pasa a los Aliados.",
+      "steps": [
+        {
+          "date": "7 dic 1941",
+          "title": "Pearl Harbor",
+          "desc": "Japón ataca la base de EE. UU. en Hawái; Estados Unidos entra en la guerra."
+        },
+        {
+          "date": "Jun 1942",
+          "title": "Midway",
+          "desc": "La flota estadounidense hunde cuatro portaaviones japoneses."
+        },
+        {
+          "date": "Nov 1942",
+          "title": "El Alamein",
+          "desc": "Los británicos frenan al Eje en el norte de África."
+        },
+        {
+          "date": "Feb 1943",
+          "title": "Stalingrado",
+          "desc": "El 6.º Ejército alemán se rinde: primer gran desastre del Eje."
+        },
+        {
+          "date": "Jul 1943",
+          "title": "Kursk",
+          "desc": "Mayor batalla de blindados; el Ejército Rojo pasa a la ofensiva."
+        }
+      ]
+    },
+    {
+      "type": "animation",
+      "kicker": "Frente oriental",
+      "title": "El péndulo del frente oriental",
+      "caption": "El Eje avanza hasta finales de 1942 y después retrocede hasta Berlín. Curva ilustrativa, no datos medidos.",
+      "src": "animations/ww2-frente-oriental.js",
+      "notes": "Esquema cualitativo del territorio soviético ocupado por el Eje: máximo a finales de 1942 y retroceso tras Stalingrado y Kursk."
+    },
+    {
+      "type": "charts",
+      "title": "La superioridad industrial aliada",
+      "subtitle": "Solo Estados Unidos produjo más aviones que Alemania, Japón e Italia juntos.",
+      "charts": [
+        {
+          "type": "hbar",
+          "title": "Aviones producidos durante la guerra (miles, cifras aproximadas)",
+          "labels": [
+            "EE. UU.",
+            "URSS",
+            "Reino Unido",
+            "Alemania",
+            "Japón"
+          ],
+          "datasets": [
+            {
+              "label": "Miles de aviones",
+              "data": [
+                300,
+                158,
+                132,
+                120,
+                76
+              ],
+              "color": "orange"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "La victoria aliada",
+      "subtitle": "1943–1945"
+    },
+    {
+      "type": "animation",
+      "kicker": "6 de junio de 1944",
+      "title": "El Día D: desembarco en Normandía",
+      "caption": "Paracaidistas durante la noche y, al amanecer, oleadas de lanchas hacia cinco playas: Utah, Omaha, Gold, Juno y Sword. Esquema simplificado.",
+      "src": "animations/ww2-dday.js",
+      "notes": "Operación Overlord. Utah y Omaha: EE. UU.; Gold y Sword: Reino Unido; Juno: Canadá. Cifra aproximada de unos 156.000 soldados aliados el primer día."
+    },
+    {
+      "type": "timeline",
+      "title": "El cerco sobre Alemania",
+      "subtitle": "De la rendición de Italia al final en Europa.",
+      "steps": [
+        {
+          "date": "Sep 1943",
+          "title": "Italia se rinde",
+          "desc": "Armisticio con los Aliados; los alemanes ocupan el norte del país."
+        },
+        {
+          "date": "6 jun 1944",
+          "title": "Día D",
+          "desc": "Comienza la liberación de Francia desde Normandía."
+        },
+        {
+          "date": "25 ago 1944",
+          "title": "Liberación de París",
+          "desc": "Las fuerzas aliadas y la resistencia entran en la capital francesa."
+        },
+        {
+          "date": "Dic 1944",
+          "title": "Ardenas",
+          "desc": "Última gran ofensiva alemana en el oeste; fracasa."
+        },
+        {
+          "date": "30 abr 1945",
+          "title": "Muere Hitler",
+          "desc": "Se suicida en Berlín cuando el Ejército Rojo está en la ciudad."
+        },
+        {
+          "date": "8 may 1945",
+          "title": "Fin en Europa",
+          "desc": "Capitulación alemana: se celebra el Día de la Victoria."
+        }
+      ]
+    },
+    {
+      "type": "process",
+      "title": "El final en el Pacífico",
+      "subtitle": "La guerra termina en agosto y septiembre de 1945.",
+      "steps": [
+        {
+          "icon": "warning-octagon",
+          "title": "Hiroshima",
+          "desc": "6 ago 1945. Primera bomba atómica usada en una guerra."
+        },
+        {
+          "icon": "warning-octagon",
+          "title": "Nagasaki",
+          "desc": "9 ago 1945. Segunda bomba atómica."
+        },
+        {
+          "icon": "megaphone",
+          "title": "Anuncio de rendición",
+          "desc": "15 ago 1945. El emperador anuncia la rendición de Japón."
+        },
+        {
+          "icon": "signature",
+          "title": "Firma oficial",
+          "desc": "2 sep 1945. Se firma la rendición a bordo del USS Missouri."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Balance y legado",
+      "subtitle": "El coste humano y el mundo de posguerra"
+    },
+    {
+      "type": "number-grid",
+      "title": "El coste humano",
+      "subtitle": "Estimaciones de víctimas, militares y civiles.",
+      "metrics": [
+        {
+          "value": "70M+",
+          "label": "Muertos totales",
+          "desc": "Las estimaciones llegan hasta los 85 millones"
+        },
+        {
+          "value": "≈27M",
+          "label": "Unión Soviética",
+          "desc": "El país con más víctimas en términos absolutos"
+        },
+        {
+          "value": "15M+",
+          "label": "China",
+          "desc": "Entre 15 y 20 millones, según las fuentes"
+        },
+        {
+          "value": "≈6M",
+          "label": "Polonia",
+          "desc": "Cerca del 17 % de su población de preguerra"
+        }
+      ]
+    },
+    {
+      "type": "big-number",
+      "kicker": "Memoria",
+      "value": "≈6M",
+      "label": "de judíos asesinados en el Holocausto",
+      "desc": "El régimen nazi organizó el genocidio sistemático del pueblo judío, y persiguió y asesinó también a otros millones de personas por su origen, ideas u orientación.",
+      "theme": "dark"
+    },
+    {
+      "type": "icons",
+      "title": "Un nuevo orden mundial",
+      "subtitle": "Instituciones y procesos que nacen de la guerra.",
+      "icons": [
+        {
+          "icon": "ph-globe-hemisphere-west",
+          "title": "ONU",
+          "desc": "Fundada en 1945 para preservar la paz",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-gavel",
+          "title": "Juicios de Núremberg",
+          "desc": "1945–1946: crímenes contra la humanidad",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-scales",
+          "title": "Derechos humanos",
+          "desc": "Declaración Universal de 1948",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-hand-coins",
+          "title": "Plan Marshall",
+          "desc": "Reconstrucción de Europa occidental",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-flag",
+          "title": "Descolonización",
+          "desc": "Fin de los imperios coloniales",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-snowflake",
+          "title": "Guerra Fría",
+          "desc": "EE. UU. y la URSS, dos bloques",
+          "color": "navy"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "title": "Recordar para no repetir",
+      "subtitle": "La Segunda Guerra Mundial dejó una lección: la paz se construye y se defiende cada día."
+    }
+  ]
+}
