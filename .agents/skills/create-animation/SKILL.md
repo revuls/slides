@@ -22,6 +22,8 @@ Two ways to ship it:
 1. **Inline** in the deck: `"code": ["line 1", "line 2", …]` — the *body* of a function.
 2. **File** in `animations/<name>.js`, referenced with `"src": "animations/<name>.js"` — the body wrapped in `registerAnimation(function (api) { … });` (the wrapper lets the file load from a `<script>` tag, so it also works when `index.html` is opened without a server).
 
+**Sharing**: inline `code` only runs in trusted decks (same-origin `?src=` or local use). Uploaded, pasted or `#d=` link decks run in safe mode, where inline `code` is disabled until the viewer opts in, but `src: "animations/<name>.js"` keeps working. So for decks meant to be shared, put animations in `animations/` files.
+
 Either way the code receives `api` and must **return** `{ frame }` (or a bare function), where `frame(dt, t)` draws one frame (`dt` seconds since the previous frame, `t` seconds since the slide appeared). Optional `resize()` and `destroy()` hooks.
 
 Start from `animations/_plantilla.js` (interactive particles, fully commented). Full API: [`references/api.md`](references/api.md). Reusable patterns: [`references/recipes.md`](references/recipes.md). What the existing animations demonstrate: [`references/examples.md`](references/examples.md).

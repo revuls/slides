@@ -26,6 +26,13 @@ For inline `"code"` use only the body (no wrapper).
 | `reduced` | `true` if the OS asks for reduced motion (the engine renders a still frame). |
 | `theme` | Active theme name (`classic`, `ocean`…). |
 
+## Gotchas
+
+- **`text()` ignores `ctx.globalAlpha`**: it sets its own alpha (`opts.alpha`, default 1) inside `save/restore`. To fade or dim text together with the drawing, wrap it: `const text = (s, x, y, o = {}) => api.text(s, x, y, { ...o, alpha: (o.alpha ?? 1) * ctx.globalAlpha });` (the `elec-*.js` files do).
+- **Clamp time**: the first frame can receive a slightly negative `t`; start `frame` with `t = Math.max(0, t)` if you index arrays by `t`.
+- **Optional `params.at`**: `const c = api.static ? (params.at ?? 9) : t % CYC;` lets a test deck render any moment of the loop in the PDF/thumbnails (`npm run export:pdf` is the quickest way to inspect one).
+- **Stateful motion** (e.g. electrons whose speed changes): accumulate `off += speed * dt` instead of using `t`, so a speed change does not make them jump.
+
 ## Utilities
 
 | Function | Description |

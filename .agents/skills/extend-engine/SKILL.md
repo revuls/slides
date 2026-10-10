@@ -15,27 +15,29 @@ The engine is **one file**, `index.html` (HTML + CSS + vanilla JS, no build). Ex
 | `BACKDROP + STAGE`, `SLIDE BASE + THEMES` | 1920×1080 stage scaled with CSS; slide modes `light` / `dark` / `orange`. |
 | `SLIDE TRANSITIONS`, `ENTRANCE ANIMATIONS (data-a)` | Directional wipe/fade/zoom; staggered entrance via `data-a` attributes. |
 | `TYPOGRAPHY`, `CARDS + TILT` and per-type CSS | Component styles (use tokens, never hard-coded colors). |
-| `UI: DOCK / OVERLAYS`, `PRINT / PDF` | Dock, overview, notes, help, toast; print stylesheet (one 1920×1080 page per slide). |
+| `UI: DOCK / OVERLAYS`, `MÓVIL`, `PRINT / PDF` | Dock, overview, notes, help, toast; mobile rules (`body.compact` = width ≤ 900 px or height ≤ 520 px: edge-to-edge slide, safe-area insets, responsive dock/modals, ≡ button `#fab` on touch, touch gestures in section 8); print stylesheet (one 1920×1080 page per slide). |
 | `1. DATOS POR DEFECTO` | `defaultJSON`: demo deck shown when no deck is loaded. |
 | `2. HELPERS` | `ic()`, `words()`, `hd()` (slide header), `cell()` (tilt wrapper), `rt()`, `hl()` code highlighter. |
 | `3. TIPOS DE SLIDE` | `TYPES = { name: { theme?, fx?, nofoot?, render(slide, ctx) } }` — one HTML renderer per type. |
 | `4. ESTADO + RENDER` | `THEMES`, global state `G`, `slideHTML()`, `fitSlide()` (auto-shrink), `buildPresentation()`. |
 | `5–6b` | Counters, particles (`FX`), full-screen animations (`Anim`, `registerAnimation`). |
 | `7. GRÁFICOS` | Chart.js wrappers (palette read from CSS variables). |
-| `8. NAVEGACIÓN`, `9. CARGA DE JSON`, `10. INICIO`, `11. AUDITORÍA` | Navigation, overview, shortcuts, file/drag-drop/`?src=` loading, `Slides.audit()`. |
+| `8. NAVEGACIÓN`, `9. CARGA DE JSON`, `10. INICIO`, `11. AUDITORÍA` | Navigation, overview, shortcuts, loading (file/drag-drop/paste/`#d=` link/`?src=`), trust model + `sanitizeDeck()`, share links, `Slides.audit()`. |
 
-Public runtime API: `Slides.load(deck)`, `Slides.go(n)`, `Slides.next()`, `Slides.prev()`, `await Slides.audit()`.
+Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `untrusted`), `Slides.go(n)`, `Slides.next()`, `Slides.prev()`, `await Slides.audit()`.
 
 ## Conventions and gotchas (learned the hard way)
 
 - **Entrance animations** use the individual `translate`/`scale`/`opacity` properties via `data-a="up|left|right|zoom|pop|blur|grow|reveal|fade"`. Never position an element with `translate` or `scale` if it carries `data-a`; use `left/top/margin`. Tilt cards use `transform`, so wrap them with `cell(...)` (the wrapper owns `data-a`).
+- **Canvas memory**: every `<canvas>` keeps its backing store (1920×1080×r×4 bytes) until its size is reset. `FX`/`Anim` call `release()` (width=height=0) one second after the slide is left (and the overview grid is emptied on close); anything new that allocates a big canvas per slide must do the same, or iOS Safari kills the tab after a few slides ("No se puede abrir la página"). Check with the sum of `canvas.width*height*4` after walking a whole deck.
+- **Scope CSS to direct children** (`.thumb>span`, not `.thumb span`): descendant selectors leak into slide content (this broke overview thumbnails once; `.thumb.cur` also collided with the typewriter `.cur`).
 - **Unique class names**: a generic class like `.on` once collided with the dock's active state. Prefix new component classes with the type (`.vn-`, `.gt-`, `.cl-`…).
 - **CSS custom properties registered with `@property`** (`--p` for the compare slider) become typed: never reuse such a name for another purpose (the progress bar silently broke once; it now uses `--prog`).
 - **Chart.js** canvases are sized in layout pixels (not CSS-scaled) and re-created when the stage scale changes.
 - Colors only via tokens (`var(--brand)`, `var(--ink)`, `rgba(var(--brand-rgb), .2)`); text on `--brand` is white.
 - Text fields accept inline HTML; titles can be split word-by-word by `words()` (plain text only).
 - Slides must keep working in `static` mode (overview thumbnails, print): do not depend on running timers for visibility.
-- Escape nothing twice; the engine trusts deck authors (decks are code-adjacent: animation slides execute JS).
+- Escape nothing twice. Trusted decks (same-origin `?src=`, `Slides.load()`) are rendered as-is (inline HTML, animation JS). **Untrusted decks** (upload, drop, paste, `#d=` link, cross-origin `?src=`) go through `sanitizeDeck()` (section 9) and `G.animOK=false`: any new field that is rendered inside an HTML attribute or as a URL must stay safe after sanitizing (double quotes become `”`, URL-like strings are percent-encoded); never add `href`, `iframe src`, `innerHTML` or event-handler sinks fed by deck data without extending the sanitizer and testing a hostile deck.
 - Keep the UI strings in English; deck content is the author's language. (Some legacy UI strings are Spanish; leave them unless asked.)
 
 ## Add a slide type — checklist
@@ -47,7 +49,7 @@ Public runtime API: `Slides.load(deck)`, `Slides.go(n)`, `Slides.next()`, `Slide
 5. **Validator**: add the type to `scripts/validate-deck.mjs` (`R` table, plus a `custom` function for cross-field rules).
 6. **Docs**: add the type to `.agents/skills/create-presentation/references/slide-types.md` and the selection table in the `create-presentation` skill; update `README.md` counts; update `prompt.md` (Spanish chat prompt) only if asked.
 7. **Demo**: add an example slide to a deck in `data/` (or a new one) and, if useful, to `defaultJSON`.
-8. **Test**: `npm run validate`; `npm run serve`; `await Slides.audit()`; overview (`G`), dark mode (`T`), every theme (`C`), a narrow window (resize), PDF export.
+8. **Test**: `npm run validate`; `npm run serve`; `await Slides.audit()`; overview (`G`), dark mode (`T`), every theme (`C`), a narrow window and a phone-landscape viewport (812×375), PDF export.
 9. Regenerate agent files if you touched `.agents/` (`npm run sync`), then `npm run check`.
 
 ## Other changes

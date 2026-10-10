@@ -7,6 +7,7 @@
   "engines": { "node": ">=18" },
   "scripts": {
     "serve": "node scripts/serve.mjs",
+    "export:pdf": "node scripts/export-pdf.mjs",
     "validate": "node scripts/validate-deck.mjs",
     "validate:strict": "node scripts/validate-deck.mjs --strict",
     "sync": "node scripts/sync-agents.mjs",

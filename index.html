@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>Motor de Presentaciones</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +37,7 @@ html[data-theme="esmeralda"]{--brand:#0A8754;--brand-t:#34C98B;--brand-l:#2FBF84
 html[data-theme="violeta"]{--brand:#6D28D9;--brand-t:#A78BFA;--brand-l:#9461F0;--brand-xl:#CDB6F7;--brand-d:#4E1AA6;--brand-rgb:109,40,217;--ink:#17102E;--ink-rgb:23,16,46;--sec:#DB2777;--tint-warm:#F3ECFF;--tint-blue:#F6F2FD}
 html[data-theme="carmin"]{--brand:#D81B4A;--brand-t:#FF6B8A;--brand-l:#FF5C7F;--brand-xl:#FFB3C2;--brand-d:#A9103A;--brand-rgb:216,27,74;--ink:#1C0B12;--ink-rgb:28,11,18;--sec:#D97706;--tint-warm:#FFF0F3;--tint-blue:#FBF4F6}
 *{box-sizing:border-box}
+html,body{overscroll-behavior:none;touch-action:manipulation}
 html,body{margin:0;height:100%;overflow:hidden;background:#0c0c0c;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#333}
 button{font:inherit;cursor:pointer}
 i.ph,i.ph-fill,i.ph-bold{font-style:normal;line-height:1}
@@ -678,6 +683,8 @@ strong{color:var(--fg);font-weight:700}
 .an-err b{display:block;font-size:34px;margin-bottom:10px;color:var(--brand-l)}
 .an-err span{font:500 22px/1.5 'JetBrains Mono',monospace;opacity:.85}
 .an-err[hidden]{display:none}
+.an-err button{display:block;margin:20px auto 0;padding:12px 26px;border:0;border-radius:999px;background:var(--brand);color:#fff;font:600 20px 'Inter',sans-serif;pointer-events:auto;cursor:pointer}
+.an-err button:hover{background:var(--brand-l)}
 
 /* ---------- selector de temas ---------- */
 #themes{position:fixed;left:50%;bottom:96px;translate:-50% 12px;z-index:101;display:flex;gap:8px;padding:12px;border-radius:22px;background:rgba(var(--ink-rgb),.9);
@@ -710,7 +717,7 @@ body.themes #themes{opacity:1;translate:-50% 0;pointer-events:auto}
   background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid rgba(255,255,255,.14);
   box-shadow:0 20px 50px -10px rgba(0,0,0,.6);transition:opacity .4s,translate .4s var(--ease);
   opacity:0;translate:-50% 24px;pointer-events:none}
-body:is(.dock-on,.ov,.help,.themes) #dock{opacity:1;translate:-50% 0;pointer-events:auto}
+body:is(.dock-on,.dock-pin,.ov,.help,.themes) #dock{opacity:1;translate:-50% 0;pointer-events:auto}
 body.idle{cursor:none}
 #dock button{position:relative;width:46px;height:46px;border:0;border-radius:14px;background:transparent;color:#fff;display:grid;place-items:center;font-size:23px;transition:background .2s,color .2s,scale .2s}
 #dock button:hover{background:rgba(255,255,255,.14)}
@@ -731,16 +738,16 @@ body.ov #overview{opacity:1;pointer-events:auto}
 body.ov .thumb{opacity:1;translate:0 0;transition-delay:calc(var(--k)*28ms)}
 .thumb .tv{position:relative;width:400px;height:225px;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 14px 40px -12px rgba(0,0,0,.7);outline:3px solid transparent;outline-offset:3px;transition:outline-color .2s,scale .3s var(--ease)}
 .thumb:hover .tv{scale:1.04;outline-color:rgba(255,255,255,.5)}
-.thumb.cur .tv{outline-color:var(--brand)}
+.thumb.here .tv{outline-color:var(--brand)}
 .thumb .slide{inset:auto;left:0;top:0;width:1920px;height:1080px;opacity:1;visibility:visible;transform-origin:0 0;transform:scale(.20833);pointer-events:none}
 .thumb .slide .fx{display:none}
-.thumb span{display:block;margin-top:12px;color:rgba(255,255,255,.7);font-size:14px;font-weight:600;letter-spacing:.03em}
-.thumb span b{color:var(--brand);margin-right:8px}
+.thumb>span{display:block;margin-top:12px;color:rgba(255,255,255,.7);font-size:14px;font-weight:600;letter-spacing:.03em}
+.thumb>span b{color:var(--brand);margin-right:8px}
 
 #notes{position:fixed;left:50%;translate:-50% 0;bottom:30px;z-index:95;width:min(820px,90vw);padding:22px 28px;border-radius:18px;background:rgba(var(--ink-rgb),.92);backdrop-filter:blur(16px);
   border:1px solid rgba(255,255,255,.14);color:#fff;font-size:18px;line-height:1.55;box-shadow:0 30px 60px -20px #000;opacity:0;pointer-events:none;transition:opacity .3s,bottom .3s}
 body.notes #notes{opacity:1}
-body:is(.dock-on,.ov,.themes) #notes{bottom:96px}
+body:is(.dock-on,.dock-pin,.ov,.themes) #notes{bottom:96px}
 #notes b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);margin-bottom:8px}
 
 #help{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:rgba(12,12,12,.7);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s}
@@ -749,6 +756,20 @@ body.help #help{opacity:1;pointer-events:auto}
 #help h3{margin:0 0 22px;font-size:24px;letter-spacing:-.02em}
 #help dl{display:grid;grid-template-columns:auto 1fr;gap:12px 24px;margin:0;font-size:15px}
 #help dt{display:flex;gap:6px}#help dd{margin:0;color:rgba(255,255,255,.75);align-self:center}
+#paste{position:fixed;inset:0;z-index:125;display:grid;place-items:center;background:rgba(12,12,12,.7);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s}
+body.paste #paste{opacity:1;pointer-events:auto}
+#paste>div{width:min(760px,94vw);padding:30px 34px;border-radius:24px;background:#1b1b1b;border:1px solid rgba(255,255,255,.14);color:#fff;box-shadow:0 40px 90px -20px #000}
+#paste h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
+#paste p b{color:var(--brand-l)}
+#paste p{margin:0 0 16px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.62)}
+#paste textarea{display:block;width:100%;height:min(320px,42vh);box-sizing:border-box;resize:vertical;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:#111;color:#e8e8e8;font:13px/1.5 'JetBrains Mono',monospace}
+#paste textarea:focus{outline:2px solid var(--brand);outline-offset:1px}
+#paste .row{display:flex;gap:12px;align-items:center;margin-top:16px}
+#paste .msg{flex:1;font-size:13px;color:#ff8a8a;min-height:1.2em}
+#paste .row button i{vertical-align:-2px;margin-right:4px}
+#paste .row button{padding:11px 22px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font:600 14px 'Inter',sans-serif}
+#paste .row button.go{background:var(--brand);border-color:transparent}
+#paste .row button:hover{background:rgba(255,255,255,.12)}#paste .row button.go:hover{background:var(--brand-l)}
 kbd{display:inline-block;min-width:30px;padding:4px 9px;border-radius:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font:600 13px 'Inter',sans-serif;text-align:center;color:#fff}
 
 #toast{position:fixed;left:50%;top:26px;translate:-50% -20px;z-index:130;padding:14px 26px;border-radius:999px;background:#1b1b1b;color:#fff;font-size:15px;font-weight:500;
@@ -760,6 +781,50 @@ kbd{display:inline-block;min-width:30px;padding:4px 9px;border-radius:8px;backgr
 body.drag #drop{opacity:1}
 
 /* ============================================================
+   MÓVIL / PANTALLAS PEQUEÑAS  (body.compact: ancho ≤ 900 px o alto ≤ 520 px → diapositiva a pantalla completa, sin marco)
+   ============================================================ */
+body.compact #viewport{inset:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+body.compact #stage{border-radius:0;box-shadow:none}
+body.compact #bg{display:none}
+#fab{display:none;position:fixed;top:max(6px,env(safe-area-inset-top));left:50%;translate:-50% 0;z-index:101;width:38px;height:38px;border:0;border-radius:50%;
+  background:rgba(var(--ink-rgb),.6);color:#fff;font-size:20px;place-items:center;opacity:.45;transition:opacity .2s}
+#fab:active,body.dock-pin #fab{opacity:1}
+#rotate{display:none;position:fixed;top:60px;left:12px;right:12px;z-index:99;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(var(--ink-rgb),.92);
+  border:1px solid rgba(255,255,255,.14);color:#fff;font-size:14px;line-height:1.35}
+#rotate i{font-size:26px;color:var(--brand-l);flex:none}#rotate span{flex:1}
+#rotate button{flex:none;width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:18px;line-height:1}
+@media (orientation:portrait) and (max-width:700px){ body:not(.no-rotate) #rotate{display:flex} }
+@media (pointer:coarse){
+  #fab{display:grid}
+  #dock button[data-tip]::after{display:none}
+  .slide *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
+@media (max-width:900px),(pointer:coarse){
+  #dock{max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none;bottom:max(10px,env(safe-area-inset-bottom));padding:6px 8px;border-radius:18px}
+  #dock::-webkit-scrollbar{display:none}
+  #dock button{flex:none;width:42px;height:42px;font-size:21px}
+  #dock .sep{flex:none;margin:0 3px}
+  #counter{flex:none;min-width:70px}
+  #themes{bottom:max(70px,calc(env(safe-area-inset-bottom) + 64px));max-width:calc(100vw - 16px);flex-wrap:wrap;justify-content:center}
+  #themes button{width:76px}
+  #help>div{max-height:90vh;overflow:auto}
+}
+@media (max-width:640px),(max-height:520px){
+  #paste>div{padding:18px 20px;max-height:94vh;overflow:auto}
+  #paste h3{font-size:18px}#paste p{font-size:13px;margin-bottom:10px}
+  #paste textarea{height:min(320px,34vh)}
+  #paste .row{flex-wrap:wrap;gap:8px}#paste .msg{flex-basis:100%;order:-1}
+  #paste .row button{flex:1;padding:10px 12px;white-space:nowrap}
+  #toast{max-width:90vw;text-align:center;border-radius:18px}
+}
+@media (max-width:480px){
+  #overview{padding:56px 12px 100px}
+  #ov-grid{grid-template-columns:repeat(auto-fill,300px);gap:22px 16px}
+  .thumb .tv{width:300px;height:168.75px}
+  .thumb .slide{transform:scale(.15625)}
+}
+
+/* ============================================================
    PRINT / PDF
    ============================================================ */
 @media print{
@@ -769,7 +834,12 @@ body.drag #drop{opacity:1}
   #viewport{position:static!important}
   #stage{position:static!important;transform:none!important;width:1920px!important;height:auto!important;border-radius:0!important;box-shadow:none!important;animation:none!important;overflow:visible!important}
   .slide{position:relative!important;opacity:1!important;visibility:visible!important;width:1920px!important;height:1080px!important;break-after:page;page-break-after:always;animation:none!important;translate:none!important;filter:none!important}
+  .slide:last-child{break-after:auto;page-break-after:auto}
   .slide *{transition:none!important;animation:none!important}
+  /* texto con degradado (background-clip:text) deja un recuadro visible en el PDF: color sólido */
+  .mv{background:none!important;color:var(--brand)!important}
+  .dark .mv{color:var(--brand-t)!important}
+  .orange .mv{color:#fff!important}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 }
 
@@ -791,6 +861,9 @@ body.drag #drop{opacity:1}
   </div>
 </div>
 
+<button id="fab" type="button" aria-label="Menú"><i class="ph ph-list"></i></button>
+<div id="rotate"><i class="ph ph-device-rotate"></i><span>Gira el móvil en horizontal para ver la presentación más grande.</span><button type="button" aria-label="Cerrar">×</button></div>
+
 <nav id="dock">
   <button data-act="prev" data-tip="Anterior (←)"><i class="ph ph-caret-left"></i></button>
   <span id="counter">01 <small>/ 01</small></span>
@@ -803,6 +876,8 @@ body.drag #drop{opacity:1}
   <button data-act="fs" data-tip="Pantalla completa (F)"><i class="ph ph-corners-out"></i></button>
   <i class="sep"></i>
   <button data-act="load" data-tip="Cargar JSON"><i class="ph ph-file-code"></i></button>
+  <button data-act="paste" data-tip="Pegar JSON (Ctrl/⌘+V)"><i class="ph ph-clipboard-text"></i></button>
+  <button data-act="share" data-tip="Copiar enlace (L)"><i class="ph ph-link"></i></button>
   <button data-act="print" data-tip="Exportar PDF"><i class="ph ph-printer"></i></button>
   <button data-act="help" data-tip="Atajos (?)"><i class="ph ph-question"></i></button>
 </nav>
@@ -811,6 +886,12 @@ body.drag #drop{opacity:1}
 <div id="themes"></div>
 <div id="overview"><div id="ov-grid"></div></div>
 <div id="notes"><b>Notas del orador</b><span></span></div>
+<div id="paste"><div>
+  <h3>Pegar presentación (JSON)</h3>
+  <p><b>1.</b> Copia el prompt, pégalo en tu chat de IA y añade tu contenido. <b>2.</b> Pega aquí el JSON que te devuelva (vale el bloque de código completo). Se abre en este navegador; no se sube a ningún servidor.</p>
+  <textarea spellcheck="false" placeholder='{ "meta": { "title": "…" }, "slides": [ … ] }'></textarea>
+  <div class="row"><button type="button" data-p="prompt"><i class="ph ph-copy"></i> Copiar prompt</button><span class="msg"></span><button type="button" data-p="cancel">Cancelar</button><button type="button" class="go" data-p="open">Abrir</button></div>
+</div></div>
 <div id="help"><div>
   <h3>Atajos de teclado</h3>
   <dl>
@@ -822,7 +903,10 @@ body.drag #drop{opacity:1}
     <dt><kbd>C</kbd></dt><dd>Cambiar tema de color</dd>
     <dt><kbd>T</kbd></dt><dd>Alternar modo oscuro</dd>
     <dt><kbd>N</kbd></dt><dd>Mostrar notas del orador</dd>
+    <dt><kbd>Ctrl/⌘</kbd><kbd>V</kbd></dt><dd>Pegar un JSON y abrirlo</dd>
+    <dt><kbd>L</kbd></dt><dd>Copiar enlace para compartir la presentación</dd>
     <dt><kbd>Esc</kbd></dt><dd>Cerrar paneles</dd>
+    <dt>Móvil</dt><dd>Desliza o toca los bordes para cambiar de slide · botón ≡ de arriba para el menú</dd>
   </dl>
   <p style="margin:22px 0 0;font-size:13px;color:rgba(255,255,255,.5)">Arrastra un archivo .json sobre la ventana para cargar otra presentación. También puedes usar <code>?src=data/archivo.json</code>.</p>
 </div></div>
@@ -1488,7 +1572,7 @@ const THEMES = {
   violeta:   { label: 'Violeta',   a: '#6D28D9', b: '#17102E' },
   carmin:    { label: 'Carmín',    a: '#D81B4A', b: '#1C0B12' }
 };
-const G = { theme: 'classic', anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [] };
+const G = { theme: 'classic', anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '' };
 
 function slideHTML(s, i, isStatic = false) {
   const T = TYPES[s.type];
@@ -1527,8 +1611,12 @@ function fitSlide(el) {
   if (!had) el.classList.remove('static');
 }
 
-function buildPresentation(data) {
+// opts.untrusted → deck de origen no fiable: texto saneado y animaciones con código desactivadas (ver sección 9)
+function buildPresentation(data, opts = {}) {
   stopAll();
+  G.untrusted = !!opts.untrusted; G.animOK = !G.untrusted; G.share = opts.share || '';
+  try { G.json = JSON.stringify(data); } catch (e) { G.json = ''; }
+  if (G.untrusted) data = sanitizeDeck(data);
   G.deck = data;
   setTheme(new URLSearchParams(location.search).get('theme') || data.meta?.theme || 'classic', true);
   let sec = 0;
@@ -1548,7 +1636,7 @@ function buildPresentation(data) {
   });
   G.cur = -1;
   (document.fonts?.ready || Promise.resolve()).then(() => G.els.forEach(fitSlide));
-  const fromHash = parseInt(location.hash.slice(1), 10);
+  const fromHash = hashSlide();
   go(fromHash > 0 && fromHash <= G.els.length ? fromHash - 1 : 0, true);
   $('#dock [data-act=theme]').classList.toggle('on', G.forceDark);
 }
@@ -1605,9 +1693,10 @@ class FX {
     }));
   }
   fit() {
-    const r = Math.min(2, Math.max(1, (devicePixelRatio || 1) * G.scale));
+    const r = document.body.classList.contains('compact') ? .5 : Math.min(2, Math.max(1, (devicePixelRatio || 1) * G.scale));   // decorativo: en móvil basta media resolución
     this.cv.width = this.W * r; this.cv.height = this.H * r; this.ctx.setTransform(r, 0, 0, r, 0, 0);
   }
+  release() { this.stop(); this.cv.width = this.cv.height = 0; }   // libera la memoria del lienzo (iOS mata la pestaña si se acumulan)
   start() { if (this.run) return; this.run = true; this.onOrange = this.cv.closest('.slide').classList.contains('orange'); this.rgb = cssVar('--brand-rgb'); this.ink = cssVar('--ink-rgb'); this.fit(); const loop = () => { if (!this.run) return; this.step(); this.raf = requestAnimationFrame(loop); }; loop(); }
   stop() { this.run = false; cancelAnimationFrame(this.raf); }
   step() {
@@ -1670,13 +1759,14 @@ class Anim {
   constructor(el, slide, i) { this.el = el; this.s = slide; this.i = i; this.cv = $('.an-cv', el); this.root = $('.an-root', el); this.err = $('.an-err', el); this.run = false; this.gen = 0; this.inst = null; }
   resolve() {
     const s = this.s;
+    if (!G.animOK && (s.code != null || (s.src && !SAFE_SRC.test(String(s.src))))) return Promise.reject(Object.assign(new Error('blocked'), { blocked: true }));
     if (s.code != null) { try { return Promise.resolve(compileAnim(Array.isArray(s.code) ? s.code.join('\n') : String(s.code))); } catch (e) { return Promise.reject(e); } }
     if (!s.src) return Promise.reject(new Error('El slide "animation" necesita "code" o "src".'));
     return loadAnimFile(s.src);
   }
   fit() {
     if (!this.cx) return;
-    const r = this.thumb ? .5 : this.static ? 1 : Math.min(2, Math.max(1, (devicePixelRatio || 1) * G.scale));
+    const r = this.thumb ? .3 : this.static ? 1 : Math.min(2, Math.max(1, (devicePixelRatio || 1) * G.scale));
     this.cv.width = 1920 * r; this.cv.height = 1080 * r; this.cx.setTransform(r, 0, 0, r, 0, 0);
     try { this.inst?.resize?.(); } catch (e) { /* noop */ }
   }
@@ -1712,8 +1802,14 @@ class Anim {
       this.raf = requestAnimationFrame(loop);
     } catch (e) { if (gen === this.gen) this.fail(e); }
   }
+  release() { this.stop(); if (this.cv) this.cv.width = this.cv.height = 0; }
   stop() { this.run = false; cancelAnimationFrame(this.raf); this.gen++; try { this.inst?.destroy?.(); } catch (e) { /* noop */ } this.inst = null; }
   fail(e) {
+    if (e?.blocked) {
+      this.run = false; cancelAnimationFrame(this.raf);
+      this.err.innerHTML = '<b>Animación desactivada</b><span>Este deck viene de fuera y esta animación ejecuta código propio.</span><button type="button" data-enable-anim>Activar animaciones…</button>';
+      this.err.hidden = false; return;
+    }
     console.error(`Animación (slide ${this.i + 1}):`, e); this.run = false; cancelAnimationFrame(this.raf);
     this.err.innerHTML = `<b>Error en la animación</b><span>${String(e.message || e).replace(/</g, '&lt;')}</span>`; this.err.hidden = false;
   }
@@ -1826,7 +1922,7 @@ function go(n, instant = false) {
     $$('iframe[data-src]', from).forEach(f => { f.src = 'about:blank'; });
     $$('video', from).forEach(v => v.pause());
     $$('.cmp.drag', from).forEach(c => { c.classList.remove('drag'); c.style.removeProperty('--p'); });
-    clearTimeout(from._t); from._t = setTimeout(() => from.classList.remove('is-leaving'), 1000);
+    clearTimeout(from._t); from._t = setTimeout(() => { from.classList.remove('is-leaving'); if (G.cur !== prev) { G.fx.get(prev)?.release(); G.anims.get(prev)?.release(); } }, 1000);
   }
   clearTimeout(to._t); to.classList.remove('is-leaving', 'enter');
   if (!instant && prev >= 0) { void to.offsetWidth; to.classList.add('enter'); }
@@ -1843,7 +1939,7 @@ function go(n, instant = false) {
   stage.style.setProperty('--prog', (n + 1) / len);
   $('#counter').innerHTML = `${pad(n + 1)} <small>/ ${pad(len)}</small>`;
   $('#notes span').textContent = G.deck.slides[n].notes || 'Sin notas para este slide.';
-  history.replaceState(null, '', '#' + (n + 1));
+  history.replaceState(null, '', '#' + (G.share ? G.share + '&s=' : '') + (n + 1));
 }
 const next = () => go(G.cur + 1), prev = () => go(G.cur - 1);
 
@@ -1853,8 +1949,10 @@ function resetCharts(animate = false) {
 }
 
 function fit() {
-  const p = document.fullscreenElement ? 0 : 36;
-  G.scale = Math.min((innerWidth - p * 2) / 1920, (innerHeight - p * 2) / 1080);
+  const small = innerWidth <= 900 || innerHeight <= 520;
+  document.body.classList.toggle('compact', small);
+  const p = document.fullscreenElement || small ? 0 : 36, vp = $('#viewport');
+  G.scale = Math.min((vp.clientWidth - p * 2) / 1920, (vp.clientHeight - p * 2) / 1080);
   stage.style.setProperty('--s', G.scale);
 }
 let rz; addEventListener('resize', () => { fit(); clearTimeout(rz); rz = setTimeout(() => { resetCharts(false); G.fx.get(G.cur)?.fit(); G.anims.get(G.cur)?.fit(); }, 200); });
@@ -1862,17 +1960,18 @@ let rz; addEventListener('resize', () => { fit(); clearTimeout(rz); rz = setTime
 /* ---------- overview ---------- */
 function openOverview() {
   const grid = $('#ov-grid');
-  grid.innerHTML = G.deck.slides.map((s, i) => `<div class="thumb ${i === G.cur ? 'cur' : ''}" data-i="${i}" style="--k:${i}"><div class="tv">${slideHTML(s, i, true)}</div><span><b>${pad(i + 1)}</b>${strip(s.title || s.text || s.value || s.type).slice(0, 40)}</span></div>`).join('');
+  grid.innerHTML = G.deck.slides.map((s, i) => `<div class="thumb ${i === G.cur ? 'here' : ''}" data-i="${i}" style="--k:${i}"><div class="tv">${slideHTML(s, i, true)}</div><span><b>${pad(i + 1)}</b>${strip(s.title || s.text || s.value || s.type).replace(/\*/g, '').slice(0, 40)}</span></div>`).join('');
   document.body.classList.add('ov'); $('#dock [data-act=overview]').classList.add('on');
   G.charts.forEach((_, i) => killCharts(i)); G.fx.forEach(f => f.stop()); G.anims.forEach(a => a.stop());
   requestAnimationFrame(() => { $$('#ov-grid .slide').forEach(fitSlide);
     G.thumbAnims = []; $$('#ov-grid .slide').forEach(el => { if (!$('.an-cv', el)) return; const i = +el.dataset.i, a = new Anim(el, G.deck.slides[i], i); G.thumbAnims.push(a); a.start({ static: true, thumb: true }); }); G.thumbCharts = []; $$('#ov-grid .thumb').forEach(t => G.thumbCharts.push(...mountCharts(t, false, 1))); });
-  setTimeout(() => $('.thumb.cur', grid)?.scrollIntoView({ block: 'center' }), 50);
+  setTimeout(() => $('.thumb.here', grid)?.scrollIntoView({ block: 'center' }), 50);
 }
 function closeOverview() {
   document.body.classList.remove('ov'); $('#dock [data-act=overview]').classList.remove('on');
   G.thumbCharts.forEach(c => c.destroy()); G.thumbCharts = []; G.thumbAnims.forEach(a => a.stop()); G.thumbAnims = [];
   G.fx.get(G.cur)?.start(); G.anims.get(G.cur)?.start(); resetCharts(true);
+  setTimeout(() => { if (!document.body.classList.contains('ov')) $('#ov-grid').innerHTML = ''; }, 500);   // libera los lienzos de las miniaturas
 }
 $('#ov-grid').addEventListener('click', e => { const t = e.target.closest('.thumb'); if (!t) return; closeOverview(); go(+t.dataset.i); });
 $('#overview').addEventListener('click', e => { if (e.target.id === 'overview') closeOverview(); });
@@ -1904,27 +2003,51 @@ function toggleTheme() {
 function toggleFS() { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); }
 document.addEventListener('fullscreenchange', () => {
   document.body.classList.toggle('fs', !!document.fullscreenElement); fit();
+  try { document.fullscreenElement ? screen.orientation?.lock?.('landscape').catch(() => {}) : screen.orientation?.unlock?.(); } catch (e) { /* noop */ }
   $('#dock [data-act=fs] i').className = 'ph ' + (document.fullscreenElement ? 'ph-corners-in' : 'ph-corners-out');
   setTimeout(() => resetCharts(false), 150);
 });
-async function doPrint() {
+// Estado final de todas las slides para imprimir/exportar: sin animaciones de entrada, contadores y gráficos terminados
+let printing = false;
+function printPrep() {
+  if (printing) return; printing = true;
+  if (document.body.classList.contains('ov')) closeOverview();
+  document.body.classList.remove('themes', 'help');
   stopAll();
-  G.els.forEach(el => settleCounters(el));
-  G.els.forEach((el, i) => { if ($('canvas[data-ci]', el)) G.charts.set(i, mountCharts(el, false, 2)); });
-  await Promise.all([...G.anims].map(([, a]) => a.start({ static: true })));
-  setTimeout(() => window.print(), 250);
+  G.els.forEach((el, i) => { el.classList.add('static'); settleCounters(el); if ($('canvas[data-ci]', el)) G.charts.set(i, mountCharts(el, false, 2)); });
+  return Promise.all([...G.anims].map(([, a]) => a.start({ static: true })));
 }
-addEventListener('afterprint', () => { G.charts.forEach((_, i) => killCharts(i)); G.anims.forEach(a => a.stop()); G.fx.get(G.cur)?.start(); G.anims.get(G.cur)?.start(); resetCharts(false); });
+function printDone() {
+  if (!printing) return; printing = false;
+  G.charts.forEach((_, i) => killCharts(i)); G.anims.forEach(a => a.stop());
+  G.els.forEach(el => el.classList.remove('static'));
+  G.fx.forEach((f, i) => { if (i !== G.cur) f.release(); }); G.anims.forEach((a, i) => { if (i !== G.cur) a.release(); });
+  G.fx.get(G.cur)?.start(); G.anims.get(G.cur)?.start(); resetCharts(false);
+}
+async function doPrint() {
+  await printPrep();
+  // dar un par de frames para que pinten gráficos y canvases antes de abrir el diálogo
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  setTimeout(() => window.print(), 150);
+}
+// ?print → estado final listo para imprimir sin pulsar nada (lo usa scripts/export-pdf.mjs con Chrome headless)
+if (new URLSearchParams(location.search).has('print')) {
+  const t = setInterval(() => { if (G.els.length) { clearInterval(t); (document.fonts?.ready || Promise.resolve()).then(() => setTimeout(printPrep, 800)); } }, 100);
+}
+addEventListener('beforeprint', printPrep);   // Ctrl/Cmd+P o menú del navegador (preparación síncrona)
+addEventListener('afterprint', printDone);
 
 $('#dock').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   ({ prev, next, overview: () => document.body.classList.contains('ov') ? closeOverview() : openOverview(),
      palette: () => togglePalette(), notes: () => { document.body.classList.toggle('notes'); b.classList.toggle('on'); }, theme: toggleTheme, fs: toggleFS,
-     load: () => $('#file').click(), print: doPrint, help: () => document.body.classList.add('help') })[b.dataset.act]?.();
+     load: () => $('#file').click(), paste: openPaste, share: copyLink, print: doPrint, help: () => document.body.classList.add('help') })[b.dataset.act]?.();
 });
 $('#help').addEventListener('click', () => document.body.classList.remove('help'));
 
 addEventListener('keydown', e => {
+  if (e.target.closest?.('input,textarea')) return;
+  if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && (e.key === 'p' || e.key === 'P')) { e.preventDefault(); doPrint(); return; }
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   const ov = document.body.classList.contains('ov');
   switch (e.key) {
@@ -1935,17 +2058,31 @@ addEventListener('keydown', e => {
     case 'g': case 'G': case 'o': case 'O': ov ? closeOverview() : openOverview(); break;
     case 'f': case 'F': toggleFS(); break;
     case 'c': case 'C': cycleTheme(); break;
+    case 'l': case 'L': copyLink(); break;
     case 't': case 'T': toggleTheme(); break;
     case 'n': case 'N': document.body.classList.toggle('notes'); $('#dock [data-act=notes]').classList.toggle('on'); break;
     case '?': case 'h': case 'H': document.body.classList.toggle('help'); break;
-    case 'Escape': if (ov) closeOverview(); document.body.classList.remove('help'); togglePalette(false); break;
+    case 'Escape': if (ov) closeOverview(); document.body.classList.remove('help', 'paste'); togglePalette(false); break;
   }
 });
 
-/* ---------- touch ---------- */
-let tx = null;
-addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-addEventListener('touchend', e => { if (tx == null) return; const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 60) d < 0 ? next() : prev(); tx = null; }, { passive: true });
+/* ---------- touch: deslizar = cambiar de slide · tocar el 25 % lateral = anterior/siguiente · botón ≡ = menú ---------- */
+let tx = null, ty = 0, tt = 0, tel = null;
+const NOSWIPE = '.cmp,textarea,input,iframe,video,#paste,#help,#themes,#dock,#notes,#overview,[data-enable-anim]';
+addEventListener('touchstart', e => { if (e.touches.length > 1) { tx = null; return; } const t = e.touches[0]; tx = t.clientX; ty = t.clientY; tt = Date.now(); tel = e.target; }, { passive: true });
+addEventListener('touchend', e => {
+  if (tx == null) return;
+  const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty, el = tel; tx = null;
+  if (el?.closest?.(NOSWIPE) || document.body.classList.contains('ov')) return;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? next() : prev(); return; }
+  if (Math.abs(dx) < 12 && Math.abs(dy) < 12 && Date.now() - tt < 350 && el?.closest?.('#stage') && !el.closest('button,a')) {
+    const r = stage.getBoundingClientRect(), x = (t.clientX - r.left) / r.width, edge = el.closest('.an-cv') ? .15 : .25;   // las animaciones interactivas conservan el centro
+    if (x < edge) prev(); else if (x > 1 - edge) next();
+  }
+}, { passive: true });
+$('#fab').addEventListener('click', () => { document.body.classList.toggle('dock-pin'); });
+$('#rotate button').addEventListener('click', () => document.body.classList.add('no-rotate'));
+if (!document.documentElement.requestFullscreen && !document.documentElement.webkitRequestFullscreen) $('#dock [data-act=fs]').style.display = 'none';   // iPhone/Safari no permiten pantalla completa
 
 /* ---------- puntero: tilt + partículas + auto-hide ---------- */
 stage.addEventListener('pointermove', e => {
@@ -1981,14 +2118,125 @@ function toast(msg, err = false) {
   const t = $('#toast'); t.textContent = msg; t.classList.toggle('err', err); t.classList.add('show');
   clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3200);
 }
-function loadFromText(text, name = '') {
-  try {
-    const j = JSON.parse(text);
-    if (!j.slides || !Array.isArray(j.slides) || !j.slides.length) throw new Error('El JSON no contiene un array "slides" válido.');
-    location.hash = ''; buildPresentation(j);
-    toast(`Presentación cargada${name ? ': ' + name : ''} · ${j.slides.length} slides`);
-  } catch (e) { console.error(e); toast('Error al leer el JSON: ' + e.message, true); }
+/* Modelo de confianza: un deck es fiable solo si se carga con ?src= desde el MISMO origen que la página (tú lo alojas) o vía Slides.load().
+   Todo lo demás (subir, arrastrar, pegar, enlace #d=…, ?src= de otro dominio) es no fiable: el texto se sanea (solo HTML inline básico, sin
+   atributos ni scripts) y las animaciones con "code" quedan desactivadas hasta que el usuario las active. "src" solo vale si apunta a animations/*.js. */
+const SAFE_SRC = /^animations\/[\w.-]+\.js$/;
+const SAFE_TAGS = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'S', 'MARK', 'SMALL', 'SUB', 'SUP', 'BR', 'SPAN', 'CODE', 'KBD']);
+const DROP_TAGS = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'TEMPLATE', 'NOSCRIPT', 'SVG', 'MATH', 'TEXTAREA', 'TITLE', 'HEAD']);
+const escText = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '”');
+function cleanNode(n) {
+  if (n.nodeType === 3) return escText(n.nodeValue);
+  if (n.nodeType !== 1) return '';
+  const tag = n.tagName.toUpperCase();
+  if (DROP_TAGS.has(tag)) return '';
+  const inner = [...n.childNodes].map(cleanNode).join('');
+  if (!SAFE_TAGS.has(tag)) return inner;
+  if (tag === 'BR') return '<br>';
+  const cls = (n.getAttribute('class') || '').replace(/[^\w -]/g, '').trim(), t = tag.toLowerCase();
+  return `<${t}${cls ? ` class="${cls}"` : ''}>${inner}</${t}>`;
 }
+function cleanStr(s) {
+  const t = s.trim();
+  if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|\.{0,2}\/)/i.test(t) && !/\s/.test(t)) {          // parece una URL o ruta: nada de esquemas peligrosos ni romper atributos
+    if (/^(?:javascript|vbscript):/i.test(t) || /^data:(?!image\/(?:png|jpe?g|gif|webp|avif|svg\+xml)[;,])/i.test(t)) return '';
+    return s.replace(/["'()<>\\`]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+  }
+  if (/<\s*\/?\s*[a-zA-Z!?]/.test(s)) return [...new DOMParser().parseFromString(s, 'text/html').body.childNodes].map(cleanNode).join('');
+  return s.replace(/"/g, '”');
+}
+function sanitizeDeck(v, key = '') {
+  if (typeof v === 'string') return key === 'code' ? v : cleanStr(v);   // "code" no se renderiza como HTML (hl() escapa; las animaciones se bloquean aparte)
+  if (Array.isArray(v)) return key === 'code' ? v : v.map(x => sanitizeDeck(x));
+  if (v && typeof v === 'object') { const o = {}; for (const k of Object.keys(v)) if (k !== '__proto__') o[k] = sanitizeDeck(v[k], k); return o; }
+  return v;
+}
+stage.addEventListener('click', e => {
+  if (!e.target.closest('[data-enable-anim]')) return;
+  if (!confirm('Las animaciones de este deck ejecutan código JavaScript que no es de este sitio.\n\nActívalas solo si confías en quien creó la presentación.')) return;
+  G.animOK = true; G.anims.get(G.cur)?.start(); toast('Animaciones activadas para este deck');
+});
+
+/* ---------- cargar desde texto / pegado / enlace ---------- */
+function parseDeckText(t) {
+  try { return JSON.parse(t); } catch (e) {            // respuestas de chat: bloque ```json … ``` o texto alrededor
+    let x = String(t).trim().replace(/^﻿/, '');
+    const f = x.match(/```(?:json)?\s*([\s\S]*?)```/i); if (f) x = f[1].trim();
+    if (x[0] !== '{') { const a = x.indexOf('{'), b = x.lastIndexOf('}'); if (a >= 0 && b > a) x = x.slice(a, b + 1); }
+    if (x === t) throw e; return JSON.parse(x);
+  }
+}
+// devuelve '' si cargó, o el mensaje de error
+function loadFromText(text, name = '', opts = {}) {
+  try {
+    const j = parseDeckText(text);
+    if (!j || !Array.isArray(j.slides) || !j.slides.length) throw new Error('El JSON no contiene un array "slides" válido.');
+    if (!opts.keepHash) history.replaceState(null, '', location.pathname + location.search);
+    buildPresentation(j, { untrusted: !opts.trusted, share: opts.share });
+    toast(`Presentación cargada${name ? ': ' + name : ''} · ${j.slides.length} slides`);
+    return '';
+  } catch (e) { console.error(e); toast('Error al leer el JSON: ' + e.message, true); return e.message; }
+}
+const hashParams = () => new URLSearchParams(location.hash.slice(1));
+const hashSlide = () => parseInt(hashParams().get('s') ?? location.hash.slice(1), 10);
+const b64u = u8 => { let s = ''; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+const unb64u = t => Uint8Array.from(atob(t.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+async function encodeDeck(json) {                      // "1." deflate-raw · "0." sin comprimir (navegadores sin CompressionStream)
+  if (window.CompressionStream) return '1.' + b64u(new Uint8Array(await new Response(new Blob([json]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer()));
+  return '0.' + b64u(new TextEncoder().encode(json));
+}
+async function decodeDeck(p, max = 8 << 20) {
+  const [v, b] = [p.slice(0, 1), p.slice(2)], bytes = unb64u(b);
+  if (v === '0') return new TextDecoder().decode(bytes);
+  if (v !== '1' || !window.DecompressionStream) throw new Error('Este navegador no puede abrir enlaces comprimidos.');
+  const rd = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw')).getReader(), parts = []; let n = 0;
+  for (;;) { const { done, value } = await rd.read(); if (done) break; n += value.length; if (n > max) { rd.cancel(); throw new Error('El deck del enlace es demasiado grande.'); } parts.push(value); }
+  return new TextDecoder().decode(await new Blob(parts).arrayBuffer());
+}
+async function loadFromHash() {
+  const d = hashParams().get('d'); if (!d) return false;
+  try { return !loadFromText(await decodeDeck(d), 'enlace', { keepHash: true, share: 'd=' + d }); }
+  catch (e) { console.error(e); toast('No se pudo abrir el enlace: ' + e.message, true); return false; }
+}
+addEventListener('hashchange', () => { const d = hashParams().get('d'); if (d && 'd=' + d !== G.share) loadFromHash(); });
+async function copyLink() {
+  if (!G.json) return;
+  try {
+    const url = location.href.replace(/[#?].*$/, '') + '#d=' + await encodeDeck(G.json), kb = Math.ceil(url.length / 1024);
+    try { await navigator.clipboard.writeText(url); } catch (e) { prompt('Copia el enlace (Ctrl/⌘+C):', url); }
+    if (location.protocol === 'file:') toast(`Enlace copiado (${kb} KB), pero apunta a un archivo local: aloja la app para compartirlo`, true);
+    else if (url.length > 32000) toast(`Enlace copiado (${kb} KB): es muy largo y algunos chats lo cortan. Alternativa: aloja el JSON y usa ?src=`, true);
+    else toast(`Enlace copiado · ${kb} KB`);
+  } catch (e) { console.error(e); toast('No se pudo crear el enlace: ' + e.message, true); }
+}
+function loadPrompts() {                               // prompt.en.js se carga como <script> para que funcione también desde file://
+  if (window.SLIDES_PROMPTS) return Promise.resolve(window.SLIDES_PROMPTS);
+  return new Promise((ok, ko) => { const sc = document.createElement('script'); sc.src = 'prompt.en.js'; sc.onload = () => ok(window.SLIDES_PROMPTS); sc.onerror = () => ko(new Error('prompt.en.js')); document.head.appendChild(sc); });
+}
+async function copyPrompt() {                          // prompt para cualquier chat de IA (generado por scripts/sync-agents.mjs)
+  const msg = $('#paste .msg');
+  try {
+    const text = (await loadPrompts()).standard;
+    try { await navigator.clipboard.writeText(text); toast('Prompt copiado: pégalo en tu IA y añade tu contenido al final'); msg.textContent = ''; }
+    catch (e) { const t = $('#paste textarea'); t.value = text; t.focus(); t.select(); msg.textContent = 'Copia el texto del cuadro (Ctrl/⌘+C) y pégalo en tu IA.'; }
+  } catch (e) { msg.textContent = 'No se pudo cargar prompt.en.js: mantén el archivo junto a index.html.'; }
+}
+function openPaste() { document.body.classList.add('paste'); const t = $('#paste textarea'); t.value = ''; $('#paste .msg').textContent = ''; setTimeout(() => t.focus(), 60); }
+function closePaste() { document.body.classList.remove('paste'); }
+$('#paste').addEventListener('click', e => {
+  const b = e.target.closest('button[data-p]');
+  if (b?.dataset.p === 'open') {
+    const t = $('#paste textarea').value; if (!t.trim()) return;
+    const err = loadFromText(t, 'pegado'); err ? $('#paste .msg').textContent = err : closePaste();
+  } else if (b?.dataset.p === 'prompt') copyPrompt();
+  else if (b?.dataset.p === 'cancel' || e.target.id === 'paste') closePaste();
+});
+$('#paste textarea').addEventListener('keydown', e => { if (e.key === 'Escape') closePaste(); if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) $('#paste [data-p=open]').click(); });
+addEventListener('paste', e => {                       // Ctrl/⌘+V con la presentación abierta: si es un deck, se abre
+  if (e.target.closest?.('input,textarea,[contenteditable]')) return;
+  const t = e.clipboardData?.getData('text') || ''; if (!/"slides"\s*:/.test(t)) return;
+  e.preventDefault(); loadFromText(t, 'pegado');
+});
 function readFile(f) { if (!f) return; const r = new FileReader(); r.onload = e => loadFromText(e.target.result, f.name); r.readAsText(f); }
 $('#file').addEventListener('change', e => { readFile(e.target.files[0]); e.target.value = ''; });
 let dragN = 0;
@@ -2004,9 +2252,14 @@ addEventListener('load', async () => {
   fit();
   const src = new URLSearchParams(location.search).get('src');
   if (src) {
-    try { const r = await fetch(src); if (!r.ok) throw new Error(r.status); loadFromText(await r.text(), src.split('/').pop()); return; }
+    try {
+      const r = await fetch(src); if (!r.ok) throw new Error(r.status);
+      const u = new URL(r.url || src, location.href), same = u.origin === location.origin && /^https?:$/.test(u.protocol);
+      loadFromText(await r.text(), src.split('/').pop(), { trusted: same, keepHash: true }); return;
+    }
     catch (e) { toast('No se pudo cargar ' + src + ' (¿estás sirviendo la carpeta por HTTP?)', true); }
   }
+  if (await loadFromHash()) return;
   buildPresentation(defaultJSON);
 });
 /* ============================================================

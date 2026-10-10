@@ -33,6 +33,7 @@ No Node? `python3 -m http.server 8765` works too. You can also open `index.html`
 
 | Deck | Topic | Slides | Animations | Theme |
 |---|---|---|---|---|
+| `data/electricidad-basica.json` | Basic electricity (technical training showcase) | 29 | 6 | `ocean` |
 | `data/sistema-solar.json` | The Solar System | 20 | 4 | `violeta` |
 | `data/segunda-guerra-mundial.json` | World War II | 24 | 3 | `marino` |
 | `data/llm-wiki-karpathy.json` | Karpathy's "LLM Wiki" pattern | 14 | 2 | `classic` |
@@ -61,9 +62,17 @@ With no `?src=` the engine shows a built-in demo deck.
 
 The control dock stays out of the way while you navigate: move the mouse to the bottom edge to reveal it (Load JSON, PDF, themes, full screen…).
 
+**On a phone**: use landscape. Swipe or tap the left/right quarter of the slide to change slide, and the ≡ button at the top opens the menu (overview, themes, paste JSON, share link…). The slide fills the screen (no frame, notch-safe); in portrait a banner suggests rotating, since a 1920×1080 canvas is too small to read in portrait. On iPhone, *Share → Add to Home Screen* gives a full-screen app (Safari has no Fullscreen API). Heavy effects (glass blur) are turned off on touch devices.
+
 URL options: `?src=data/x.json` · `&theme=ocean` · `#5` (open on slide 5).
 
-**Export to PDF**: open the deck in Chrome/Edge → print → *Save as PDF* → Landscape, margins *None*, *Background graphics* on. One 1920×1080 page per slide; animation slides print as a still frame.
+**Open a deck without a server** (e.g. from an AI chat): press `Ctrl/Cmd+V` anywhere on the page, or use the clipboard button in the dock, and paste the JSON (a ```json fenced block copied from a chat works). Everything happens in the browser; nothing is uploaded.
+
+**Share a deck as a link**: `L` (or the link button) copies `…/index.html#d=<compressed deck>`: no server or account needed, the recipient just opens it (a 100-slide deck is ~20 KB). Very long links (>30 KB) may be cut by chat apps; host the JSON and share `?src=<url>` instead.
+
+**Export to PDF**: open the deck in Chrome/Edge → printer button in the dock (or `Ctrl/Cmd+P`) → *Save as PDF* → Landscape, margins *None*, *Background graphics* on. One 1920×1080 page per slide; animation slides print as a still frame.
+
+**Without the print dialog**: `npm run export:pdf -- data/<deck>.json [out.pdf]` (headless Chrome/Edge/Chromium, no dependencies; set `CHROME_PATH` if it is not found, `--theme=ocean` to override the theme).
 
 ---
 
@@ -141,7 +150,7 @@ registerAnimation(function (api) {
 
 Bundled animations: neural network, bubble sort, LLM-wiki compile/lint, WWII alliances/Eastern Front/D-Day, solar-system formation/orbits/sizes, Moon phases.
 
-> **Security**: animation slides execute JavaScript from the deck. Only open decks you wrote or trust.
+> **Security**: animation slides can execute JavaScript from the deck, so decks are **trusted only when loaded with `?src=` from the same origin as the page** (you host them) or through `Slides.load()`. Anything else (uploaded, dragged, pasted, `#d=` links, `?src=` from another domain) runs in **safe mode**: text is sanitized (only basic inline HTML, no attributes/scripts), animations with inline `code` or a `src` outside `animations/*.js` are disabled until the viewer clicks *Activar animaciones…*. Animations in `animations/` referenced by name keep working in safe mode, so prefer `src` over `code` for decks you plan to share. Never put a deck you did not review in your own `data/` folder.
 
 ---
 
@@ -160,7 +169,8 @@ scripts/sync-agents.mjs        ← generates everything below from the sources
 .github/agents/*.agent.md                 Copilot custom agents      (generated)
 .codex/agents/*.toml                      Codex custom agents        (generated)
 .github/copilot-instructions.md, instructions/, prompts/   Copilot instructions and prompt files
-prompt.en.md                              prompt for any chat LLM    (generated)
+prompt.en.md, prompt-animations.en.md,
+prompt.en.js                              prompts for any chat LLM   (generated; the .js feeds the app's Copiar prompt button, also on file://)
 ```
 
 ### Skills (the knowledge)
@@ -195,7 +205,7 @@ prompt.en.md                              prompt for any chat LLM    (generated)
 
 **Codex** (CLI / IDE) — Codex reads `AGENTS.md` and the skills in `.agents/skills`; mention a skill by name (e.g. *"use the create-presentation skill to…"*) or just describe the task. Project agents are defined in `.codex/agents/*.toml`, e.g. *"Spawn the presentation-reviewer agent on data/sistema-solar.json."*
 
-**Any other chat LLM** — paste [`prompt.en.md`](prompt.en.md) (English) or [`prompt.md`](prompt.md) (Spanish), add your content, and save the JSON it returns into `data/`.
+**Any other chat LLM** — paste [`prompt.en.md`](prompt.en.md), add your content at the end, then paste the JSON it returns into the app (`Ctrl/Cmd+V`) or save it into `data/`. In the app, the clipboard button opens a dialog with **Copiar prompt** (copies `prompt.en.md`) and a box to paste the result. The prompt is written in English but tells the model to write the slides in the language of your content. `prompt.en.md` has no animation slides (safe for shared decks); use [`prompt-animations.en.md`](prompt-animations.en.md) when you will open the deck on your own machine or server. [`prompt.md`](prompt.md) is the older, hand-written Spanish version and may lag behind the slide catalog.
 
 ### Tools the agents (and you) can run
 

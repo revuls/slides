@@ -10,8 +10,9 @@ A **JSON-driven web presentation engine**. `index.html` (single file, vanilla HT
 
 ```bash
 npm run serve              # static server → http://localhost:8765  (open ?src=data/<deck>.json)
+npm run export:pdf -- data/<deck>.json  # PDF via headless Chrome, no print dialog
 npm run validate           # validate every data/*.json   (node scripts/validate-deck.mjs [file…] [--json] [--strict])
-npm run sync               # regenerate agent files from .agents/ (Claude, Copilot, Codex) + prompt.en.md
+npm run sync               # regenerate agent files from .agents/ (Claude, Copilot, Codex) + prompt files
 npm run check              # verify .agents/ sources are valid and generated files are in sync
 npm test                   # check + validate
 ```
@@ -24,11 +25,11 @@ Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `
 | `index.html` | The engine. Section banners map the code (themes, stage, TYPES, `Anim`, charts, navigation, `Slides.audit`). |
 | `data/*.json` | Decks (`meta` + `slides`). `data/plantilla-animacion.json` is a starter. |
 | `animations/*.js` | Full-screen animations, each wrapped in `registerAnimation(function (api) { … })`. `_plantilla.js` is the template. |
-| `scripts/` | `validate-deck.mjs`, `serve.mjs`, `sync-agents.mjs`, `prompt-header.en.md`. |
+| `scripts/` | `validate-deck.mjs`, `serve.mjs`, `export-pdf.mjs`, `sync-agents.mjs`, `prompt-header.en.md`. |
 | `.agents/skills/` | **Skills** (Agent Skills standard): the knowledge. Source of truth. |
 | `.agents/agents/` | **Agents** (neutral definitions): the roles. Source of truth. |
 | `.claude/`, `.github/agents/`, `.codex/agents/` | Generated per-tool agent files (+ `.claude/skills` symlink). **Do not edit.** |
-| `prompt.md` / `prompt.en.md` | Paste-into-any-chat prompts (Spanish original / generated English). |
+| `prompt.md` / `prompt.en.md` / `prompt-animations.en.md` | Paste-into-any-chat prompts (Spanish original, may lag / generated English without animations / generated English with animation rules). The app's *Copiar prompt* button serves `prompt.en.md`. |
 
 ## Skills (load the one that matches the task)
 
@@ -59,7 +60,7 @@ Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `
 - **Language**: reply in the user's language. Code, comments, docs, skills and agents are in English. Deck text is in the language of the request (existing sample decks are in Spanish).
 - **Never invent facts**: no made-up statistics, quotes, dates, sources, or third-party logos. Mark estimates with `≈`/ranges and say so. Treat sensitive subjects (war, genocide, disasters, health) with sober, factual wording.
 - **Decks are data; the engine is code**: do not edit `index.html` to make one deck work. If a capability is missing, use the `extend-engine` skill and keep validator + docs + demo in sync.
-- **Animation slides execute JavaScript** from the deck: no network, `eval`, storage or DOM access outside `api.root`; only load decks from trusted sources.
+- **Animation slides execute JavaScript** from the deck: no network, `eval`, storage or DOM access outside `api.root`. Trust is decided by origin: only `?src=` from the page's own origin (and `Slides.load()`) is trusted; uploaded/pasted/`#d=`/cross-origin decks run in safe mode (sanitized text, `code` animations off, `src` only `animations/*.js`). Prefer `src` files over inline `code` in decks meant to be shared. Do not weaken `sanitizeDeck()`/`SAFE_SRC` without a security review.
 - **Colors** come from theme tokens (`var(--brand)`…) in CSS and `api.colors` in animations; never hard-code a palette.
 - **No new dependencies** (the engine uses Chart.js, Phosphor Icons and Google Fonts from CDNs). A 3D library was evaluated and removed: do not re-add it without a clear need.
 - **Generated files**: edit `.agents/skills/**`, `.agents/agents/*.md` or `scripts/prompt-header.en.md`, then run `npm run sync`. CI fails if they drift.
