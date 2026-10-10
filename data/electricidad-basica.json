@@ -1,0 +1,483 @@
+{
+  "meta": {
+    "title": "Electricidad básica",
+    "date": "Octubre 2026",
+    "author": "Formación técnica",
+    "theme": "ocean",
+    "brand": "Electricidad",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Formación técnica",
+      "title": "Electricidad básica",
+      "subtitle": "De la carga eléctrica a la corriente alterna, con simulaciones",
+      "notes": "Deck de muestra con 6 animaciones. Contenido didáctico general: no sustituye a la normativa (REBT) ni a la formación de un instalador autorizado."
+    },
+    {
+      "type": "agenda",
+      "title": "Qué vamos a ver",
+      "subtitle": "Seis bloques, de lo básico a la red eléctrica",
+      "items": [
+        {
+          "title": "Las magnitudes",
+          "desc": "Carga, tensión, intensidad y resistencia"
+        },
+        {
+          "title": "Ley de Ohm y circuitos",
+          "desc": "V = I · R, serie y paralelo"
+        },
+        {
+          "title": "Potencia y energía",
+          "desc": "Vatios, kWh y efecto Joule"
+        },
+        {
+          "title": "Corriente alterna",
+          "desc": "Senoide, valor eficaz, 230 V y 50 Hz"
+        },
+        {
+          "title": "Redes y transformadores",
+          "desc": "Trifásica y cambio de tensión"
+        },
+        {
+          "title": "Seguridad",
+          "desc": "Protecciones y buenas prácticas"
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "Una idea para empezar",
+      "text": "La electricidad no se *gasta*: lo que se *consume* es energía.",
+      "source": "Las cargas dan la vuelta al circuito; la energía se transforma en luz, calor o movimiento",
+      "notes": "Las cargas no desaparecen: circulan por el circuito. Lo que se transfiere y se transforma es la energía."
+    },
+    {
+      "type": "section",
+      "title": "Las magnitudes",
+      "subtitle": "Carga, tensión, intensidad y resistencia"
+    },
+    {
+      "type": "icons",
+      "title": "Cuatro magnitudes básicas",
+      "subtitle": "Con ellas se describe cualquier circuito sencillo.",
+      "icons": [
+        {
+          "icon": "ph-atom",
+          "title": "Carga (Q)",
+          "desc": "Propiedad de la materia que origina las fuerzas eléctricas. Se mide en culombios (C).",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-lightning",
+          "title": "Tensión (V)",
+          "desc": "Energía que recibe cada unidad de carga: es el «empuje». Se mide en voltios (V).",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-gauge",
+          "title": "Intensidad (I)",
+          "desc": "Carga que pasa por un punto cada segundo: 1 A = 1 C/s. Se mide en amperios (A).",
+          "color": "blue"
+        },
+        {
+          "icon": "ph-wave-sawtooth",
+          "title": "Resistencia (R)",
+          "desc": "Oposición al paso de la corriente. Se mide en ohmios (Ω).",
+          "color": "orange"
+        }
+      ]
+    },
+    {
+      "type": "animation",
+      "kicker": "Circuito simple",
+      "title": "Pila, interruptor y lámpara",
+      "caption": "Al cerrar el interruptor, los electrones se desplazan y la lámpara se enciende. El sentido convencional de la corriente es el contrario.",
+      "src": "animations/elec-circuito.js",
+      "notes": "Esquema didáctico. Los electrones van de − a +; por convenio la corriente se dibuja de + a −."
+    },
+    {
+      "type": "versus",
+      "title": "Dos sentidos para la corriente",
+      "subtitle": "Un convenio histórico que seguimos usando.",
+      "left": {
+        "title": "Sentido convencional",
+        "icon": "ph-arrow-circle-right",
+        "items": [
+          "Se define de + a −",
+          "Es el que se dibuja en los esquemas",
+          "Se fijó antes de conocer el electrón"
+        ]
+      },
+      "right": {
+        "title": "Sentido real",
+        "icon": "ph-atom",
+        "items": [
+          "Los electrones van de − a +",
+          "En los metales son ellos los que se mueven",
+          "Los cálculos dan el mismo resultado"
+        ]
+      },
+      "verdict": "Da igual cuál uses, si eres coherente en todo el circuito"
+    },
+    {
+      "type": "section",
+      "title": "Ley de Ohm y circuitos",
+      "subtitle": "La relación entre tensión, intensidad y resistencia"
+    },
+    {
+      "type": "statement",
+      "kicker": "La ley más usada",
+      "text": "*V = I · R*: la tensión es el producto de la intensidad por la resistencia.",
+      "source": "Ley de Ohm"
+    },
+    {
+      "type": "animation",
+      "kicker": "Ley de Ohm",
+      "title": "Tensión, intensidad y resistencia",
+      "caption": "Con la misma resistencia, más tensión da más intensidad. Con la misma tensión, menos resistencia da más intensidad.",
+      "src": "animations/elec-ohm.js",
+      "notes": "Valores de ejemplo: 3, 6 y 12 V con 6 Ω; después 12 V con 12, 6 y 3 Ω. La pendiente de la recta V = R · I es la resistencia."
+    },
+    {
+      "type": "table",
+      "title": "Despeja lo que necesites",
+      "subtitle": "Las tres formas de la ley de Ohm.",
+      "highlight": 1,
+      "headers": [
+        "Buscas",
+        "Fórmula",
+        "Ejemplo"
+      ],
+      "rows": [
+        [
+          "Tensión",
+          "V = I · R",
+          "2 A · 6 Ω = 12 V"
+        ],
+        [
+          "Intensidad",
+          "I = V / R",
+          "12 V / 6 Ω = 2 A"
+        ],
+        [
+          "Resistencia",
+          "R = V / I",
+          "12 V / 2 A = 6 Ω"
+        ]
+      ]
+    },
+    {
+      "type": "animation",
+      "kicker": "Serie y paralelo",
+      "title": "Dos formas de conectar receptores",
+      "caption": "En serie la intensidad es la misma; en paralelo, la tensión. Quita un receptor y verás la diferencia.",
+      "src": "animations/elec-serie-paralelo.js",
+      "notes": "Fuente de 12 V. Serie: 4 Ω + 8 Ω = 12 Ω → 1 A, con 4 V y 8 V. Paralelo: 6 Ω y 12 Ω → Rt = 4 Ω → 3 A = 2 A + 1 A. Al final se retira R2."
+    },
+    {
+      "type": "table",
+      "title": "Serie frente a paralelo",
+      "subtitle": "Qué se mantiene y qué se reparte.",
+      "headers": [
+        "",
+        "Serie",
+        "Paralelo"
+      ],
+      "rows": [
+        [
+          "Intensidad",
+          "La misma en todos",
+          "Se reparte entre ramas"
+        ],
+        [
+          "Tensión",
+          "Se reparte",
+          "La misma en todas"
+        ],
+        [
+          "Resistencia total",
+          "R₁ + R₂ + …",
+          "1/R = 1/R₁ + 1/R₂ + …"
+        ],
+        [
+          "Si un receptor falla",
+          "Se corta todo el circuito",
+          "Los demás siguen funcionando"
+        ],
+        [
+          "Uso habitual",
+          "Protecciones en línea",
+          "Tomas y luces de una vivienda"
+        ]
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Potencia y energía",
+      "subtitle": "Cuánto trabaja y cuánto cuesta"
+    },
+    {
+      "type": "process",
+      "title": "De los vatios al coste",
+      "subtitle": "Cuatro pasos para calcular un consumo.",
+      "steps": [
+        {
+          "icon": "ph-lightning",
+          "title": "Potencia",
+          "desc": "P = V · I, en vatios (W). Es lo que pide el aparato en cada instante."
+        },
+        {
+          "icon": "ph-clock",
+          "title": "Tiempo",
+          "desc": "Cuántas horas funciona. Más tiempo, más energía."
+        },
+        {
+          "icon": "ph-battery-charging",
+          "title": "Energía",
+          "desc": "E = P · t. En kWh: potencia en kW por horas de uso."
+        },
+        {
+          "icon": "ph-receipt",
+          "title": "Coste",
+          "desc": "Energía en kWh por el precio del kWh de tu tarifa."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Ejemplos de consumo",
+      "subtitle": "Valores típicos y orientativos; cada aparato es distinto.",
+      "highlight": 3,
+      "headers": [
+        "Aparato",
+        "Potencia",
+        "Uso",
+        "Energía"
+      ],
+      "rows": [
+        [
+          "Bombilla LED",
+          "≈ 10 W",
+          "5 h",
+          "0,05 kWh"
+        ],
+        [
+          "Televisor",
+          "≈ 100 W",
+          "4 h",
+          "0,4 kWh"
+        ],
+        [
+          "Horno",
+          "≈ 2.000 W",
+          "1 h",
+          "2 kWh"
+        ],
+        [
+          "Calefactor",
+          "≈ 2.000 W",
+          "3 h",
+          "6 kWh"
+        ]
+      ],
+      "notes": "Energía = potencia × tiempo: 10 W · 5 h = 50 Wh = 0,05 kWh; 2.000 W · 3 h = 6.000 Wh = 6 kWh."
+    },
+    {
+      "type": "big-number",
+      "kicker": "Efecto Joule",
+      "value": "4×",
+      "label": "más calor al duplicar la intensidad",
+      "desc": "El calor en un conductor es P = I² · R. Por eso los cables tienen una intensidad máxima y las protecciones la limitan."
+    },
+    {
+      "type": "section",
+      "title": "Corriente alterna",
+      "subtitle": "La que llega a tu enchufe"
+    },
+    {
+      "type": "animation",
+      "kicker": "Corriente alterna",
+      "title": "Una senoide de 50 ciclos por segundo",
+      "caption": "Un vector giratorio genera la tensión: sube, baja y se invierte. Los 230 V eficaces calientan lo mismo que 230 V en continua.",
+      "src": "animations/elec-alterna.js",
+      "notes": "Pico ≈ 325 V = 230 V · √2. Periodo 20 ms (1/50 Hz). La animación está muy ralentizada: dos ciclos en 8 segundos."
+    },
+    {
+      "type": "number-grid",
+      "title": "La red doméstica en España",
+      "subtitle": "Valores nominales de la corriente monofásica.",
+      "metrics": [
+        {
+          "value": "230 V",
+          "label": "Tensión eficaz",
+          "desc": "Entre fase y neutro"
+        },
+        {
+          "value": "50 Hz",
+          "label": "Frecuencia",
+          "desc": "Ciclos por segundo"
+        },
+        {
+          "value": "≈325 V",
+          "label": "Tensión de pico",
+          "desc": "230 V · √2"
+        },
+        {
+          "value": "20 ms",
+          "label": "Periodo",
+          "desc": "1 / 50 Hz"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Redes y transformadores",
+      "subtitle": "Trifásica y cambio de tensión"
+    },
+    {
+      "type": "animation",
+      "kicker": "Trifásica",
+      "title": "Tres fases desfasadas 120°",
+      "caption": "Tres tensiones de 230 V, una por fase. Entre dos fases hay ≈ 400 V y la suma de las tres es siempre cero.",
+      "src": "animations/elec-trifasica.js",
+      "notes": "230 V · √3 ≈ 398 V, que se redondea a 400 V. Con cargas equilibradas la corriente por el neutro es cero."
+    },
+    {
+      "type": "versus",
+      "title": "Monofásica frente a trifásica",
+      "subtitle": "Cuándo se usa cada una.",
+      "left": {
+        "title": "Monofásica",
+        "icon": "ph-plug",
+        "items": [
+          "Una fase y neutro",
+          "230 V entre fase y neutro",
+          "Viviendas y pequeños consumos"
+        ]
+      },
+      "right": {
+        "title": "Trifásica",
+        "icon": "ph-plugs-connected",
+        "items": [
+          "Tres fases (y neutro)",
+          "≈ 400 V entre fases · 230 V fase-neutro",
+          "Industria, motores y grandes potencias"
+        ]
+      },
+      "verdict": "La trifásica reparte mejor las grandes potencias y alimenta motores de forma más suave"
+    },
+    {
+      "type": "animation",
+      "kicker": "Transformador",
+      "title": "Cambiar la tensión sin mover nada",
+      "caption": "Un flujo magnético alterno en el núcleo induce tensión en el secundario. La relación de vueltas fija la relación de tensiones.",
+      "src": "animations/elec-transformador.js",
+      "notes": "Vs/Vp = Ns/Np. Ejemplo: 230 V con 1.000 vueltas en el primario y 50 en el secundario dan ≈ 11,5 V. Esquema: el número de espiras y las amplitudes no están a escala. Solo funciona con corriente alterna."
+    },
+    {
+      "type": "features",
+      "title": "Por qué se transporta en alta tensión",
+      "subtitle": "La misma potencia con menos intensidad.",
+      "cards": [
+        {
+          "icon": "ph-lightning",
+          "title": "Misma potencia",
+          "text": "P = V · I: si sube la tensión, para la misma potencia baja la intensidad.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-gauge",
+          "title": "Menos intensidad",
+          "text": "Con menos intensidad, los cables calientan menos y pueden ser más finos.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-trend-down",
+          "title": "Menos pérdidas",
+          "text": "Las pérdidas en el cable son I² · R: bajar I las reduce mucho.",
+          "style": "orange"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Seguridad",
+      "subtitle": "Protecciones y buenas prácticas"
+    },
+    {
+      "type": "bullets",
+      "title": "Reglas básicas de seguridad",
+      "subtitle": "Formación general: las instalaciones las ejecutan profesionales autorizados.",
+      "items": [
+        {
+          "icon": "ph-power",
+          "title": "Cortar y comprobar",
+          "text": "Antes de trabajar, desconecta y comprueba que no hay tensión."
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Diferencial",
+          "text": "Corta si hay una fuga a tierra; en viviendas suele ser de 30 mA."
+        },
+        {
+          "icon": "ph-lightning-slash",
+          "title": "Magnetotérmico",
+          "text": "Protege los cables frente a sobrecargas y cortocircuitos."
+        },
+        {
+          "icon": "ph-plugs-connected",
+          "title": "Toma de tierra",
+          "text": "Da a las fugas un camino seguro, lejos de las personas."
+        },
+        {
+          "icon": "ph-drop",
+          "title": "Agua y humedad",
+          "text": "Reducen la resistencia del cuerpo: circula más corriente."
+        },
+        {
+          "icon": "ph-book-open",
+          "title": "Normativa",
+          "text": "En España, el REBT regula las instalaciones de baja tensión."
+        }
+      ],
+      "notes": "Contenido orientativo. Cualquier trabajo en una instalación debe hacerlo personal cualificado y seguir el REBT."
+    },
+    {
+      "type": "faq",
+      "title": "Preguntas frecuentes",
+      "subtitle": "Las dudas que siempre aparecen.",
+      "items": [
+        {
+          "q": "¿Qué es peligroso, la tensión o la intensidad?",
+          "a": "Lo que daña es la corriente que atraviesa el cuerpo, y esa corriente depende de la tensión y de la resistencia del camino (V = I · R). Por eso importan las dos."
+        },
+        {
+          "q": "¿Por qué un pájaro no se electrocuta en un cable?",
+          "a": "Entre sus dos patas casi no hay diferencia de tensión, así que por su cuerpo apenas pasa corriente."
+        },
+        {
+          "q": "¿Corriente continua o alterna?",
+          "a": "Las pilas y la electrónica usan continua. La red usa alterna porque se transforma y se transporta con facilidad."
+        },
+        {
+          "q": "¿Por qué se calientan los cables?",
+          "a": "Por el efecto Joule: el calor crece con el cuadrado de la intensidad (P = I² · R)."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "title": "¿Y si tu temario fuera así?",
+      "subtitle": "Presentaciones interactivas con simulaciones para formación técnica.",
+      "contacts": [
+        {
+          "icon": "ph-envelope-simple",
+          "text": "tu-correo@ejemplo.com"
+        }
+      ],
+      "cta": "Hablemos"
+    }
+  ]
+}
