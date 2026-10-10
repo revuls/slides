@@ -1,0 +1,1911 @@
+{
+  "meta": {
+    "title": "Materiales y fabricación",
+    "date": "2026",
+    "author": "Adaptación interactiva · original de Lidia Chico Domínguez",
+    "theme": "classic",
+    "transition": "fade",
+    "brand": "Bloque II"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Bloque II",
+      "title": "Materiales y fabricación",
+      "subtitle": "Los materiales son la base de la tecnología: conocerlos es comprender qué podemos construir y hasta dónde podemos llegar.",
+      "notes": "PDF original: p. 1. Versión interactiva de la presentación «Bloque II · Materiales y fabricación» de Lidia Chico Domínguez (CC BY-NC-SA 4.0). Los diagramas y vídeos del original se han sustituido por animaciones que se pueden explorar con el ratón."
+    },
+    {
+      "type": "quote",
+      "text": "Los materiales son la materia de la que está hecha nuestra civilización.",
+      "author": "Mark Miodownik",
+      "role": "Cita incluida en la portada del original · traducida",
+      "notes": "PDF original: p. 1 (cita de portada)."
+    },
+    {
+      "type": "section",
+      "title": "Estructura interna",
+      "subtitle": "Enlaces, estados de la materia y redes cristalinas",
+      "number": "01"
+    },
+    {
+      "type": "features",
+      "title": "Estructura interna de los materiales",
+      "subtitle": "Los átomos se unen mediante enlaces; esa estructura determina las propiedades y los usos.",
+      "cards": [
+        {
+          "icon": "ph-lightning",
+          "title": "Iónico",
+          "text": "Transferencia de electrones. Suele dar sólidos duros, frágiles y de alto punto de fusión (NaCl).",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-link",
+          "title": "Covalente",
+          "text": "Los átomos comparten electrones (NH3). Materiales duros que no suelen conducir calor ni electricidad.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-atom",
+          "title": "Metálico",
+          "text": "Los electrones se mueven entre los átomos: conducen bien el calor y la electricidad. Sólidos, salvo el mercurio.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 2."
+    },
+    {
+      "type": "animation",
+      "kicker": "Enlaces",
+      "title": "Tres formas de unir átomos",
+      "caption": "Iónico, covalente y metálico. Haz clic en una pestaña para fijar el enlace.",
+      "src": "animations/mat-enlaces.js",
+      "notes": "PDF original: p. 2 (figura sustituida). Esquemas ilustrativos: tamaños y distancias no están a escala."
+    },
+    {
+      "type": "split-text",
+      "title": "Estados y fases de la materia",
+      "subtitle": "La presión, la temperatura y el tiempo influyen en las fases que presenta un material.",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-drop",
+          "title": "Líquidos y gases",
+          "text": "Las partículas se mueven sin un orden fijo."
+        },
+        {
+          "icon": "ph-cube",
+          "title": "Sólidos cristalinos",
+          "text": "Partículas muy próximas con un orden regular."
+        },
+        {
+          "icon": "ph-scribble-loop",
+          "title": "Sólidos amorfos",
+          "text": "Partículas muy próximas, pero sin orden."
+        }
+      ],
+      "notes": "PDF original: p. 3."
+    },
+    {
+      "type": "animation",
+      "kicker": "Estados",
+      "title": "Calienta y enfría",
+      "caption": "Arrastra por la barra de temperatura: sólido, líquido y gas.",
+      "src": "animations/mat-estados.js",
+      "notes": "PDF original: p. 3 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Sólidos",
+      "title": "Cristalino frente a amorfo",
+      "caption": "Si el enfriamiento es lento, los átomos llegan a ordenarse; si es rápido, se congelan desordenados.",
+      "src": "animations/mat-estados.js",
+      "params": {
+        "modo": "solidos"
+      },
+      "notes": "PDF original: p. 3 (figura)."
+    },
+    {
+      "type": "split-text",
+      "title": "Diagrama de fases",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-chart-line",
+          "title": "Qué es",
+          "text": "La representación gráfica de las fases de un material para diferentes temperaturas, presiones y composiciones."
+        },
+        {
+          "icon": "ph-scales",
+          "title": "En equilibrio",
+          "text": "Las fases existentes no aparecen ni desaparecen mientras las condiciones se mantengan constantes."
+        }
+      ],
+      "notes": "PDF original: p. 4."
+    },
+    {
+      "type": "animation",
+      "kicker": "Diagrama de fases",
+      "title": "El agua en el plano P-T",
+      "caption": "Mueve el ratón: cada punto (temperatura, presión) pertenece a una fase.",
+      "src": "animations/mat-agua.js",
+      "notes": "PDF original: p. 4 (figura «Agua»). El original muestra además el diagrama P-T del hierro puro (Fe), con sus fases γ y α; se retoma en el bloque del hierro-carbono. Esquema cualitativo del agua."
+    },
+    {
+      "type": "section",
+      "title": "Estructura cristalina",
+      "subtitle": "Celdillas, constantes y redes metálicas",
+      "number": "02"
+    },
+    {
+      "type": "features",
+      "title": "Estructura cristalina de los materiales",
+      "subtitle": "Los sólidos cristalinos forman redes. La celdilla unidad es el conjunto más pequeño de átomos que se repite.",
+      "cards": [
+        {
+          "icon": "ph-share-network",
+          "title": "Índice de coordinación (IC)",
+          "text": "Número de átomos que rodean a un átomo determinado.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-percent",
+          "title": "Factor de empaquetamiento (FPA)",
+          "text": "Densidad atómica de la celdilla.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-ruler",
+          "title": "Constante reticular (a)",
+          "text": "Arista de la celdilla en relación con el radio atómico.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 5."
+    },
+    {
+      "type": "animation",
+      "kicker": "Celdilla unidad",
+      "title": "La pieza que se repite",
+      "caption": "Sus dimensiones se describen con las aristas a, b y c y los ángulos α, β y γ.",
+      "src": "animations/mat-celdilla.js",
+      "params": {
+        "tipo": "generica"
+      },
+      "notes": "PDF original: p. 6."
+    },
+    {
+      "type": "code",
+      "title": "Factor de empaquetamiento atómico",
+      "file": "fpa.txt",
+      "code": "FPA = n · Vat / Vceldilla\n\nn = átomos dentro de la celdilla\nVat = 4/3 · π · r³   (esfera de radio atómico r)\nVceldilla = volumen de la celda unitaria",
+      "highlight": [
+        1
+      ],
+      "caption": "Es un valor adimensional: entre 0 y 1, o en porcentaje.",
+      "notes": "PDF original: p. 7."
+    },
+    {
+      "type": "features",
+      "title": "Redes cristalinas metálicas",
+      "subtitle": "La teoría de Bravais describe 14 redes; la mayoría de los metales cristaliza solo en tres.",
+      "cards": [
+        {
+          "icon": "ph-cube",
+          "title": "BCC",
+          "text": "Cúbica centrada en el cuerpo: un átomo en cada vértice y otro en el centro.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-cube-focus",
+          "title": "FCC",
+          "text": "Cúbica centrada en las caras: átomos en los vértices y en el centro de cada cara.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-hexagon",
+          "title": "HCP",
+          "text": "Hexagonal compacta: átomos en los vértices de un prisma hexagonal, en las bases y en el plano central.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 8. El original muestra además las 14 redes de Bravais (figura)."
+    },
+    {
+      "type": "number-grid",
+      "title": "Cúbica centrada en el cuerpo (BCC)",
+      "subtitle": "Átomo en cada vértice (compartido por 8 cubos) y otro en el centro. Ejemplo: cromo.",
+      "metrics": [
+        {
+          "value": "2",
+          "label": "Átomos por celdilla",
+          "desc": "n = 8 · 1/8 + 1"
+        },
+        {
+          "value": "8",
+          "label": "Índice de coordinación",
+          "desc": "IC = 8"
+        },
+        {
+          "value": "4r/√3",
+          "label": "Constante reticular",
+          "desc": "a, a partir de D = 4r"
+        },
+        {
+          "value": "68%",
+          "label": "Empaquetamiento",
+          "desc": "FPA; Vceldilla = a³"
+        }
+      ],
+      "notes": "PDF original: p. 9. Deducción: la diagonal del cubo D = 4r; D² = d² + a² con d² = 2a², así que 16r² = 3a². El original cita «cromo y titanio» como ejemplos, pero el titanio es HCP a temperatura ambiente (y BCC solo por encima de 883 °C, según la tabla de alotropía)."
+    },
+    {
+      "type": "animation",
+      "kicker": "BCC",
+      "title": "Cúbica centrada en el cuerpo",
+      "caption": "Arrastra para girar. Átomos de la celdilla, fracciones, diagonal D = 4r y vecinos.",
+      "src": "animations/mat-celdilla.js",
+      "params": {
+        "tipo": "bcc"
+      },
+      "notes": "PDF original: p. 9 (figura)."
+    },
+    {
+      "type": "number-grid",
+      "title": "Cúbica centrada en las caras (FCC)",
+      "subtitle": "Átomos en los vértices (8 cubos) y en el centro de cada cara (2 cubos). Ejemplos: oro y plata.",
+      "metrics": [
+        {
+          "value": "4",
+          "label": "Átomos por celdilla",
+          "desc": "n = 8 · 1/8 + 6 · 1/2"
+        },
+        {
+          "value": "12",
+          "label": "Índice de coordinación",
+          "desc": "IC = 12"
+        },
+        {
+          "value": "4r/√2",
+          "label": "Constante reticular",
+          "desc": "a, a partir de d = 4r"
+        },
+        {
+          "value": "74%",
+          "label": "Empaquetamiento",
+          "desc": "FPA; Vceldilla = a³"
+        }
+      ],
+      "notes": "PDF original: p. 10. Deducción: la diagonal de la cara d = 4r; d² = 2a², así que 16r² = 2a²."
+    },
+    {
+      "type": "animation",
+      "kicker": "FCC",
+      "title": "Cúbica centrada en las caras",
+      "caption": "Arrastra para girar. Cada átomo de una cara se comparte entre dos celdillas.",
+      "src": "animations/mat-celdilla.js",
+      "params": {
+        "tipo": "fcc"
+      },
+      "notes": "PDF original: p. 10 (figura)."
+    },
+    {
+      "type": "number-grid",
+      "title": "Hexagonal compacta (HCP)",
+      "subtitle": "Átomos en los vértices de un prisma hexagonal, uno en cada base y tres en el plano central. Ejemplos: cadmio y zinc.",
+      "metrics": [
+        {
+          "value": "6",
+          "label": "Átomos por celdilla",
+          "desc": "n = 12 · 1/6 + 2 · 1/2 + 3"
+        },
+        {
+          "value": "12",
+          "label": "Índice de coordinación",
+          "desc": "IC = 12"
+        },
+        {
+          "value": "2r",
+          "label": "Arista a de la base",
+          "desc": "los átomos se tocan"
+        },
+        {
+          "value": "≈3,27r",
+          "label": "Altura c",
+          "desc": "c = 4 · √(2/3) · r"
+        }
+      ],
+      "notes": "PDF original: p. 11."
+    },
+    {
+      "type": "animation",
+      "kicker": "HCP",
+      "title": "Hexagonal compacta",
+      "caption": "Arrastra para girar. Prisma hexagonal con un átomo en cada base y tres en el plano central.",
+      "src": "animations/mat-celdilla.js",
+      "params": {
+        "tipo": "hcp"
+      },
+      "notes": "PDF original: p. 11 (figura)."
+    },
+    {
+      "type": "process",
+      "title": "HCP: constantes reticulares",
+      "subtitle": "Cómo se obtienen a y c a partir del radio atómico.",
+      "steps": [
+        {
+          "icon": "ph-ruler",
+          "title": "a = 2r",
+          "desc": "Los átomos de la base se tocan: la arista del hexágono vale dos radios."
+        },
+        {
+          "icon": "ph-triangle",
+          "title": "c = 2 · √(2/3) · a",
+          "desc": "Por geometría de los tres átomos del plano central sobre la base."
+        },
+        {
+          "icon": "ph-equals",
+          "title": "c = 4 · √(2/3) · r",
+          "desc": "Sustituyendo a = 2r: c ≈ 3,27 r."
+        }
+      ],
+      "notes": "PDF original: pp. 11-12. En la p. 12 el original desarrolla la geometría con cos 30° y el teorema de Pitágoras (figuras)."
+    },
+    {
+      "type": "code",
+      "title": "Volumen de la celdilla HCP",
+      "file": "volumen-hcp.txt",
+      "code": "Vceld = (3·√3 / 2) · a² · c\n\na = 2r      c = 4 · √(2/3) · r\n\nVceld = (3·√3 / 2) · 4r² · 4·√(2/3)·r\nVceld = 24 · √2 · r³",
+      "highlight": [
+        6
+      ],
+      "caption": "Con este volumen se calcula el factor de empaquetamiento y la densidad.",
+      "notes": "PDF original: p. 13."
+    },
+    {
+      "type": "big-number",
+      "kicker": "HCP",
+      "value": "74%",
+      "label": "Factor de empaquetamiento atómico",
+      "desc": "FPA = n · Vat / Vceld = 6 · (4/3)πr³ / (24 · √2 · r³) = π / (3 · √2).",
+      "notes": "PDF original: p. 14."
+    },
+    {
+      "type": "gauges",
+      "title": "Compacidad de las tres redes",
+      "subtitle": "El FPA indica qué fracción de la celdilla ocupan los átomos.",
+      "items": [
+        {
+          "value": "68%",
+          "label": "BCC",
+          "desc": "Menos compacta",
+          "color": "blue"
+        },
+        {
+          "value": "74%",
+          "label": "FCC",
+          "desc": "Compacta",
+          "color": "orange"
+        },
+        {
+          "value": "74%",
+          "label": "HCP",
+          "desc": "Compacta",
+          "color": "navy"
+        }
+      ],
+      "notes": "Diapositiva añadida para comparar los FPA de las pp. 9, 10 y 14."
+    },
+    {
+      "type": "table",
+      "title": "Densidad de las redes cristalinas",
+      "subtitle": "ρ = n · Mat / (NAV · Vceldilla), con NAV = 6,023 · 10²³ átomos/mol",
+      "headers": [
+        "Magnitud",
+        "BCC",
+        "FCC",
+        "HCP"
+      ],
+      "highlight": 0,
+      "rows": [
+        [
+          "n (átomos)",
+          "2",
+          "4",
+          "6"
+        ],
+        [
+          "Vceld con a",
+          "a³",
+          "a³",
+          "(3·√3/2) · a² · c"
+        ],
+        [
+          "Vceld con r",
+          "64·r³ / (3·√3)",
+          "16·√2·r³",
+          "24·√2·r³"
+        ]
+      ],
+      "notes": "PDF original: p. 15. Corrección respecto al original: en la tabla de la p. 15 la celdilla FCC repetía la fórmula de la BCC (4³r³/3√3). Con a = 4r/√2, Vceld = a³ = 64r³/(2√2) = 16·√2·r³. Mat = masa atómica (g/mol), Vceldilla en cm³."
+    },
+    {
+      "type": "section",
+      "title": "Propiedades y ensayos",
+      "subtitle": "Cómo se comportan los materiales y cómo lo medimos",
+      "number": "03"
+    },
+    {
+      "type": "icons",
+      "title": "Propiedades de los materiales",
+      "icons": [
+        {
+          "icon": "ph-thermometer",
+          "title": "Físico-químicas",
+          "desc": "Calor específico, conductividad eléctrica y térmica, magnetismo, propiedades ópticas, peso específico, dilatación, puntos de congelación, ebullición y fusión, resistencia a la corrosión y a la oxidación.",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-barbell",
+          "title": "Mecánicas",
+          "desc": "Tenacidad/fragilidad, elasticidad/plasticidad, dureza y fatiga.",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-wrench",
+          "title": "Tecnológicas",
+          "desc": "Ductilidad, maleabilidad, resiliencia, resistencia mecánica, soldabilidad, colabilidad, mecanibilidad y acritud.",
+          "color": "blue"
+        },
+        {
+          "icon": "ph-eye",
+          "title": "Sensoriales",
+          "desc": "Color, brillo, olor y textura.",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-recycle",
+          "title": "Ecológicas",
+          "desc": "Reciclabilidad, reutilizabilidad, toxicidad y biodegradabilidad.",
+          "color": "navy"
+        }
+      ],
+      "notes": "PDF original: p. 16."
+    },
+    {
+      "type": "bullets",
+      "title": "Propiedades mecánicas",
+      "subtitle": "Definen el comportamiento de los metales durante su utilización industrial.",
+      "items": [
+        {
+          "icon": "ph-arrows-in-line-horizontal",
+          "title": "Elasticidad",
+          "text": "Recupera su forma al cesar la fuerza; más allá del límite elástico, la deformación es permanente."
+        },
+        {
+          "icon": "ph-arrows-out-line-horizontal",
+          "title": "Plasticidad",
+          "text": "Deformación permanente sin romperse: maleabilidad (láminas) y ductilidad (hilos)."
+        },
+        {
+          "icon": "ph-link",
+          "title": "Cohesión",
+          "text": "Resistencia de los átomos a separarse; depende de sus enlaces."
+        },
+        {
+          "icon": "ph-diamond",
+          "title": "Dureza",
+          "text": "Resistencia a ser rayado o penetrado por otro material."
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Tenacidad",
+          "text": "Resiste esfuerzos y absorbe energía antes de romperse."
+        },
+        {
+          "icon": "ph-warning",
+          "title": "Fragilidad",
+          "text": "Se rompe con poca o ninguna deformación plástica; es opuesta a la tenacidad."
+        },
+        {
+          "icon": "ph-arrows-clockwise",
+          "title": "Resistencia a la fatiga",
+          "text": "Soporta esfuerzos repetidos o cíclicos sin romperse."
+        },
+        {
+          "icon": "ph-lightning",
+          "title": "Resiliencia",
+          "text": "Absorbe energía ante un impacto antes de romperse."
+        }
+      ],
+      "notes": "PDF original: p. 17."
+    },
+    {
+      "type": "animation",
+      "kicker": "Comportamiento",
+      "title": "Elástico, plástico y frágil",
+      "caption": "Tres probetas con la misma carga y descarga: cada una responde de forma distinta.",
+      "src": "animations/mat-comportamiento.js",
+      "notes": "PDF original: p. 17 (ilustra las definiciones). Animación añadida: deformaciones exageradas, esquema cualitativo."
+    },
+    {
+      "type": "features",
+      "title": "Clasificación y tipos de ensayos",
+      "subtitle": "Los ensayos industriales determinan las características técnicas y las propiedades de los materiales. Tres criterios:",
+      "cards": [
+        {
+          "icon": "ph-medal",
+          "title": "Según la rigurosidad",
+          "text": "Ensayos técnicos de control o ensayos científicos.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-hammer",
+          "title": "Según la forma",
+          "text": "Ensayos destructivos o no destructivos.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-flask",
+          "title": "Según la propiedad",
+          "text": "Químicos, metalográficos, físicos y mecánicos.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 18."
+    },
+    {
+      "type": "matrix",
+      "title": "Rigurosidad y forma del ensayo",
+      "subtitle": "Arriba, según la rigurosidad; abajo, según la forma de realizarlo.",
+      "quadrants": [
+        {
+          "title": "Técnicos de control",
+          "icon": "ph-gauge",
+          "tone": "orange",
+          "items": [
+            "Durante el proceso productivo",
+            "Rápidos y sencillos",
+            "Exactos, fiables y sensibles"
+          ]
+        },
+        {
+          "title": "Científicos",
+          "icon": "ph-microscope",
+          "tone": "navy",
+          "items": [
+            "Investigan nuevos materiales",
+            "Elevada precisión y fidelidad",
+            "La rapidez importa menos"
+          ]
+        },
+        {
+          "title": "Destructivos",
+          "icon": "ph-hammer",
+          "tone": "blue",
+          "items": [
+            "Alteran o destruyen la muestra"
+          ]
+        },
+        {
+          "title": "No destructivos",
+          "icon": "ph-shield-check",
+          "tone": "orange",
+          "items": [
+            "No alteran forma ni características",
+            "La pieza sigue siendo utilizable"
+          ]
+        }
+      ],
+      "notes": "PDF original: p. 19."
+    },
+    {
+      "type": "icons",
+      "title": "Según las propiedades a determinar",
+      "icons": [
+        {
+          "icon": "ph-flask",
+          "title": "Químicos",
+          "desc": "Composición química y comportamiento frente a agentes químicos.",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-microscope",
+          "title": "Metalográficos",
+          "desc": "Estructura interna al microscopio: tratamientos térmicos o mecánicos sufridos.",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-thermometer",
+          "title": "Físicos y físico-químicos",
+          "desc": "Densidad, punto de fusión, calor específico, conductividad térmica o eléctrica e imperfecciones.",
+          "color": "blue"
+        },
+        {
+          "icon": "ph-barbell",
+          "title": "Mecánicos",
+          "desc": "Tracción, compresión, cizalladura, flexión, torsión, dureza, impacto, fatiga y fluencia.",
+          "color": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 20."
+    },
+    {
+      "type": "table",
+      "title": "Clasificación básica de los ensayos",
+      "subtitle": "Cuatro formas de ordenarlos.",
+      "headers": [
+        "Según…",
+        "Tipos",
+        "En qué consisten"
+      ],
+      "highlight": 0,
+      "rows": [
+        [
+          "Rigurosidad",
+          "Científicos · Tecnológicos",
+          "Laboratorio: valores precisos y normalizados · Fábrica: calidad del material"
+        ],
+        [
+          "Naturaleza",
+          "Químicos · Metalográficos · Físicos · Mecánicos",
+          "Composición, estructura al microscopio, propiedades físicas y resistencia a esfuerzos"
+        ],
+        [
+          "Forma de realizarlos",
+          "Destructivos · No destructivos",
+          "Dañan o rompen la pieza · No alteran su forma ni presencia inicial"
+        ],
+        [
+          "Velocidad de los esfuerzos",
+          "Estáticos · Dinámicos",
+          "Carga constante o creciente (tracción) · Brusca o variable en el tiempo"
+        ]
+      ],
+      "notes": "PDF original: p. 21."
+    },
+    {
+      "type": "features",
+      "title": "Otra clasificación de los ensayos",
+      "subtitle": "Ensayos físicos y físico-químicos.",
+      "cards": [
+        {
+          "icon": "ph-hammer",
+          "title": "Destructivos",
+          "text": "Estáticos: tracción, compresión, dureza. Dinámicos: choque, fatiga. Tecnológicos: plegado, embutición.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "No destructivos",
+          "text": "Líquidos penetrantes, partículas magnéticas, rayos X y ultrasonidos.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-microscope",
+          "title": "Físico-químicos",
+          "text": "Metalográficos y espectrográficos.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 22."
+    },
+    {
+      "type": "animation",
+      "kicker": "Esfuerzos",
+      "title": "Tipos de esfuerzos",
+      "caption": "Tracción, compresión, flexión, torsión y cortante. Haz clic en una pestaña para fijar uno.",
+      "src": "animations/mat-esfuerzos.js",
+      "notes": "PDF original: p. 23 (figuras sustituidas). Los ejemplos de cada esfuerzo (puentes, silla, eje) se mostraban como imágenes en el original."
+    },
+    {
+      "type": "bullets",
+      "title": "Ensayos de materiales",
+      "subtitle": "Los ensayos normalizados miden con precisión las propiedades; se hacen sobre probetas de dimensiones normalizadas.",
+      "items": [
+        {
+          "icon": "ph-arrows-out-line-horizontal",
+          "title": "Tracción",
+          "text": "Respuesta ante una fuerza que estira la probeta en un eje uniaxial."
+        },
+        {
+          "icon": "ph-diamond",
+          "title": "Dureza",
+          "text": "Resistencia a la penetración o al rayado."
+        },
+        {
+          "icon": "ph-lightning",
+          "title": "Resiliencia",
+          "text": "Energía absorbida al romperse por un solo impacto."
+        }
+      ],
+      "notes": "PDF original: p. 24."
+    },
+    {
+      "type": "animation",
+      "kicker": "Ensayo de tracción",
+      "title": "Estira la probeta",
+      "caption": "Dos fuerzas opuestas estiran el cuerpo. Pasa el ratón por el diagrama σ-ε para avanzar el ensayo.",
+      "src": "animations/mat-traccion.js",
+      "notes": "PDF original: p. 25 (figura y zonas). Zonas: elástica 0-E (proporcional 0-P, no proporcional P-E); plástica E-S (fluencia E-F, plástica uniforme F-R, plástica localizada R-S). Curva ilustrativa de un acero dulce, no datos medidos."
+    },
+    {
+      "type": "icons",
+      "title": "Probetas normalizadas",
+      "subtitle": "Distintos tipos según el material y el ensayo.",
+      "icons": [
+        {
+          "icon": "ph-cylinder",
+          "title": "Cilíndrica",
+          "desc": "Con cabezas de sujeción, acuerdos y una zona calibrada de longitud l₀.",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-rectangle",
+          "title": "Plana",
+          "desc": "Sección rectangular, habitual en chapas y planchas.",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-circle-notch",
+          "title": "Tubo",
+          "desc": "Probeta de sección tubular.",
+          "color": "blue"
+        },
+        {
+          "icon": "ph-cube",
+          "title": "Hierro fundido",
+          "desc": "Forma específica para materiales fundidos.",
+          "color": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 26. Las cuatro figuras del original se han sustituido por tarjetas; las descripciones son genéricas."
+    },
+    {
+      "type": "split-text",
+      "title": "Dos diagramas de tracción",
+      "connector": "arrow",
+      "columns": [
+        {
+          "icon": "ph-chart-line",
+          "title": "Δl – F",
+          "text": "Carga frente a alargamiento: depende de las dimensiones de la probeta."
+        },
+        {
+          "icon": "ph-chart-line-up",
+          "title": "ε – σ",
+          "text": "Tensión frente a deformación unitaria: describe al material, no a la probeta."
+        }
+      ],
+      "notes": "PDF original: p. 27."
+    },
+    {
+      "type": "animation",
+      "kicker": "Curvas σ-ε",
+      "title": "Diagramas de varios metales",
+      "caption": "Aluminio-cobre, metales deformados en frío, hierro fundido, bronce y acero templado.",
+      "src": "animations/mat-curvas.js",
+      "notes": "PDF original: p. 28. Curvas ilustrativas (forma cualitativa), no datos medidos."
+    },
+    {
+      "type": "animation",
+      "kicker": "Fluencia",
+      "title": "El fenómeno de fluencia",
+      "caption": "El acero se alarga sin que aumente la carga: la probeta «cede» en la zona E-F.",
+      "src": "animations/mat-traccion.js",
+      "params": {
+        "vista": "fluencia"
+      },
+      "notes": "PDF original: p. 29."
+    },
+    {
+      "type": "features",
+      "title": "Magnitudes del ensayo de tracción",
+      "subtitle": "P: límite de proporcionalidad · E: límite elástico · F: fluencia · R: rotura.",
+      "cards": [
+        {
+          "icon": "ph-arrow-line-down",
+          "title": "Tensión σ = F / A₀",
+          "text": "Fuerza que soporta la pieza por unidad de superficie (A₀: sección inicial).",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-arrows-out-line-horizontal",
+          "title": "Deformación ε = Δl / l₀",
+          "text": "Alargamiento unitario, con Δl = lf − l₀.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-chart-line-up",
+          "title": "Módulo de Young E = σ / ε",
+          "text": "Constante de proporcionalidad en la zona elástica (tramo OP).",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 30."
+    },
+    {
+      "type": "split-text",
+      "title": "Coeficiente de seguridad",
+      "subtitle": "σt = σcrítica / n: cuánto más resistente es el material que el esfuerzo que realmente soportará.",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-target",
+          "title": "Tipos de referencia",
+          "text": "Límite elástico (σE): deformaciones reversibles. Límite proporcional (σP): fin de la relación lineal. Límite de rotura (σR): punto de fallo."
+        },
+        {
+          "icon": "ph-lightbulb",
+          "title": "Recuerda",
+          "text": "n siempre es mayor que 1. A mayor n, más seguridad (pero más peso o coste). Se elige según la importancia de la pieza y las condiciones de trabajo."
+        }
+      ],
+      "notes": "PDF original: p. 31."
+    },
+    {
+      "type": "animation",
+      "kicker": "Máquina de ensayos",
+      "title": "La probeta en la máquina",
+      "caption": "Mordazas, alargamiento, estricción y rotura de una probeta de acero.",
+      "src": "animations/mat-traccion.js",
+      "params": {
+        "vista": "probeta"
+      },
+      "notes": "PDF original: p. 32 (vídeo «¿Conoces este ensayo?» sustituido). El original incluía un vídeo (canal Ingenioso). Se ha sustituido por una simulación; añade la URL del vídeo con un slide «video» si quieres conservarlo."
+    },
+    {
+      "type": "features",
+      "title": "Tipos de ensayos de dureza",
+      "subtitle": "La dureza es la oposición a alteraciones físicas como la penetración. Por penetración: Brinell, Vickers y Rockwell.",
+      "cards": [
+        {
+          "icon": "ph-circle",
+          "title": "Brinell (HB)",
+          "text": "Una esfera deja huella. La dureza relaciona la carga con el área de la huella.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-diamond",
+          "title": "Vickers (HV)",
+          "text": "Pirámide de diamante de base cuadrada: huella cuadrada. Se calcula con la carga y la diagonal.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-triangle",
+          "title": "Rockwell (HR)",
+          "text": "Se mide la profundidad de penetración con bola (blandos) o cono de diamante (duros). Rápido, menos preciso.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 33. El esquema del original añade el ensayo Shore (por rebote)."
+    },
+    {
+      "type": "table",
+      "title": "Ensayos de dureza: parámetros",
+      "headers": [
+        "Ensayo",
+        "Penetrador",
+        "Material",
+        "Carga",
+        "Tiempo (s)"
+      ],
+      "highlight": 0,
+      "rows": [
+        [
+          "Brinell",
+          "Esfera Ø 1, 2,5, 5 o 10 mm",
+          "Metal duro",
+          "1 – 3000 kgf",
+          "10 – 15"
+        ],
+        [
+          "Vickers",
+          "Pirámide de 136° entre caras",
+          "Diamante",
+          "0,01 – 100 kgf (micro, baja fuerza, dureza)",
+          "10 – 15"
+        ],
+        [
+          "Rockwell",
+          "Esfera Ø 1,6 o 3,2 mm · cono de 120°",
+          "Metal duro · diamante",
+          "Superficial: 15, 30, 45 kgf · Dureza: 60, 100, 150 kgf",
+          "< 3 (precarga) + 4 (carga)"
+        ]
+      ],
+      "notes": "PDF original: p. 34."
+    },
+    {
+      "type": "animation",
+      "kicker": "Brinell",
+      "title": "Ensayo de dureza Brinell",
+      "caption": "Una esfera de acero marca la pieza: HB = F / S, con S la superficie de la huella.",
+      "src": "animations/mat-dureza.js",
+      "params": {
+        "metodo": "brinell"
+      },
+      "notes": "PDF original: p. 35 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Vickers",
+      "title": "Ensayo de dureza Vickers",
+      "caption": "Pirámide de diamante: HV = F / S ≈ 1,8544 · F / d², con d la diagonal de la huella.",
+      "src": "animations/mat-dureza.js",
+      "params": {
+        "metodo": "vickers"
+      },
+      "notes": "PDF original: p. 36 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Rockwell",
+      "title": "Ensayo de dureza Rockwell",
+      "caption": "Se mide la profundidad: precarga, carga total y vuelta a la precarga.",
+      "src": "animations/mat-dureza.js",
+      "params": {
+        "metodo": "rockwell"
+      },
+      "notes": "PDF original: p. 37 (figura)."
+    },
+    {
+      "type": "table",
+      "title": "Brinell, Vickers y Rockwell",
+      "subtitle": "Tabla comparativa.",
+      "headers": [
+        "",
+        "Brinell (HB)",
+        "Vickers (HV)",
+        "Rockwell (HRB · HRC)"
+      ],
+      "highlight": 0,
+      "rows": [
+        [
+          "Material",
+          "No muy duros",
+          "Muy duros",
+          "HRB: blandos · HRC: duros"
+        ],
+        [
+          "Penetrador",
+          "Bola de acero templado",
+          "Pirámide regular de diamante",
+          "HRB: bola de acero · HRC: cono de diamante"
+        ],
+        [
+          "Medida",
+          "Superficie de la huella",
+          "Superficie de la huella",
+          "Profundidad de la huella"
+        ],
+        [
+          "Valor",
+          "HB = F / S (kp/mm²)",
+          "HV = F / S (kp/mm²)",
+          "HRB = 130 − e · HRC = 100 − e"
+        ],
+        [
+          "Ventajas e inconvenientes",
+          "Válido para la mayoría de los aceros; hay que medir la diagonal con microscopio",
+          "Más exacto que Brinell, pero más caro",
+          "El más rápido y sencillo, pero menos preciso; el aparato da el resultado"
+        ]
+      ],
+      "notes": "PDF original: p. 38."
+    },
+    {
+      "type": "animation",
+      "kicker": "Dureza",
+      "title": "Rockwell, Brinell, Vickers y Knoop",
+      "caption": "Cuatro penetradores, cuatro huellas distintas. Todos miden la resistencia a ser penetrado.",
+      "src": "animations/mat-dureza.js",
+      "params": {
+        "metodo": "todos"
+      },
+      "notes": "PDF original: p. 39 (vídeo sustituido). El original incluía un vídeo (canal Ingenioso). Knoop usa una pirámide de diamante alargada (microdureza)."
+    },
+    {
+      "type": "split-text",
+      "title": "Ensayo de resiliencia: péndulo de Charpy",
+      "subtitle": "Ensayo dinámico por choque.",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-pendulum",
+          "title": "Cómo funciona",
+          "text": "Un péndulo cae desde una altura inicial H, rompe la probeta entallada y asciende hasta h."
+        },
+        {
+          "icon": "ph-lightning",
+          "title": "Qué se mide",
+          "text": "La diferencia de energía potencial es la energía absorbida: ρ = (Ep₁ − Ep₂) / S₀ = m·g·(H − h) / S₀."
+        }
+      ],
+      "notes": "PDF original: p. 40."
+    },
+    {
+      "type": "animation",
+      "kicker": "Charpy",
+      "title": "El péndulo de Charpy",
+      "caption": "Un material frágil absorbe poca energía; uno tenaz, mucha: el péndulo sube menos.",
+      "src": "animations/mat-charpy.js",
+      "notes": "PDF original: p. 41 (vídeo sustituido). Física de péndulo real; los porcentajes de energía absorbida son ilustrativos."
+    },
+    {
+      "type": "statement",
+      "kicker": "Ensayos de fatiga",
+      "text": "Con esfuerzos *variables y repetidos*, una pieza puede romperse con cargas *inferiores a las de rotura*.",
+      "source": "Incluso por debajo del límite elástico, si actúan durante tiempo suficiente · Ensayos habituales: flexión rotativa y torsión",
+      "notes": "PDF original: p. 42."
+    },
+    {
+      "type": "animation",
+      "kicker": "Fatiga",
+      "title": "La tensión que se repite",
+      "caption": "Tensión variable en el tiempo y curva S-N: por debajo del límite de fatiga, un acero no rompe.",
+      "src": "animations/mat-fatiga.js",
+      "notes": "PDF original: p. 43 (vídeo sustituido). Curvas cualitativas (S-N), no datos medidos."
+    },
+    {
+      "type": "split-text",
+      "title": "Ensayos tecnológicos: plegado",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-wrench",
+          "title": "Para qué sirven",
+          "text": "No buscan valores cuantitativos, sino estudiar el comportamiento del material ante el fin al que se destina."
+        },
+        {
+          "icon": "ph-arrow-u-down-left",
+          "title": "Ensayo de plegado",
+          "text": "Se doblan probetas en condiciones normalizadas y se observa si aparecen grietas en la parte exterior de la curva, donde la tracción es elevada."
+        },
+        {
+          "icon": "ph-arrows-in-line-horizontal",
+          "title": "Tres variantes",
+          "text": "Caras en contacto, caras paralelas a una distancia determinada o caras formando un ángulo."
+        }
+      ],
+      "notes": "PDF original: p. 44."
+    },
+    {
+      "type": "animation",
+      "kicker": "Plegado",
+      "title": "Ensayo de plegado",
+      "caption": "Dos probetas alrededor de un mandril: la de poca ductilidad se agrieta por fuera.",
+      "src": "animations/mat-tecnologicos.js",
+      "params": {
+        "ensayo": "plegado"
+      },
+      "notes": "PDF original: p. 44 (figuras)."
+    },
+    {
+      "type": "process",
+      "title": "Ensayo de embutición",
+      "subtitle": "Uno de los ensayos más importantes para chapas: mide el grado de embutido.",
+      "steps": [
+        {
+          "icon": "ph-arrow-line-down",
+          "title": "Presionar",
+          "desc": "Un vástago o punzón presiona sobre la chapa."
+        },
+        {
+          "icon": "ph-warning",
+          "title": "Primera grieta",
+          "desc": "Se continúa hasta que se produce la primera grieta."
+        },
+        {
+          "icon": "ph-ruler",
+          "title": "Medir",
+          "desc": "El grado de embutición es la penetración del punzón, en milímetros."
+        }
+      ],
+      "notes": "PDF original: p. 45."
+    },
+    {
+      "type": "animation",
+      "kicker": "Embutición",
+      "title": "El punzón y la chapa",
+      "caption": "La penetración del punzón hasta la primera grieta mide el grado de embutición.",
+      "src": "animations/mat-tecnologicos.js",
+      "params": {
+        "ensayo": "embuticion"
+      },
+      "notes": "PDF original: p. 45 (figura). Valor en mm ilustrativo."
+    },
+    {
+      "type": "section",
+      "title": "Aleaciones y diagramas de fases",
+      "subtitle": "Cristalización, liquidus, solidus y eutécticos",
+      "number": "04"
+    },
+    {
+      "type": "split-text",
+      "title": "Cristalización y diagramas de equilibrio",
+      "subtitle": "Una aleación es una mezcla cristalina de dos metales o de un metal con un no metal; en estado sólido conserva carácter metálico.",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-beaker",
+          "title": "Disolvente",
+          "text": "Componente presente en mayor proporción."
+        },
+        {
+          "icon": "ph-drop",
+          "title": "Soluto",
+          "text": "Componente minoritario."
+        }
+      ],
+      "notes": "PDF original: p. 46."
+    },
+    {
+      "type": "animation",
+      "kicker": "Curvas de enfriamiento",
+      "title": "Metal puro y aleación",
+      "caption": "Un metal puro solidifica a temperatura fija; una aleación, en un intervalo.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "modo": "curvas"
+      },
+      "notes": "PDF original: p. 46 (figura)."
+    },
+    {
+      "type": "versus",
+      "title": "Metal puro frente a aleación",
+      "subtitle": "Las curvas de enfriamiento de aleaciones A-B de distinta concentración dan el diagrama de equilibrio.",
+      "left": {
+        "title": "Metal puro",
+        "icon": "ph-circle",
+        "items": [
+          "Solidifica a una temperatura fija",
+          "Es su temperatura de fusión",
+          "Curva con meseta"
+        ]
+      },
+      "right": {
+        "title": "Aleación",
+        "icon": "ph-intersect",
+        "items": [
+          "Solidifica dentro de un intervalo",
+          "Depende de la composición",
+          "Cambios de pendiente en la curva"
+        ]
+      },
+      "verdict": "Uniendo los puntos de cambio de varias curvas se construye el diagrama",
+      "notes": "PDF original: p. 47."
+    },
+    {
+      "type": "animation",
+      "kicker": "Construcción",
+      "title": "De las curvas al diagrama",
+      "caption": "Cinco composiciones, cinco curvas de enfriamiento: sus cambios de pendiente forman el diagrama.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "modo": "construir",
+        "diagrama": "iso"
+      },
+      "notes": "PDF original: p. 47 (figura). Diagrama didáctico, no corresponde a un par de metales concreto."
+    },
+    {
+      "type": "bullets",
+      "title": "Líneas de liquidus y de solidus",
+      "subtitle": "El diagrama indica qué fases son estables para cada temperatura y composición.",
+      "items": [
+        {
+          "icon": "ph-fire",
+          "title": "Línea de liquidus",
+          "text": "Une los puntos de inicio de solidificación. Por encima, la aleación es líquida (L)."
+        },
+        {
+          "icon": "ph-snowflake",
+          "title": "Línea de solidus",
+          "text": "Une los puntos de final de solidificación. Por debajo, la aleación es sólida (S)."
+        },
+        {
+          "icon": "ph-intersect",
+          "title": "Entre ambas líneas",
+          "text": "Coexisten fase líquida y fase sólida (L y S)."
+        }
+      ],
+      "notes": "PDF original: p. 48."
+    },
+    {
+      "type": "animation",
+      "kicker": "Zonas del diagrama",
+      "title": "Explora el diagrama",
+      "caption": "Mueve el ratón por el diagrama: líquido, zona bifásica y sólido. En reposo, una aleación se enfría sola.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "iso",
+        "secuencia": [
+          30
+        ]
+      },
+      "notes": "PDF original: p. 48 (figura)."
+    },
+    {
+      "type": "features",
+      "title": "Qué se obtiene de un diagrama",
+      "subtitle": "A partir de un diagrama de equilibrio de fases.",
+      "cards": [
+        {
+          "icon": "ph-list-numbers",
+          "title": "Número de fases",
+          "text": "Cuántas fases están presentes en cada punto.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-arrows-left-right",
+          "title": "Composición de cada fase",
+          "text": "Se obtiene con la regla de la horizontal.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-scales",
+          "title": "Proporción de cada fase",
+          "text": "Se obtiene con la regla de la palanca o de los segmentos inversos.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 49."
+    },
+    {
+      "type": "split-text",
+      "title": "Regla de la horizontal y de la palanca",
+      "subtitle": "En una región bifásica se calculan la composición y la proporción de cada fase.",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-arrows-left-right",
+          "title": "Aleación 80:20 (20 % de B)",
+          "text": "La isoterma corta liquidus y solidus. Fase líquida: 30 % A y 70 % B. Fase sólida: 90 % A y 10 % B."
+        },
+        {
+          "icon": "ph-scales",
+          "title": "Segmentos inversos",
+          "text": "WL = (C₀ − CS) / (CL − CS) = (20 − 10) / (70 − 10) = 16,7 %.  WS = (CL − C₀) / (CL − CS) = (70 − 20) / (70 − 10) = 83,3 %."
+        }
+      ],
+      "notes": "PDF original: p. 50."
+    },
+    {
+      "type": "animation",
+      "kicker": "Regla de la palanca",
+      "title": "La palanca en acción",
+      "caption": "Aleación 80:20 enfriándose: la línea de reparto da la composición de cada fase y los segmentos, su proporción.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "iso",
+        "secuencia": [
+          20
+        ],
+        "pausa": [
+          1400,
+          4
+        ]
+      },
+      "notes": "PDF original: p. 50 (figura). La animación se detiene a la temperatura del ejemplo: α al 10 % de B y líquido al 70 % de B; proporciones 83,3 % y 16,7 %."
+    },
+    {
+      "type": "animation",
+      "kicker": "Ejemplo",
+      "title": "Identifica las fases",
+      "caption": "Elige tú la composición y la temperatura: los extremos de la horizontal dan la composición de cada fase.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "iso",
+        "secuencia": [
+          60
+        ]
+      },
+      "notes": "PDF original: p. 51 (figura del ejemplo). El ejemplo del original muestra la microestructura de cada fase (círculos de la figura)."
+    },
+    {
+      "type": "icons",
+      "title": "Tipos de diagramas de equilibrio",
+      "subtitle": "Según la solubilidad de los componentes A y B.",
+      "icons": [
+        {
+          "icon": "ph-circles-three",
+          "title": "Solubles en líquido y sólido",
+          "desc": "Cobre-níquel, oro-plata, platino-paladio.",
+          "color": "orange"
+        },
+        {
+          "icon": "ph-circles-three-plus",
+          "title": "Insolubles en estado sólido",
+          "desc": "Solubles en líquido. Plomo-antimonio, bismuto-cadmio.",
+          "color": "navy"
+        },
+        {
+          "icon": "ph-circles-four",
+          "title": "Parcialmente solubles en sólido",
+          "desc": "Solubles en líquido. Plomo-estaño, cobre-plata, hierro-carbono.",
+          "color": "blue"
+        }
+      ],
+      "notes": "PDF original: p. 52."
+    },
+    {
+      "type": "features",
+      "title": "Tipo I: solubilidad total",
+      "subtitle": "Componentes totalmente solubles en estado sólido y líquido.",
+      "cards": [
+        {
+          "icon": "ph-drop",
+          "title": "Zona líquida (L)",
+          "text": "Sobre el liquidus, líquido homogéneo y totalmente mezclado.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-intersect",
+          "title": "Zona bifásica (L + α)",
+          "text": "Al cruzar el liquidus nacen los primeros cristales α; coexisten con el líquido (regla de la palanca).",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-cube",
+          "title": "Zona sólida (α)",
+          "text": "Bajo el solidus, todo el líquido se ha transformado: granos α uniformes.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 53."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo I",
+      "title": "Del líquido a los granos α",
+      "caption": "Una aleación al 50 % de B: aparecen cristales α, crecen y llenan todo el sólido.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "iso",
+        "secuencia": [
+          50
+        ]
+      },
+      "notes": "PDF original: p. 54 (vídeo «Diagramas de equilibrio» sustituido). El original incluía un vídeo (canal Ingenioso)."
+    },
+    {
+      "type": "features",
+      "title": "Tipo II: insolubles en estado sólido",
+      "subtitle": "Un pico en el liquidus marca el punto eutéctico.",
+      "cards": [
+        {
+          "icon": "ph-drop",
+          "title": "Zona líquida (L)",
+          "text": "Los dos elementos forman una sola fase líquida homogénea.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-intersect",
+          "title": "Zona sólida (A + B)",
+          "text": "No se disuelven: cada partícula cristaliza por separado como su componente puro.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-star",
+          "title": "Punto eutéctico",
+          "text": "Composición que solidifica a temperatura constante y mínima: L → A + B.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 55."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo II",
+      "title": "El punto eutéctico",
+      "caption": "Hipoeutéctica, eutéctica o hipereutéctica: sólo la eutéctica solidifica a temperatura constante.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "eut",
+        "secuencia": [
+          30,
+          60,
+          85
+        ]
+      },
+      "notes": "PDF original: p. 56 (figura). El componente eutéctico es la composición con el punto de fusión más bajo del sistema."
+    },
+    {
+      "type": "features",
+      "title": "Tipo III: solubilidad parcial",
+      "subtitle": "Solubles en estado líquido y parcialmente solubles en estado sólido.",
+      "cards": [
+        {
+          "icon": "ph-drop",
+          "title": "Zona líquida (L)",
+          "text": "Una sola fase líquida homogénea.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-circles-four",
+          "title": "Zona bifásica sólida (α + β)",
+          "text": "Cada red acepta una cantidad limitada del otro elemento: soluciones sólidas parciales α y β.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-star",
+          "title": "Punto eutéctico",
+          "text": "Solidifica a temperatura constante y mínima, inferior a la de fusión de cada componente.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-line-segment",
+          "title": "Líneas de solvus",
+          "text": "La solubilidad sólida disminuye al bajar la temperatura: la solución se satura y precipita la otra fase.",
+          "style": "navy"
+        }
+      ],
+      "notes": "PDF original: p. 57."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo III",
+      "title": "De las curvas al diagrama",
+      "caption": "Curvas de enfriamiento de cinco composiciones: sus cambios de pendiente y mesetas dibujan el diagrama.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "modo": "construir",
+        "diagrama": "parcial"
+      },
+      "notes": "PDF original: p. 58 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo III",
+      "title": "Líquidus, sólidus, eutéctico y solvus",
+      "caption": "Diagrama completo con las líneas rotuladas. Explóralo con el ratón.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "parcial",
+        "secuencia": [
+          62
+        ]
+      },
+      "notes": "PDF original: p. 59 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo III",
+      "title": "Microestructuras según la composición",
+      "caption": "Aleaciones hipoeutécticas, eutécticas e hipereutécticas al enfriarse: cristales primarios y eutéctico.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "parcial",
+        "secuencia": [
+          35,
+          62,
+          78,
+          12
+        ]
+      },
+      "notes": "PDF original: p. 60 (figuras)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tipo III",
+      "title": "Prueba tú: solubilidad parcial",
+      "caption": "Elige cualquier punto del diagrama y mira las fases y la microestructura.",
+      "src": "animations/mat-equilibrio.js",
+      "params": {
+        "diagrama": "parcial",
+        "secuencia": [
+          20
+        ]
+      },
+      "notes": "PDF original: p. 61 (vídeo «Diagramas de solubilidad parcial» sustituido). El original incluía un vídeo (canal Ingenioso)."
+    },
+    {
+      "type": "bullets",
+      "title": "Para interpretar cualquier diagrama",
+      "numbered": true,
+      "items": [
+        {
+          "title": "Composición",
+          "text": "Sitúa la composición de la aleación."
+        },
+        {
+          "title": "Temperatura",
+          "text": "Sitúa la temperatura."
+        },
+        {
+          "title": "Zona y fases",
+          "text": "Identifica la zona y las fases presentes."
+        },
+        {
+          "title": "Regla de la horizontal",
+          "text": "Si hay dos fases, aplícala para conocer su composición."
+        },
+        {
+          "title": "Regla de la palanca",
+          "text": "Si necesitas los porcentajes de las fases, aplícala o usa los segmentos inversos."
+        }
+      ],
+      "notes": "PDF original: p. 62."
+    },
+    {
+      "type": "section",
+      "title": "El sistema hierro-carbono",
+      "subtitle": "Alotropía, aceros y fundiciones",
+      "number": "05"
+    },
+    {
+      "type": "timeline",
+      "title": "Alotropía del hierro",
+      "subtitle": "Un material presenta estructuras cristalinas distintas bajo distintas condiciones de presión y temperatura.",
+      "steps": [
+        {
+          "date": "1400 – 1539 °C",
+          "title": "Hierro δ · BCC",
+          "desc": "Poca aplicación industrial."
+        },
+        {
+          "date": "910 – 1400 °C",
+          "title": "Hierro γ · FCC",
+          "desc": "Disuelve hasta un 2 % de carbono y forma austenita."
+        },
+        {
+          "date": "768 – 910 °C",
+          "title": "Hierro β · BCC",
+          "desc": "No magnético."
+        },
+        {
+          "date": "768 °C",
+          "title": "Hierro α · BCC",
+          "desc": "Magnético y con muy poca solubilidad de carbono."
+        }
+      ],
+      "notes": "PDF original: p. 63. Junto con el carbono, el hierro forma los aceros y las fundiciones."
+    },
+    {
+      "type": "animation",
+      "kicker": "Alotropía",
+      "title": "El hierro cambia de red",
+      "caption": "Curva de enfriamiento del hierro puro y la celdilla de cada fase (BCC ⇄ FCC).",
+      "src": "animations/mat-hierro.js",
+      "notes": "PDF original: p. 63 (curva). Temperaturas de la presentación original. El eje de tiempo es ilustrativo."
+    },
+    {
+      "type": "table",
+      "title": "Otros materiales alotrópicos",
+      "subtitle": "Transformaciones polimórficas a presión atmosférica y altas temperaturas.",
+      "headers": [
+        "Metal",
+        "Estructura a temperatura ambiente",
+        "Estructura a otras temperaturas"
+      ],
+      "highlight": 0,
+      "rows": [
+        [
+          "Ca",
+          "FCC",
+          "BCC (T > 447 °C)"
+        ],
+        [
+          "Co",
+          "HCP",
+          "FCC (T > 427 °C)"
+        ],
+        [
+          "Fe",
+          "BCC",
+          "FCC (912 < T < 1394 °C) · BCC (T > 1394 °C)"
+        ],
+        [
+          "Na",
+          "BCC",
+          "HCP (T < −193 °C)"
+        ],
+        [
+          "Ti",
+          "HCP",
+          "BCC (T > 883 °C)"
+        ]
+      ],
+      "notes": "PDF original: p. 64. Corrección respecto al original: la tabla escribía «CC (T > 427 °C)» para el cobalto; se ha interpretado como FCC (cúbica centrada en las caras), que es su fase de alta temperatura."
+    },
+    {
+      "type": "number-grid",
+      "title": "Diagrama hierro-carbono (Fe-C)",
+      "subtitle": "Recoge los estados de equilibrio del hierro y el carbono según la temperatura y los estados alotrópicos del hierro.",
+      "metrics": [
+        {
+          "value": "2,1%",
+          "label": "Máximo C en los aceros",
+          "desc": "Aceros: menos de 2,1 % de carbono"
+        },
+        {
+          "value": "6,69%",
+          "label": "Máximo C en las fundiciones",
+          "desc": "Fundiciones: de 2,1 % a 6,69 % de carbono"
+        },
+        {
+          "value": "4,3%",
+          "label": "Punto eutéctico · 1148 °C",
+          "desc": "El líquido forma ledeburita (austenita + cementita)"
+        },
+        {
+          "value": "0,89%",
+          "label": "Punto eutectoide · 723 °C",
+          "desc": "La austenita forma perlita (ferrita + cementita en capas)"
+        }
+      ],
+      "notes": "PDF original: p. 65. El original usa 2,1 % y 2,11 % indistintamente para el límite acero/fundición, y 6,67 % o 6,69 % para el carbono de la cementita; se respetan los valores de cada página."
+    },
+    {
+      "type": "animation",
+      "kicker": "Diagrama Fe-C",
+      "title": "El diagrama Fe-C en movimiento",
+      "caption": "Aceros a la izquierda, fundiciones a la derecha. Pasa el ratón: zona, constituyentes y microestructura.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          0.4,
+          0.89,
+          1.3,
+          3,
+          4.3
+        ]
+      },
+      "notes": "PDF original: p. 65 (figura). Curvas simplificadas del diagrama Fe-C con los puntos clave de la presentación."
+    },
+    {
+      "type": "faq",
+      "title": "Fases y constituyentes principales",
+      "subtitle": "Haz clic en cada uno para ver su descripción.",
+      "items": [
+        {
+          "q": "Ferrita (hierro α)",
+          "a": "Solución sólida de carbono en hierro α (BCC) con solubilidad de carbono extremadamente baja. Es el componente más blando, dúctil, maleable y magnético a temperatura ambiente."
+        },
+        {
+          "q": "Cementita (Fe₃C)",
+          "a": "El constituyente más duro y frágil (imposible de deformar plásticamente), con exactamente un 6,67 % de carbono. Su estructura cristalina es ortorrómbica."
+        },
+        {
+          "q": "Perlita",
+          "a": "Constituyente eutectoide de láminas alternas de ferrita y cementita: reúne la ductilidad de la ferrita y la dureza de la cementita. Aparece al enfriar lentamente la austenita por debajo de 723 °C."
+        },
+        {
+          "q": "Austenita (hierro γ)",
+          "a": "Solución sólida de carbono en hierro γ (FCC); disuelve hasta un 2,11 % de C a 1148 °C. Fase tenaz, densa y no magnética, clave para tratamientos térmicos como el temple."
+        },
+        {
+          "q": "Ledeburita",
+          "a": "Constituyente eutéctico que se genera a 1148 °C con un 4,3 % de carbono. No está presente en los aceros, solo en las fundiciones."
+        },
+        {
+          "q": "Hierro δ (ferrita delta)",
+          "a": "Solución sólida con estructura idéntica a la ferrita α (BCC), pero estable únicamente a muy altas temperaturas (entre 1394 °C y 1538 °C)."
+        }
+      ],
+      "notes": "PDF original: p. 66."
+    },
+    {
+      "type": "features",
+      "title": "Aceros según su carbono",
+      "subtitle": "Se denominan aceros las aleaciones cuyo contenido en carbono es menor del 2,1 %.",
+      "cards": [
+        {
+          "icon": "ph-arrow-down-left",
+          "title": "Hipoeutectoides",
+          "text": "Menos de 0,89 % de C: ferrita proeutectoide + perlita.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-equals",
+          "title": "Eutectoide",
+          "text": "0,89 % de C (99,11 % Fe): perlita al 100 %.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-arrow-up-right",
+          "title": "Hipereutectoides",
+          "text": "Entre 0,89 % y 2,11 % de C: cementita proeutectoide + perlita.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: pp. 67-69 (introducción). Diapositiva añadida: resume las definiciones de las pp. 67, 68 y 69."
+    },
+    {
+      "type": "animation",
+      "kicker": "Acero eutectoide",
+      "title": "Componente eutectoide",
+      "caption": "0,89 % C (99,11 % Fe): la austenita se transforma en perlita a 723 °C.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          0.89
+        ]
+      },
+      "notes": "PDF original: p. 67 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Acero hipoeutectoide",
+      "title": "Aceros hipoeutectoides",
+      "caption": "Menos de 0,89 % de carbono: primero aparece ferrita; el resto se transforma en perlita.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          0.4
+        ]
+      },
+      "notes": "PDF original: p. 68 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Acero hipereutectoide",
+      "title": "Aceros hipereutectoides",
+      "caption": "Entre 0,89 % y 2,11 % de carbono: primero aparece cementita; el resto se transforma en perlita.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          1.3
+        ]
+      },
+      "notes": "PDF original: p. 69 (figura)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Aceros",
+      "title": "Elige tú el % de carbono",
+      "caption": "Pasa el ratón por el diagrama: aceros de bajo, medio y alto carbono y sus microestructuras.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          0.2,
+          0.55,
+          1.05
+        ]
+      },
+      "notes": "PDF original: p. 70 (vídeo «Diagrama de equilibrio» sustituido). El original incluía un vídeo (canal Ingenioso)."
+    },
+    {
+      "type": "statement",
+      "kicker": "Fundiciones",
+      "text": "Las *fundiciones* superan el *2,1 % de carbono* y funden entre *1150 °C y 1300 °C*: se moldean con facilidad.",
+      "source": "Su fusión es inferior a la de los aceros",
+      "notes": "PDF original: p. 71."
+    },
+    {
+      "type": "animation",
+      "kicker": "Fundiciones",
+      "title": "Fundiciones en el diagrama Fe-C",
+      "caption": "Entre 2,1 % y 6,69 % de carbono: austenita primaria, eutéctico (ledeburita) y cementita.",
+      "src": "animations/mat-fec.js",
+      "params": {
+        "secuencia": [
+          3,
+          4.3,
+          5.5
+        ]
+      },
+      "notes": "PDF original: p. 71 (figura)."
+    },
+    {
+      "type": "features",
+      "title": "Tipos de fundición",
+      "subtitle": "Tienden a la grafitización (formación de grafito), que se regula con la composición y la velocidad de enfriamiento.",
+      "cards": [
+        {
+          "icon": "ph-pencil-simple",
+          "title": "Fundición gris",
+          "text": "El carbono aparece en forma de láminas o escamas de grafito.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-diamond",
+          "title": "Fundición blanca",
+          "text": "El carbono está combinado como cementita, sin grafito libre.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-circle",
+          "title": "Fundición nodular (dúctil)",
+          "text": "El carbono forma esferas o nódulos de grafito.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 72. En la mayoría de las fundiciones el carbono aparece como grafito; la microestructura y las propiedades dependen de la composición y del tratamiento térmico."
+    },
+    {
+      "type": "bullets",
+      "title": "Fundición blanca",
+      "items": [
+        {
+          "icon": "ph-cube",
+          "title": "Estructura",
+          "text": "El carbono está totalmente combinado como cementita, sin grafito libre. Su nombre viene del color brillante de su fractura."
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Propiedades",
+          "text": "Extremadamente dura y resistente al desgaste, pero muy frágil y difícil de mecanizar."
+        },
+        {
+          "icon": "ph-wrench",
+          "title": "Usos",
+          "text": "Rodillos de laminación, zapatas de frenos y martillos de trituradoras."
+        }
+      ],
+      "notes": "PDF original: p. 73 (micrografía sustituida por la animación de la p. 76)."
+    },
+    {
+      "type": "split-text",
+      "title": "Fundición gris",
+      "connector": false,
+      "columns": [
+        {
+          "icon": "ph-cube",
+          "title": "Estructura",
+          "text": "El carbono se encuentra en forma de láminas o escamas de grafito."
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Propiedades",
+          "text": "Blanda y fácil de mecanizar; amortigua bien las vibraciones y resiste la compresión, pero es frágil ante impactos."
+        },
+        {
+          "icon": "ph-wrench",
+          "title": "Usos",
+          "text": "Bloques de motores, bancadas de máquinas y carcasas."
+        }
+      ],
+      "notes": "PDF original: p. 74."
+    },
+    {
+      "type": "features",
+      "title": "Fundición nodular (o dúctil)",
+      "cards": [
+        {
+          "icon": "ph-circle",
+          "title": "Estructura",
+          "text": "Se añade magnesio o cerio al líquido para que el carbono forme esferas o nódulos en lugar de láminas.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Propiedades",
+          "text": "Combina la facilidad de fabricación con alta ductilidad, tenacidad y resistencia mecánica similar a la del acero.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-wrench",
+          "title": "Usos",
+          "text": "Cigüeñales, tuberías de alta presión, componentes de automoción y energía eólica.",
+          "style": "orange"
+        }
+      ],
+      "notes": "PDF original: p. 75."
+    },
+    {
+      "type": "animation",
+      "kicker": "Microestructura",
+      "title": "Las tres fundiciones al microscopio",
+      "caption": "Blanca, gris y nodular: cementita, láminas de grafito y nódulos de grafito.",
+      "src": "animations/mat-fundiciones.js",
+      "notes": "PDF original: p. 76 (vídeo «Microestructura de las fundiciones» sustituido; también micrografías de pp. 73-75). Dibujos ilustrativos, no micrografías reales."
+    },
+    {
+      "type": "closing",
+      "title": "Materiales y fabricación",
+      "subtitle": "Basado en la presentación «Bloque II» de Lidia Chico Domínguez · © 2026 · CC BY-NC-SA 4.0",
+      "contacts": [
+        {
+          "icon": "ph-creative-commons-logo",
+          "text": "creativecommons.org/licenses/by-nc-sa/4.0"
+        },
+        {
+          "icon": "ph-book-open",
+          "text": "Contenido original: Tecnología 4º ESO y Tecnología e Ingeniería 1º y 2º Bachillerato (Ed. Donostiarra)"
+        }
+      ],
+      "notes": "PDF original: p. 77. Adaptación interactiva de la obra original. Se mantiene la licencia CC BY-NC-SA 4.0 (atribución, no comercial, compartir igual). El original acredita imágenes del libro de texto (Editorial Donostiarra, 2022-2023) y material con licencia Creative Commons «con fines educativos y sin ánimo de lucro»; esta versión no reutiliza esas imágenes."
+    }
+  ]
+}
