@@ -14,5 +14,7 @@ jobs:
           node-version: 20
       - name: Agents and skills are valid and in sync
         run: npm run check
+      - name: Editor forms match the validator
+        run: npm run check:editor
       - name: Validate decks
         run: npm run validate

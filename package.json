@@ -13,6 +13,7 @@
     "sync": "node scripts/sync-agents.mjs",
     "sync:copy": "node scripts/sync-agents.mjs --copy-skills",
     "check": "node scripts/sync-agents.mjs --check",
-    "test": "npm run check && npm run validate"
+    "check:editor": "node scripts/check-editor.mjs",
+    "test": "npm run check && npm run check:editor && npm run validate"
   }
 }

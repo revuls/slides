@@ -21,6 +21,7 @@ The engine is **one file**, `index.html` (HTML + CSS + vanilla JS, no build). Ex
 | `3. TIPOS DE SLIDE` | `TYPES = { name: { theme?, fx?, nofoot?, render(slide, ctx) } }` — one HTML renderer per type. |
 | `4. ESTADO + RENDER` | `THEMES`, global state `G`, styles (`registerStyle`, `loadStyle`, `applyStyle`, `G.types`), `slideHTML()`, `fitSlide()` (auto-shrink), `buildPresentation()` (loads the style, may be async) and `renderDeck()`. |
 | `5–6b` | Counters, particles (`FX`), full-screen animations (`Anim`, `registerAnimation`). |
+| `editor/` (separate files) | Visual editor, loaded on demand by `openEditor()`; shares the engine's globals. Edits `G.source` (never the sanitized `G.deck`), re-renders one slide with `refreshSlide(i)`, and saves through the API in `scripts/serve.mjs`. Any new field in a renderer needs a form field in `editor/schema.js`. |
 | `7. GRÁFICOS` | Chart.js wrappers (palette read from CSS variables). |
 | `8. NAVEGACIÓN`, `9. CARGA DE JSON`, `10. INICIO`, `11. AUDITORÍA` | Navigation, overview, shortcuts, loading (file/drag-drop/paste/`#d=` link/`?src=`), trust model + `sanitizeDeck()`, share links, `Slides.audit()`. |
 
@@ -49,9 +50,10 @@ Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `un
 4. **Static/print**: verify the overview thumbnail and print preview.
 5. **Validator**: add the type to `scripts/validate-deck.mjs` (`R` table, plus a `custom` function for cross-field rules).
 6. **Docs**: add the type to `.agents/skills/create-presentation/references/slide-types.md` and the selection table in the `create-presentation` skill; update `README.md` counts; update `prompt.md` (Spanish chat prompt) only if asked.
-7. **Demo**: add an example slide to a deck in `data/` (or a new one) and, if useful, to `defaultJSON`.
-8. **Test**: `npm run validate`; `npm run serve`; `await Slides.audit()`; overview (`G`), dark mode (`T`), every theme (`C`), a narrow window and a phone-landscape viewport (812×375), PDF export.
-9. Regenerate agent files if you touched `.agents/` (`npm run sync`), then `npm run check`.
+7. **Editor**: add the type's form and a `sample` to `editor/schema.js` (`npm run check:editor` checks it against the validator).
+8. **Demo**: add an example slide to a deck in `data/` (or a new one) and, if useful, to `defaultJSON`.
+9. **Test**: `npm run validate`; `npm run serve`; `await Slides.audit()`; overview (`G`), dark mode (`T`), every theme (`C`), a narrow window and a phone-landscape viewport (812×375), PDF export.
+10. Regenerate agent files if you touched `.agents/` (`npm run sync`), then `npm run check`.
 
 ## Other changes
 

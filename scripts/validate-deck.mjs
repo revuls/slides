@@ -77,8 +77,9 @@ const R = {
   scorecard: { req: ['title'], arr: { items: [1, 10, { req: ['title'], enums: { status: ['done', 'partial', 'fail', 'na'] } }] } }
 };
 export const KNOWN_TYPES = Object.keys(R);
+export const RULES = R;
 
-function validateDeck(deck, file) {
+export function validateDeck(deck, file) {
   const out = [];
   const E = (slide, msg) => out.push({ severity: 'error', slide, message: msg });
   const W = (slide, msg) => out.push({ severity: 'warning', slide, message: msg });

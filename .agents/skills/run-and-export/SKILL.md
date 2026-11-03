@@ -28,6 +28,7 @@ Opening `index.html` **without a server** (`file://`) also works, with one limit
 | `C` | Cycle color themes (same picker) |
 | `N` | Speaker notes panel |
 | `M` | Mute / unmute animation sound (also a speaker button in the dock; remembered per browser) |
+| `E` | Visual editor (also the pencil in the dock, or `&edit` in the URL). With `npm run serve` and `?src=data/<deck>.json` it autosaves to that file; elsewhere it saves to a chosen file or a download |
 | `?` | Shortcut help · `Esc` closes panels |
 
 The control dock stays hidden while you navigate; it appears when the mouse approaches the bottom edge. Presenting tips: press `F`, check animations once on the actual projector/laptop, keep notes open on a second screen if you have one.

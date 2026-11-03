@@ -14,7 +14,8 @@ npm run export:pdf -- data/<deck>.json  # PDF via headless Chrome, no print dial
 npm run validate           # validate every data/*.json   (node scripts/validate-deck.mjs [file…] [--json] [--strict])
 npm run sync               # regenerate agent files from .agents/ (Claude, Copilot, Codex) + prompt files + styles/index.js
 npm run check              # verify .agents/ sources are valid and generated files are in sync
-npm test                   # check + validate
+npm run check:editor       # verify editor/schema.js covers every slide type with the validator's rules
+npm test                   # check + check:editor + validate
 ```
 Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `{ ok, issues[] }` (render errors, overflow, broken images, animation errors).
 
@@ -23,10 +24,11 @@ Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `
 | Path | What |
 |---|---|
 | `index.html` | The engine. Section banners map the code (themes, stage, TYPES, `Anim`, charts, navigation, `Slides.audit`). |
+| `editor/` | Visual editor, loaded on demand (`E` key, pencil in the dock, `?edit`): `schema.js` (form of each slide type), `editor.js`, `editor.css`. |
 | `data/*.json` | Decks (`meta` + `slides`). `data/plantilla-animacion.json` is a starter. |
 | `animations/*.js` | Full-screen animations, each wrapped in `registerAnimation(function (api) { … })`. `_plantilla.js` is the template. |
 | `styles/*.js` | Presentation styles: layout, markup, type and chrome of a whole deck, each wrapped in `registerStyle(function (api) { … })`. `_plantilla.js` is the template; `index.js` is generated. |
-| `scripts/` | `validate-deck.mjs`, `load-style.mjs`, `serve.mjs`, `export-pdf.mjs`, `sync-agents.mjs`, `prompt-header.en.md`. |
+| `scripts/` | `validate-deck.mjs`, `check-editor.mjs`, `load-style.mjs`, `serve.mjs` (also the editor's save API), `export-pdf.mjs`, `sync-agents.mjs`, `prompt-header.en.md`. |
 | `.agents/skills/` | **Skills** (Agent Skills standard): the knowledge. Source of truth. |
 | `.agents/agents/` | **Agents** (neutral definitions): the roles. Source of truth. |
 | `.claude/`, `.github/agents/`, `.codex/agents/` | Generated per-tool agent files (+ `.claude/skills` symlink). **Do not edit.** |
@@ -66,6 +68,7 @@ Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `
 - **Style vs theme**: a new look goes in `styles/<id>.js` (see `create-style`), never in `index.html`. Replace built-in slide types rather than adding style-only ones, so decks keep working in every style. Decks choose a style by id only: do not let deck data load a style from a URL.
 - **Colors** come from theme tokens (`var(--brand)`…) in CSS and `api.colors` in animations; never hard-code a palette.
 - **No new dependencies** (the engine uses Chart.js, Phosphor Icons and Google Fonts from CDNs). A 3D library was evaluated and removed: do not re-add it without a clear need.
+- **Editor saves**: `scripts/serve.mjs` writes only existing `data/*.json` decks and images under `assets/<deck>/`, only for requests from this machine (loopback peer, loopback `Host`, same `Origin`). Do not widen this, and do not let an untrusted deck reach it: `sanitizeDeck()` output must never be saved.
 - **Generated files**: edit `.agents/skills/**`, `.agents/agents/*.md` or `scripts/prompt-header.en.md`, then run `npm run sync`. CI fails if they drift.
 - **Git**: do not commit, push or open pull requests unless asked. Never commit secrets.
 - Keep changes small and focused; match the existing style (2-space indent, single quotes in JS).
@@ -73,6 +76,7 @@ Node ≥ 18, no dependencies. In a browser console: `await Slides.audit()` → `
 ## Definition of done
 
 - **New/edited deck**: `npm run validate` has 0 errors and warnings were reviewed; opened in the browser; `await Slides.audit()` is `ok`; animations watched through one loop; caveats reported.
+- **New slide type or field**: also add it to `editor/schema.js`; `npm run check:editor` fails if the form and the validator disagree.
 - **New/edited style**: `npm run sync` and `npm test` pass; `Slides.audit()` ok on the default deck and `data/demo-estilos.json` with `?style=<id>`; overview, dark mode, another theme and PDF export checked.
 - **New/edited animation**: validator passes; one full loop watched; overview thumbnail meaningful; dark mode and another theme checked.
 - **Engine change**: `npm test` passes; `Slides.audit()` ok on `data/sistema-solar.json` and `data/segunda-guerra-mundial.json`; overview, dark mode (`T`), all themes (`C`) and print preview checked; docs updated.

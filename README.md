@@ -69,7 +69,18 @@ The control dock stays out of the way while you navigate: move the mouse to the 
 
 **On a phone**: use landscape. Swipe or tap the left/right quarter of the slide to change slide, and the ≡ button at the top opens the menu (overview, themes, paste JSON, share link…). The slide fills the screen (no frame, notch-safe); in portrait a banner suggests rotating, since a 1920×1080 canvas is too small to read in portrait. On iPhone, *Share → Add to Home Screen* gives a full-screen app (Safari has no Fullscreen API). Heavy effects (glass blur) are turned off on touch devices.
 
-URL options: `?src=data/x.json` · `&style=editorial` · `&theme=ocean` · `#5` (open on slide 5).
+## Edit a presentation
+
+Press `E` (or the pencil in the dock) to edit the open deck: slides on the left, live preview in the middle, a form with every field of the slide on the right.
+
+- **Slides**: add from a gallery of all types (`N`), duplicate (`Ctrl/Cmd+D`), delete (`Del`), drag to reorder (or `Alt+↑/↓`), change a slide's type keeping its text.
+- **Content**: lists with add, remove, duplicate and drag; spreadsheet-style grids for tables and chart data; icon picker; image upload (click or drop). Click any text in the preview to jump to its field. `Ctrl/Cmd+B` makes the selection bold.
+- **Presentation** tab: title, date, author, style, colors, mode, transition, logo.
+- `Ctrl/Cmd+Z` undoes, and anything without a form (a field added by a style) can be edited with *Ver como JSON*.
+
+**Where changes are saved**: with `npm run serve` and a deck opened from `data/` (`?src=data/x.json`), every change is written to that JSON file about a second later, and the previous version is kept in `data/.backups/` (last 10 per deck, one per editing session). The first save rewrites the file with standard 2-space JSON. If the file changes on disk while you edit (another tab, a text editor, an agent), the editor asks before overwriting. Saving only works from the machine running the server; other devices on the network can present but not save. Anywhere else (GitHub Pages, `file://`, uploaded, pasted or linked decks) the editor still works and saves to a file you choose, or as a download.
+
+URL options: `?src=data/x.json` · `&edit` (open in the editor) · `&style=editorial` · `&theme=ocean` · `#5` (open on slide 5).
 
 **Open a deck without a server** (e.g. from an AI chat): press `Ctrl/Cmd+V` anywhere on the page, or use the clipboard button in the dock, and paste the JSON (a ```json fenced block copied from a chat works). Everything happens in the browser; nothing is uploaded.
 

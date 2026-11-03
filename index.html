@@ -962,6 +962,7 @@ body.compact #bg{display:none}
   <span id="counter">01 <small>/ 01</small></span>
   <button data-act="next" class="next" data-tip="Siguiente (→)"><i class="ph ph-caret-right"></i></button>
   <i class="sep"></i>
+  <button data-act="edit" data-tip="Editar (E)"><i class="ph ph-pencil-simple"></i></button>
   <button data-act="overview" data-tip="Vista general (G)"><i class="ph ph-squares-four"></i></button>
   <button data-act="notes" data-tip="Notas (N)"><i class="ph ph-note-pencil"></i></button>
   <button data-act="palette" data-tip="Estilos y colores (S · C)"><i class="ph ph-palette"></i></button>
@@ -992,6 +993,7 @@ body.compact #bg{display:none}
     <dt><kbd>→</kbd><kbd>Espacio</kbd></dt><dd>Siguiente slide</dd>
     <dt><kbd>←</kbd></dt><dd>Slide anterior</dd>
     <dt><kbd>Inicio</kbd><kbd>Fin</kbd></dt><dd>Primer / último slide</dd>
+    <dt><kbd>E</kbd></dt><dd>Editar la presentación</dd>
     <dt><kbd>G</kbd></dt><dd>Vista general (cuadrícula)</dd>
     <dt><kbd>F</kbd></dt><dd>Pantalla completa</dd>
     <dt><kbd>S</kbd></dt><dd>Cambiar estilo de presentación</dd>
@@ -1710,7 +1712,7 @@ const THEMES = {
   argos:     { label: 'Argos',     a: '#5BB88F', b: '#091B33' },
   masilla:   { label: 'Masilla',   a: '#256F82', b: '#0A0A0A' }
 };
-const G = { theme: 'classic', style: null, styleId: 'default', styleErr: '', styleThemes: [], types: null, source: null, build: 0, anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '' };
+const G = { theme: 'classic', style: null, styleId: 'default', styleErr: '', styleThemes: [], types: null, source: null, build: 0, anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '', srcPath: '' };
 
 const baseDecor = () => '<div class="blob"></div><div class="orb o1"></div><div class="orb o2"></div>';
 const baseChrome = (s, c) => `${c.logo ? `<div class="logo">${c.logo}</div>` : ''}${c.nofoot ? '' : `<div class="foot"><span>${c.deckTitle}</span>${c.meta.date ? `<s></s><span>${c.meta.date}</span>` : ''}</div><div class="pg"><b>${pad(c.i + 1)}</b> / ${pad(c.total)}</div>`}`;
@@ -1821,7 +1823,8 @@ function buildPresentation(data, opts = {}) {
 function renderDeck(data, opts) {
   stopAll();
   G.fontBody = cssVar('--font-body');
-  G.untrusted = !!opts.untrusted; G.animOK = !G.untrusted; G.share = opts.share || '';
+  G.untrusted = !!opts.untrusted; G.animOK = !G.untrusted || !!opts.animOK; G.share = opts.share || '';
+  if ('srcPath' in opts) G.srcPath = opts.srcPath;       // deck file this page was opened from: the editor can only save over that one
   try { G.json = JSON.stringify(data); } catch (e) { G.json = ''; }
   if (G.untrusted) data = sanitizeDeck(data);
   G.deck = data;
@@ -1837,20 +1840,37 @@ function renderDeck(data, opts) {
   slidesEl.innerHTML = data.slides.map((s, i) => slideHTML(s, i)).join('');
   G.els = $$('.slide', slidesEl);
   G.anims = new Map();
-  G.els.forEach((el, i) => { if ($('.an-cv', el)) G.anims.set(i, new Anim(el, data.slides[i], i)); });
-  G.els.forEach(el => {
-    let k = 0;
-    $$('[data-a]', el).forEach(a => { if (!a.style.getPropertyValue('--d')) a.style.setProperty('--d', Math.min(k * 85, 1500)); k++; });
-    $$('.count', el).forEach(initCounter);
-    const cv = $('canvas.fx', el);
-    if (cv) G.fx.set(+el.dataset.i, new FX(cv));
-  });
+  G.els.forEach((el, i) => wireSlide(el, i));
   G.cur = -1;
   (document.fonts?.ready || Promise.resolve()).then(() => G.els.forEach(fitSlide));
-  const fromHash = hashSlide();
+  const fromHash = opts.slide != null ? opts.slide + 1 : hashSlide();
   go(fromHash > 0 && fromHash <= G.els.length ? fromHash - 1 : 0, true);
   $('#dock [data-act=theme]').classList.toggle('on', G.forceDark);
   $('#dock [data-act=theme] i').className = 'ph ' + (G.forceDark ? 'ph-sun' : 'ph-moon-stars');
+}
+
+function wireSlide(el, i) {
+  if ($('.an-cv', el)) G.anims.set(i, new Anim(el, G.deck.slides[i], i));
+  let k = 0;
+  $$('[data-a]', el).forEach(a => { if (!a.style.getPropertyValue('--d')) a.style.setProperty('--d', Math.min(k * 85, 1500)); k++; });
+  $$('.count', el).forEach(initCounter);
+  const cv = $('canvas.fx', el);
+  if (cv) G.fx.set(i, new FX(cv));
+}
+// Re-renders one slide in place, without touching the others (the editor calls it on every change)
+function refreshSlide(i) {
+  const old = G.els[i]; if (!old) return;
+  const active = i === G.cur;
+  G.fx.get(i)?.release(); G.fx.delete(i); G.anims.get(i)?.release(); G.anims.delete(i); killCharts(i);
+  const box = document.createElement('div'); box.innerHTML = slideHTML(G.deck.slides[i], i);
+  const el = box.firstElementChild; old.replaceWith(el); G.els[i] = el;
+  wireSlide(el, i); fitSlide(el);
+  if (!active) return el;
+  el.classList.add('is-active');
+  G.fx.get(i)?.start(); G.anims.get(i)?.start();
+  $$('iframe[data-src]', el).forEach(f => { f.src = f.dataset.src; });
+  G.charts.set(i, mountCharts(el, false));
+  return el;
 }
 
 /* ============================================================
@@ -1876,7 +1896,9 @@ const fmtNum = (p, v) => {
   return p.pre + t + p.suf;
 };
 function initCounter(el) { el._p = parseNum(el.dataset.count); el._final = el.textContent; }
+const editing = () => document.body.classList.contains('editing');
 function runCounters(slide, token) {
+  if (editing()) return;
   $$('.count', slide).forEach(el => {
     const p = el._p; if (!p || reduced) return;
     el.textContent = fmtNum(p, 0);
@@ -2255,7 +2277,7 @@ function go(n, instant = false) {
   G.fx.get(n)?.start();
   G.anims.get(n)?.start();
   runCounters(to, n);
-  const t = setTimeout(() => { if (G.cur === n && !document.body.classList.contains('ov')) G.charts.set(n, mountCharts(to, true)); }, instant ? 500 : 750);
+  const t = setTimeout(() => { if (G.cur === n && !document.body.classList.contains('ov')) G.charts.set(n, mountCharts(to, !editing())); }, instant ? (editing() ? 0 : 500) : 750);
   G.timers.push(t);
 
   stage.style.setProperty('--prog', (n + 1) / len);
@@ -2365,13 +2387,14 @@ addEventListener('afterprint', printDone);
 
 $('#dock').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
-  ({ prev, next, overview: () => document.body.classList.contains('ov') ? closeOverview() : openOverview(),
+  ({ prev, next, edit: openEditor, overview: () => document.body.classList.contains('ov') ? closeOverview() : openOverview(),
      palette: () => togglePalette(), notes: () => { document.body.classList.toggle('notes'); b.classList.toggle('on'); }, theme: toggleTheme, fs: toggleFS, sound: () => toggleSound(),
      load: () => $('#file').click(), paste: openPaste, share: copyLink, print: doPrint, help: () => document.body.classList.add('help') })[b.dataset.act]?.();
 });
 $('#help').addEventListener('click', () => document.body.classList.remove('help'));
 
 addEventListener('keydown', e => {
+  if (editing()) return;                               // the editor has its own shortcuts (editor/editor.js)
   if (e.target.closest?.('input,textarea')) return;
   if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && (e.key === 'p' || e.key === 'P')) { e.preventDefault(); doPrint(); return; }
   if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -2381,6 +2404,7 @@ addEventListener('keydown', e => {
     case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace': if (!ov) { e.preventDefault(); prev(); } break;
     case 'Home': if (!ov) go(0); break;
     case 'End': if (!ov) go(G.els.length - 1); break;
+    case 'e': case 'E': openEditor(); break;
     case 'g': case 'G': case 'o': case 'O': ov ? closeOverview() : openOverview(); break;
     case 'f': case 'F': toggleFS(); break;
     case 'c': case 'C': cycleTheme(); break;
@@ -2396,10 +2420,10 @@ addEventListener('keydown', e => {
 
 /* ---------- touch: deslizar = cambiar de slide · tocar el 25 % lateral = anterior/siguiente · botón ≡ = menú ---------- */
 let tx = null, ty = 0, tt = 0, tel = null;
-const NOSWIPE = '.cmp,textarea,input,iframe,video,#paste,#help,#themes,#dock,#notes,#overview,[data-enable-anim]';
+const NOSWIPE = '#ve,.cmp,textarea,input,iframe,video,#paste,#help,#themes,#dock,#notes,#overview,[data-enable-anim]';
 addEventListener('touchstart', e => { if (e.touches.length > 1) { tx = null; return; } const t = e.touches[0]; tx = t.clientX; ty = t.clientY; tt = Date.now(); tel = e.target; }, { passive: true });
 addEventListener('touchend', e => {
-  if (tx == null) return;
+  if (tx == null || editing()) return;
   const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty, el = tel; tx = null;
   if (el?.closest?.(NOSWIPE) || document.body.classList.contains('ov')) return;
   if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? next() : prev(); return; }
@@ -2499,8 +2523,9 @@ function loadFromText(text, name = '', opts = {}) {
   try {
     const j = parseDeckText(text);
     if (!j || !Array.isArray(j.slides) || !j.slides.length) throw new Error('El JSON no contiene un array "slides" válido.');
+    if (window.Editor?.unsaved() && !confirm('Hay cambios sin guardar en esta presentación. ¿Abrir la otra y perderlos?')) return '';
     if (!opts.keepHash) history.replaceState(null, '', location.pathname + location.search);
-    buildPresentation(j, { untrusted: !opts.trusted, share: opts.share });
+    buildPresentation(j, { untrusted: !opts.trusted, share: opts.share, srcPath: opts.srcPath || '' });
     toast(`Presentación cargada${name ? ': ' + name : ''} · ${j.slides.length} slides`);
     return '';
   } catch (e) { console.error(e); toast('Error al leer el JSON: ' + e.message, true); return e.message; }
@@ -2561,34 +2586,49 @@ $('#paste').addEventListener('click', e => {
 });
 $('#paste textarea').addEventListener('keydown', e => { if (e.key === 'Escape') closePaste(); if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) $('#paste [data-p=open]').click(); });
 addEventListener('paste', e => {                       // Ctrl/⌘+V con la presentación abierta: si es un deck, se abre
-  if (e.target.closest?.('input,textarea,[contenteditable]')) return;
+  if (editing() || e.target.closest?.('input,textarea,[contenteditable]')) return;
   const t = e.clipboardData?.getData('text') || ''; if (!/"slides"\s*:/.test(t)) return;
   e.preventDefault(); loadFromText(t, 'pegado');
 });
 function readFile(f) { if (!f) return; const r = new FileReader(); r.onload = e => loadFromText(e.target.result, f.name); r.readAsText(f); }
 $('#file').addEventListener('change', e => { readFile(e.target.files[0]); e.target.value = ''; });
 let dragN = 0;
-addEventListener('dragenter', e => { e.preventDefault(); dragN++; document.body.classList.add('drag'); });
+addEventListener('dragenter', e => { e.preventDefault(); if (editing()) return; dragN++; document.body.classList.add('drag'); });
 addEventListener('dragleave', () => { if (--dragN <= 0) { dragN = 0; document.body.classList.remove('drag'); } });
 addEventListener('dragover', e => e.preventDefault());
-addEventListener('drop', e => { e.preventDefault(); dragN = 0; document.body.classList.remove('drag'); readFile(e.dataTransfer.files[0]); });
+addEventListener('drop', e => { e.preventDefault(); dragN = 0; document.body.classList.remove('drag'); if (!editing()) readFile(e.dataTransfer.files[0]); });
+
+/* ---------- editor visual (editor/): se carga solo al usarlo, para no pesar al presentar ---------- */
+let editorLoad = null;
+function openEditor() {
+  if (document.body.classList.contains('ov')) closeOverview();
+  document.body.classList.remove('themes', 'help', 'notes');
+  if (!editorLoad) editorLoad = new Promise((ok, ko) => {
+    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'editor/editor.css'; document.head.appendChild(css);
+    const add = (src, next) => { const sc = document.createElement('script'); sc.src = src; sc.onload = next; sc.onerror = () => ko(new Error(src)); document.head.appendChild(sc); };
+    add('editor/schema.js', () => add('editor/editor.js', () => (css.sheet ? ok() : css.addEventListener('load', ok))));
+  }).catch(e => { editorLoad = null; console.error(e); toast('No se pudo cargar el editor: falta ' + e.message, true); throw e; });
+  return editorLoad.then(() => window.Editor.open(), () => {});
+}
 
 /* ============================================================
    10. INICIO
    ============================================================ */
 addEventListener('load', async () => {
   fit();
-  const src = new URLSearchParams(location.search).get('src');
+  const params = new URLSearchParams(location.search), src = params.get('src');
   if (src) {
     try {
       const r = await fetch(src); if (!r.ok) throw new Error(r.status);
       const u = new URL(r.url || src, location.href), same = u.origin === location.origin && /^https?:$/.test(u.protocol);
-      loadFromText(await r.text(), src.split('/').pop(), { trusted: same, keepHash: true }); return;
+      const base = location.pathname.replace(/[^/]*$/, ''), srcPath = same && u.pathname.startsWith(base) ? decodeURIComponent(u.pathname.slice(base.length)) : '';
+      loadFromText(await r.text(), src.split('/').pop(), { trusted: same, keepHash: true, srcPath }); if (params.has('edit')) openEditor(); return;
     }
     catch (e) { toast('No se pudo cargar ' + src + ' (¿estás sirviendo la carpeta por HTTP?)', true); }
   }
-  if (await loadFromHash()) return;
-  buildPresentation(defaultJSON);
+  if (await loadFromHash()) { if (params.has('edit')) openEditor(); return; }
+  await buildPresentation(defaultJSON);
+  if (params.has('edit')) openEditor();
 });
 /* ============================================================
    11. AUDITORÍA  — Slides.audit(): comprobación automática para humanos y agentes
@@ -2625,7 +2665,7 @@ async function auditDeck({ animations = true, wait = 1600 } = {}) {
   if (animations) Slides.go(prev >= 0 ? prev : 0);
   return { ok: !issues.some(x => x.severity === 'error'), slides: G.els.length, theme: G.theme, style: G.styleId, issues };
 }
-window.Slides = { load: buildPresentation, go, next, prev, audit: auditDeck, setStyle, styles: () => styleList().map(x => x.id) };
+window.Slides = { load: (deck, opts) => buildPresentation(deck, { srcPath: '', ...opts }), edit: openEditor, go, next, prev, audit: auditDeck, setStyle, styles: () => styleList().map(x => x.id) };
 </script>
 </body>
 </html>
