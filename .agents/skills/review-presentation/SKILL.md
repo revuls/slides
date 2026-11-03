@@ -23,8 +23,8 @@ Errors must be fixed. Warnings are judgment calls: fix them unless there is a re
    await Slides.audit()      // → { ok, slides, theme, issues: [{ slide, type, severity, message }] }
    ```
    It reports render errors, content that overflowed and was auto-shrunk, content outside the safe area, images replaced by placeholders and animations that fail or do not run. Slides with `zoom` shrinking are usually too dense: shorten or split.
-4. Visual spot-check (screenshots if you can): cover, the densest slide, every `animation`, every `table`/`charts`, the closing slide. Look for text over busy areas, clipped labels, low contrast, awkward empty space.
-5. Press `G` (overview) to see the rhythm of the whole deck, `T` for dark mode, `C` to cycle themes.
+4. Visual spot-check (screenshots if you can): cover, the densest slide, every `animation`, every `table`/`charts`/`figure`/`scorecard`, the closing slide. Look for text over busy areas, clipped labels, low contrast, awkward empty space.
+5. Press `G` (overview) to see the rhythm of the whole deck, `T` for dark mode, `C` to cycle themes. If the deck sets `meta.style`, the audit result reports it in `style`; an error at slide 0 means the style failed to load.
 
 No browser? Say so, run Pass 1 and review the JSON by reading it; ask the user to run `await Slides.audit()` and paste the result.
 
@@ -37,7 +37,8 @@ No browser? Say so, run Pass 1 and review the JSON by reading it; ask the user t
 **Facts**: every date, figure, name and causal claim is correct and sourced; dated knowledge is flagged; nothing invented. Spot-check at least five claims (the most striking ones first) and use the `research-topic` skill for doubtful ones.
 **Sensitive topics**: respectful, factual wording; no sensationalism; quotations short, attributed and translations flagged.
 **Notes**: key slides have `notes` (sources, caveats, what to say).
-**Images & logos**: no fabricated third-party logos; placeholders replaced or acknowledged; alt-worthy context in captions.
+**Images & logos**: no fabricated third-party logos; placeholders replaced or acknowledged; alt-worthy context in captions. Local images (`assets/<deck>/…`) exist and are the author's own or credited in `source`; drawings and schematics use `figure` (never a cropping type such as `image-text` or `hero`).
+**Technical / academic decks**: `scorecard` statuses agree with their `evidence` and with the results slides; `aside` side columns hold ≤ 4 short blocks; claims about what works are backed by a test or capture.
 **Language**: consistent language and sentence case; no typos; terminology consistent.
 
 ## Pass 4 — Animation review

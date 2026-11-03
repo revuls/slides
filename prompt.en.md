@@ -11,13 +11,16 @@ RULES
 2. Write slide text in the same language as my content. Be executive, clear and persuasive; sentence case; titles ≤ 8 words; text blocks ≤ 40 words. Inline HTML (`<strong>`, `<br>`) is allowed.
 3. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`): the engine animates them counting up.
 4. Icons: Phosphor icon names (`"ph-rocket-launch"`, `"ph-chart-bar"`); use only common, real names.
-5. Images: never invent photo URLs (they break). Use `https://placehold.co/1600x900?text=Short+description` placeholders, or prefer slide types that need no image. I will replace them later.
+5. Images: never invent photo URLs (they break). Use `https://placehold.co/1600x900?text=Short+description` placeholders, or prefer slide types that need no image. I will replace them later. If I provide my own figures (plans, schematics, screenshots, photos), reference them by relative path (e.g. `assets/my-project/schematic.jpg`) and show them with `figure`.
 6. Never invent statistics, quotes or sources. If I gave no data, use qualitative wording or mark estimates with `≈` or ranges.
-7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Do NOT use `animation` slides: they are not supported in this mode.
+7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`, `figure`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Do NOT use `animation` slides: they are not supported in this mode.
 8. Add `notes` (speaker notes) to the important slides.
+9. For reports, technical projects and academic defences use `aside` (main content + labelled side facts), `figure` (whole plans, schematics and screenshots) and `scorecard` (objectives vs results, each with its evidence).
 
 
-THEMES (`meta.theme`): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
+STYLES (`meta.style`, the layout and typography of the whole deck; every slide type works in every style): `default` (rounded cards, gradients; used when `meta.style` is omitted) · `editorial` (printed magazine: serif type on paper, hairline rules, sidebar spreads; for essays, culture, reports and storytelling) · `minimal` (very clean: white background, square corners, black type, hairlines and generous empty space; for business, product and technical talks) · `suizo` (bold Swiss poster: heavy capitals, hard grid that fills the slide, flat color blocks; for keynotes, launches and manifestos). Pick the one that fits the audience.
+
+THEMES (`meta.theme`, the colors): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green; pair it with `"mode": "dark"`). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
 
 # Slide type catalog
 
@@ -38,7 +41,9 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 {
   "meta": {
     "title": "Short title (footer and browser tab)", "date": "Month Year", "author": "Name or team",
-    "theme": "classic | marino | ocean | esmeralda | violeta | carmin",
+    "style": "optional layout style: a file name in styles/, e.g. editorial | suizo | minimal",
+    "theme": "classic | marino | ocean | esmeralda | violeta | carmin | argos",
+    "mode": "light | dark (optional: default mode of every light slide; T toggles)",
     "transition": "slide | fade | zoom",
     "brand": "Text shown as the logo (none by default)", "logo": "https://… image URL"
   },
@@ -46,7 +51,7 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 }
 ```
 
-**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
+**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`) or the author's own files under `assets/<deck>/`, relative to `index.html` (the validator checks they exist); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
 
 **Default modes**: `cover`, `section`, `closing` → dark · `statement` → orange · `hero`, `quote`, `big-number` → dark · everything else → light.
 
@@ -274,6 +279,33 @@ Use text names or generic icons; never fabricate real third-party logos.
 {"type":"code","title":"…","subtitle":"…","file":"app.py","code":"line 1\nline 2","highlight":[2],"caption":"optional"}
 ```
 `highlight` holds 1-based line numbers.
+
+## Technical and academic slides
+
+### `aside` — main content + labelled side column (template-style brief)
+```json
+{"type":"aside","kicker":"…","title":"…","text":"Lead paragraph (optional)","numbered":false,
+ "items":[{"icon":"ph-check-circle","title":"…","text":"…"}],
+ "card":{"title":"LABEL","text":"Highlighted box under the list (optional)"},
+ "side":[{"label":"LABEL","value":"2 min","text":"…"},{"label":"LABEL","items":["…","…"]}]}
+```
+Main column needs `text`, `items` (≤ 8; strings allowed; two columns above 4 when there is no `card`) or `card`. `side` holds ≤ 4 blocks, each with `value` (big counter), `text` and/or `items`.
+
+### `figure` — 1–3 whole images (plans, schematics, screenshots, own photos) + numbered annotations
+```json
+{"type":"figure","title":"…","images":[{"image":"assets/deck/plan.jpg","caption":"…","span":2,"bg":"dark","fit":"cover"}],
+ "source":"Own work · scale 1:1","points":[{"title":"…","text":"…","icon":"ph-lightning (optional; numbers otherwise)"}]}
+```
+Images are shown whole (`object-fit: contain`) on a white frame; `bg:"dark"` uses a panel frame for photos, `fit:"cover"` fills the frame. `span` weights the width of each image. `points` (≤ 5) form a side column. A single `"image"` + `"caption"` also works.
+
+### `scorecard` — objectives vs results with status and evidence (≤ 10)
+```json
+{"type":"scorecard","title":"…","items":[{"title":"Stable flight","status":"done | partial | fail | na","evidence":"…","label":"optional custom pill"}],
+ "labels":{"done":"Conseguido","partial":"Parcial","fail":"No conseguido","na":"No evaluado"}}
+```
+Shows a tally per status and a stacked bar; more than 5 items flow in two columns (top to bottom). Default labels are Spanish; override them with `labels`.
+
+`table` cells also colour status words: `Conseguido`/`Achieved` (green), `Parcial`/`No evaluado`/`Pending` (amber), `No conseguido`/`Failed` (red).
 
 # Content to turn into a presentation
 

@@ -20,5 +20,10 @@
 | `elec-alterna.js` | AC: phasor generating a sine, RMS | Rotating vector + sweeping sine, peak/RMS lines, period bracket | `at` |
 | `elec-trifasica.js` | Three-phase | Three phasors at 120°, sine trio, sum = 0, line-to-line chord | `at` |
 | `elec-transformador.js` | Transformer step-down/step-up | Oscillating flux dots on the core, coil turns crossfade, ratio formula | `at` |
+| `guitarra-cuerda.js` | Vibrating string; a fret shortens it (110 → 146.8 → 220 Hz) | Real fret spacing, standing-wave envelope, **sound** on each pluck | `at` |
+| `guitarra-afinar.js` | Tuning string by string with a tuner | Needle in cents, **voice whose pitch glides** while the peg turns | `at` |
+| `guitarra-tablatura.js` | Reading a tab (C major scale) | Playhead over tab + fretboard in sync, **one pluck per note** | `at` |
+| `guitarra-acordes.js` | Chord shapes and finger movement between chords | Fingers interpolated by number, "anchor finger" detection, **strums** | `chords`, `mode`, `bpm`, `at` |
+| `guitarra-rasgueo.js` | Strumming in 4/4 (hand never stops) | Pendulum motion crossing on each eighth, metronome, **click + strum** | `pattern`, `bpm`, `at` |
 
 All of them are pure functions of time with a fade at the end of the loop and a fixed moment for `api.static`.

@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "title": "Un contenido, varios estilos",
+    "date": "Noviembre 2026",
+    "author": "Motor de presentaciones",
+    "style": "editorial"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Demostración",
+      "title": "Un contenido, varios estilos",
+      "subtitle": "Pulsa S para cambiar de estilo: el texto es el mismo, la maquetación no.",
+      "notes": "Cambia de estilo con S o desde el botón de la paleta. El JSON no cambia."
+    },
+    {
+      "type": "agenda",
+      "title": "Qué vas a ver",
+      "items": [
+        { "title": "Por qué un estilo no es un color", "desc": "Maquetación frente a paleta" },
+        { "title": "Qué puede cambiar un estilo", "desc": "Renderers, cabecera, chrome y tipografía" },
+        { "title": "Cómo crear uno nuevo", "desc": "Un archivo en styles/" }
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Un estilo no es un color",
+      "subtitle": "Los colores siguen siendo una capa aparte."
+    },
+    {
+      "type": "features",
+      "kicker": "Capas",
+      "title": "Tres capas independientes",
+      "subtitle": "Cada una se puede cambiar sin tocar las otras.",
+      "cards": [
+        { "icon": "ph-file-text", "title": "Contenido", "text": "El JSON del deck: textos, datos e imágenes. No sabe nada de la apariencia." },
+        { "icon": "ph-layout", "title": "Estilo", "text": "Cómo se distribuye cada slide: marcado, rejilla, tipografía y elementos fijos." },
+        { "icon": "ph-palette", "title": "Tema", "text": "La paleta de colores, que se aplica sobre cualquier estilo." }
+      ]
+    },
+    {
+      "type": "statement",
+      "text": "El mismo deck puede ser una *revista* o un *cartel*."
+    },
+    {
+      "type": "number-grid",
+      "title": "Lo que trae el motor",
+      "subtitle": "Datos de este repositorio.",
+      "metrics": [
+        { "value": "43", "label": "Tipos de slide", "desc": "Cada estilo reutiliza los que no redefine" },
+        { "value": "3", "label": "Estilos de ejemplo", "desc": "Editorial, Suizo y Minimal, además del base" },
+        { "value": "1", "label": "Archivo por estilo", "desc": "styles/&lt;id&gt;.js, sin compilar nada" }
+      ]
+    },
+    {
+      "type": "split-text",
+      "title": "Reemplazar o heredar",
+      "subtitle": "Cada estilo decide cuánto cambia.",
+      "columns": [
+        { "icon": "ph-copy", "title": "Heredar", "text": "Los tipos sin redefinir usan el marcado base y se adaptan con el CSS del estilo." },
+        { "icon": "ph-pencil-ruler", "title": "Reemplazar", "text": "Un tipo redefinido genera su propio marcado, con otra distribución de elementos." }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "Crear un estilo en cuatro pasos",
+      "steps": [
+        { "date": "Paso 1", "title": "Copiar", "desc": "styles/_plantilla.js a styles/mi-estilo.js" },
+        { "date": "Paso 2", "title": "Diseñar", "desc": "Cabecera, chrome, CSS y los tipos que cambian" },
+        { "date": "Paso 3", "title": "Registrar", "desc": "npm run sync lo añade al selector" },
+        { "date": "Paso 4", "title": "Revisar", "desc": "npm test y Slides.audit() en un deck real" }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "El contenido no debería saber con qué aspecto se va a presentar.",
+      "author": "Principio de diseño de este motor"
+    },
+    {
+      "type": "table",
+      "title": "Qué cambia cada capa",
+      "headers": ["Capa", "Dónde vive", "Se elige con", "Atajo"],
+      "rows": [
+        ["Estilo", "styles/&lt;id&gt;.js", "meta.style o ?style=", "S"],
+        ["Tema", "index.html o el estilo", "meta.theme o ?theme=", "C"],
+        ["Modo", "Motor", "meta.mode", "T"]
+      ]
+    },
+    {
+      "type": "closing",
+      "title": "Ahora, el tuyo",
+      "subtitle": "Copia la plantilla y empieza por la portada.",
+      "contacts": ["styles/_plantilla.js", "npm run sync"]
+    }
+  ]
+}

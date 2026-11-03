@@ -30,12 +30,15 @@
   --brand:#FF6200;--brand-t:#FF6200;--brand-l:#FF8A3D;--brand-xl:#FFC19A;--brand-d:#E24E00;--brand-rgb:255,98,0;
   --ink:#151515;--ink-rgb:21,21,21;--sec:#525199;--tint-warm:#FFF6EF;--tint-blue:#EFF6FB;
   --ease:cubic-bezier(.2,.8,.2,1); --ease-io:cubic-bezier(.7,0,.2,1);
+  --font-head:'Inter',system-ui,sans-serif;--font-body:'Inter',system-ui,sans-serif;
 }
 html[data-theme="marino"]{--ink:#0B1A4A;--ink-rgb:11,26,74;--sec:#527EDB;--tint-blue:#EEF3FD}
 html[data-theme="ocean"]{--brand:#0072CE;--brand-t:#4DA8F7;--brand-l:#3AA0F5;--brand-xl:#A9D4F7;--brand-d:#00569B;--brand-rgb:0,114,206;--ink:#0B1F33;--ink-rgb:11,31,51;--sec:#00A19A;--tint-warm:#E8F3FC;--tint-blue:#F0F7FB}
 html[data-theme="esmeralda"]{--brand:#0A8754;--brand-t:#34C98B;--brand-l:#2FBF84;--brand-xl:#A6E3C6;--brand-d:#066A41;--brand-rgb:10,135,84;--ink:#0E2A21;--ink-rgb:14,42,33;--sec:#B7791F;--tint-warm:#E8F7F0;--tint-blue:#F2F8F5}
 html[data-theme="violeta"]{--brand:#6D28D9;--brand-t:#A78BFA;--brand-l:#9461F0;--brand-xl:#CDB6F7;--brand-d:#4E1AA6;--brand-rgb:109,40,217;--ink:#17102E;--ink-rgb:23,16,46;--sec:#DB2777;--tint-warm:#F3ECFF;--tint-blue:#F6F2FD}
 html[data-theme="carmin"]{--brand:#D81B4A;--brand-t:#FF6B8A;--brand-l:#FF5C7F;--brand-xl:#FFB3C2;--brand-d:#A9103A;--brand-rgb:216,27,74;--ink:#1C0B12;--ink-rgb:28,11,18;--sec:#D97706;--tint-warm:#FFF0F3;--tint-blue:#FBF4F6}
+html[data-theme="argos"]{--brand:#2E7D5B;--brand-t:#5BB88F;--brand-l:#5BB88F;--brand-xl:#B6E3CC;--brand-d:#22604A;--brand-rgb:46,125,91;--ink:#091B33;--ink-rgb:9,27,51;--sec:#356081;--tint-warm:#EAF6F0;--tint-blue:#EEF4FA;
+  --panel:#113456;--panel-bd:#356081;--mist:#B6CDDE;--snow:#F4F9FF}
 *{box-sizing:border-box}
 html,body{overscroll-behavior:none;touch-action:manipulation}
 html,body{margin:0;height:100%;overflow:hidden;background:#0c0c0c;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#333}
@@ -77,8 +80,7 @@ body.fs #stage{border-radius:0;box-shadow:none}
   --bg:#fff;--fg:var(--ink);--text:#333333;--muted:#696969;--card:#fff;--card-bd:rgba(var(--ink-rgb),.09);
   --soft:var(--tint-blue);--line:#E4E7EB;--shadow:0 24px 56px -30px rgba(var(--ink-rgb),.32);--ic-navy:var(--ink);
   --accent:var(--brand);--tag-bg:var(--tint-warm);--tag-fg:var(--brand);--ringc:var(--brand);--logo:var(--brand);--ringline:rgba(var(--ink-rgb),.16);
-  --font-head:'Inter',system-ui,sans-serif;
-  position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;color:var(--text);
+  position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;color:var(--text);font-family:var(--font-body);
   background:radial-gradient(1100px 700px at 100% -10%,var(--tint-warm),transparent 65%),radial-gradient(900px 600px at -5% 110%,var(--tint-blue),transparent 65%),#fff;
 }
 .slide.dark{
@@ -380,7 +382,6 @@ strong{color:var(--fg);font-weight:700}
   clip-path:polygon(0 0,calc(100% - 56px) 0,100% 50%,calc(100% - 56px) 100%,0 100%,56px 50%)}
 .pr-step:first-child .chev{clip-path:polygon(0 0,calc(100% - 56px) 0,100% 50%,calc(100% - 56px) 100%,0 100%);padding-left:48px}
 .chev i{font-size:54px;flex:none}
-.chev small{display:block;font-size:18px;font-weight:700;letter-spacing:.14em;opacity:.7;margin-bottom:4px}
 .chev h4{font-size:34px;font-weight:700;line-height:1.12;color:#fff;letter-spacing:-.02em}
 .pr-desc{padding:36px 24px 0 34px;font-size:27px;line-height:1.55;color:var(--text)}
 
@@ -694,6 +695,11 @@ body.themes #themes{opacity:1;translate:-50% 0;pointer-events:auto}
 #themes button{display:grid;justify-items:center;gap:9px;width:88px;padding:14px 6px 11px;border-radius:15px;border:2px solid transparent;background:rgba(255,255,255,.05);color:#fff;font-size:13px;font-weight:600;transition:background .2s,border-color .2s,scale .2s}
 #themes button:hover{background:rgba(255,255,255,.13);scale:1.04}
 #themes button.on{border-color:var(--brand);background:rgba(255,255,255,.1)}
+#themes{flex-direction:column}
+#themes .pk-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#themes .pk-row+.pk-row{padding-top:8px;border-top:1px solid rgba(255,255,255,.14)}
+#themes button[data-y]{width:auto;min-width:88px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px}
+#themes i.ph{width:auto;height:auto;background:none;box-shadow:none;border-radius:0;font-size:18px}
 #themes i{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--a) 50%,var(--b) 50%);box-shadow:0 0 0 3px rgba(255,255,255,.2)}
 
 /* ---------- tema naranja ---------- */
@@ -709,6 +715,78 @@ body.themes #themes{opacity:1;translate:-50% 0;pointer-events:auto}
 .orange .bl-ic{background:rgba(255,255,255,.22)}
 .orange .tl-node{background:var(--brand)}
 .orange .chip.g,.orange .chip.a,.orange .chip.r{background:rgba(255,255,255,.2);color:#fff}
+.dark .chip.g{background:rgba(74,222,128,.14);color:#6EE7A0}.dark .chip.r{background:rgba(248,113,113,.16);color:#FCA5A5}.dark .chip.a{color:var(--brand-t)}
+
+/* aside — contenido principal + columna lateral de datos etiquetados */
+.asb{grid-template-columns:minmax(0,1fr) 470px;gap:84px;align-items:start}
+.as-main{display:flex;flex-direction:column;gap:34px;min-width:0}
+.as-lead{font-size:32px;line-height:1.5;color:var(--fg);margin:0;font-weight:400}
+.as-list{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+.as-list.two{grid-template-columns:1fr 1fr;gap:20px 40px}
+.as-list li{display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:start;font-size:27px;line-height:1.42;color:var(--text)}
+.as-list li>i{font-size:36px;color:var(--accent);margin-top:2px}
+.as-list li>b.as-no{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:22px;font-weight:800;color:var(--accent);border:2px solid var(--accent)}
+.as-list li strong{display:block;margin-bottom:2px}
+.as-card{padding:34px 40px;border-radius:22px}
+.as-card p{font-size:26px;line-height:1.5;color:var(--muted);margin:0}
+.as-lab{font-size:18px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.as-side{display:flex;flex-direction:column;gap:38px;padding-left:44px;border-left:2px solid var(--line);min-width:0}
+.as-val{font-size:60px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.as-blk p{font-size:24px;line-height:1.45;color:var(--text);margin:0}
+.as-val+p{margin-top:10px;color:var(--muted)}
+.as-blk ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.as-blk li{font-size:23px;line-height:1.4;color:var(--text);padding-left:24px;position:relative}
+.as-blk li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+
+/* figure — 1–3 imágenes completas (planos, esquemas, capturas) + anotaciones */
+.fgb{grid-template-columns:minmax(0,1fr);gap:64px;min-height:0}
+.fgb.pts{grid-template-columns:minmax(0,1fr) 500px}
+.fg-col{display:flex;flex-direction:column;gap:16px;min-height:0}
+.fg-imgs{flex:1;min-height:0;display:grid;grid-template-columns:var(--cols);gap:28px}
+.fg-it{display:flex;flex-direction:column;gap:14px;min-height:0;margin:0}
+.fg-fr{flex:1;min-height:0;position:relative;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--card-bd);box-shadow:var(--shadow)}
+.fg-fr.dk{background:var(--card)}
+.fg-fr img{position:absolute;inset:12px;width:calc(100% - 24px);height:calc(100% - 24px);object-fit:contain;display:block}
+.fg-fr.cover img{inset:0;width:100%;height:100%;object-fit:cover}
+.fg-it figcaption{font-size:21px;line-height:1.35;color:var(--muted);text-align:center}
+.fg-it figcaption b{color:var(--fg)}
+.fg-src{font-size:18px;color:var(--muted);margin:0;font-style:italic}
+.fg-pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:26px;align-self:center}
+.fg-pts li{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start}
+.fg-pts .fg-mk{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:28px;font-weight:800;color:#fff;background:var(--brand)}
+.fg-pts h4{font-size:27px;font-weight:700;color:var(--fg);margin:2px 0 6px;letter-spacing:-.01em}
+.fg-pts p{font-size:23px;line-height:1.45;color:var(--text);margin:0}
+
+/* scorecard — objetivos frente a resultados (estado + evidencia) */
+.t-scorecard{--ok:#14a05a;--part:#C77D0A;--bad:#e5384a;--na:var(--muted)}
+.t-scorecard.dark{--ok:#6EE7A0;--part:#F5B94A;--bad:#FCA5A5}
+.scb{grid-template-rows:auto 1fr;gap:30px;align-content:start}
+.sc-sum{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.sc-tal{display:inline-flex;align-items:center;gap:12px;padding:10px 22px 10px 14px;border-radius:999px;background:var(--card);border:1px solid var(--card-bd);font-size:22px;color:var(--text)}
+.sc-tal b{font-size:30px;font-weight:800;color:var(--c)}
+.sc-tal i{font-size:28px;color:var(--c)}
+.sc-bar{flex:1;min-width:240px;height:14px;border-radius:7px;overflow:hidden;display:flex;background:var(--soft)}
+.sc-bar span{display:block;height:100%;background:var(--c);flex:var(--f) 0 0;scale:0 1;transform-origin:left}
+.slide:is(.is-active,.static) .sc-bar span{scale:1 1}
+.slide.is-active .sc-bar span{transition:scale 1.4s var(--ease) .6s}
+.sc-list{list-style:none;margin:0;padding:0;display:grid;gap:14px;align-content:start}
+.sc-list.two{grid-template-columns:1fr 1fr;grid-template-rows:repeat(var(--r),auto);grid-auto-flow:column;gap:14px 28px}
+.sc-list li{display:grid;grid-template-columns:44px 1fr auto;gap:18px;align-items:center;padding:16px 22px;border-radius:18px;background:var(--card);border:1px solid var(--card-bd);border-left:6px solid var(--c)}
+.sc-list li>i{font-size:40px;color:var(--c)}
+.sc-list h4{font-size:24px;font-weight:600;color:var(--fg);margin:0;line-height:1.25}
+.sc-list small{display:block;font-size:18px;line-height:1.35;color:var(--muted);margin-top:4px}
+.sc-list em{font-style:normal;font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);white-space:nowrap}
+.sc-ok{--c:var(--ok)}.sc-part{--c:var(--part)}.sc-bad{--c:var(--bad)}.sc-na{--c:var(--na)}
+.t-scorecard.orange{--ok:#fff;--part:#fff;--bad:#fff}
+
+/* tema argos — firma visual de la plantilla: franja lateral, kicker plano, paneles marino */
+html[data-theme="argos"] .slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:15px;background:var(--brand-t);z-index:7}
+html[data-theme="argos"] .slide.dark{--card:var(--panel);--card-bd:var(--panel-bd);--text:var(--snow);--muted:var(--mist);--line:rgba(182,205,222,.22);--soft:rgba(182,205,222,.08);
+  background:radial-gradient(1400px 900px at 100% -20%,rgba(53,96,129,.32),transparent 60%),var(--ink)}
+html[data-theme="argos"] .orb,html[data-theme="argos"] .blob{display:none}
+html[data-theme="argos"] .kicker{background:none;padding:0;border-radius:0;letter-spacing:.16em;font-weight:800;margin-bottom:22px}
+html[data-theme="argos"] .hd .acc{display:none}
+html[data-theme="argos"] .dark .mv{background:linear-gradient(135deg,var(--brand-t),var(--brand-xl));-webkit-background-clip:text;background-clip:text}
 
 /* ============================================================
    UI: DOCK / OVERLAYS
@@ -848,6 +926,7 @@ body.compact #bg{display:none}
   .slide.is-active [data-a]{transition-duration:.01ms!important;transition-delay:0s!important}
 }
 </style>
+<style id="style-css"></style>
 </head>
 <body>
 
@@ -871,9 +950,10 @@ body.compact #bg{display:none}
   <i class="sep"></i>
   <button data-act="overview" data-tip="Vista general (G)"><i class="ph ph-squares-four"></i></button>
   <button data-act="notes" data-tip="Notas (N)"><i class="ph ph-note-pencil"></i></button>
-  <button data-act="palette" data-tip="Temas de color (C)"><i class="ph ph-palette"></i></button>
+  <button data-act="palette" data-tip="Estilos y colores (S · C)"><i class="ph ph-palette"></i></button>
   <button data-act="theme" data-tip="Modo oscuro (T)"><i class="ph ph-moon-stars"></i></button>
   <button data-act="fs" data-tip="Pantalla completa (F)"><i class="ph ph-corners-out"></i></button>
+  <button data-act="sound" data-tip="Sonido (M)"><i class="ph ph-speaker-high"></i></button>
   <i class="sep"></i>
   <button data-act="load" data-tip="Cargar JSON"><i class="ph ph-file-code"></i></button>
   <button data-act="paste" data-tip="Pegar JSON (Ctrl/⌘+V)"><i class="ph ph-clipboard-text"></i></button>
@@ -900,9 +980,11 @@ body.compact #bg{display:none}
     <dt><kbd>Inicio</kbd><kbd>Fin</kbd></dt><dd>Primer / último slide</dd>
     <dt><kbd>G</kbd></dt><dd>Vista general (cuadrícula)</dd>
     <dt><kbd>F</kbd></dt><dd>Pantalla completa</dd>
+    <dt><kbd>S</kbd></dt><dd>Cambiar estilo de presentación</dd>
     <dt><kbd>C</kbd></dt><dd>Cambiar tema de color</dd>
     <dt><kbd>T</kbd></dt><dd>Alternar modo oscuro</dd>
     <dt><kbd>N</kbd></dt><dd>Mostrar notas del orador</dd>
+    <dt><kbd>M</kbd></dt><dd>Activar / silenciar el sonido de las animaciones</dd>
     <dt><kbd>Ctrl/⌘</kbd><kbd>V</kbd></dt><dd>Pegar un JSON y abrirlo</dd>
     <dt><kbd>L</kbd></dt><dd>Copiar enlace para compartir la presentación</dd>
     <dt><kbd>Esc</kbd></dt><dd>Cerrar paneles</dd>
@@ -913,6 +995,7 @@ body.compact #bg{display:none}
 <div id="toast"></div>
 <div id="drop">Suelta tu JSON para cargar la presentación</div>
 
+<script src="styles/index.js"></script>
 <script>
 /* ============================================================
    1. DATOS POR DEFECTO  (demo con todos los tipos de slide)
@@ -1162,13 +1245,15 @@ const words = (t, ws) => {
 const RAMP = ['var(--ic-navy)', 'color-mix(in srgb,var(--ink) 72%,#fff)', 'var(--brand-l)', 'var(--brand)'];
 const cell = (inner, a = 'up') => `<div class="cell" data-a="${a}">${inner}</div>`;
 const tone = c => (c === 'orange' ? 'orange' : c === 'blue' ? 'blue' : 'navy');
-const hd = s => `
+const baseHd = s => `
   <header class="hd">
     <div class="acc" data-a="grow"></div>
     ${s.kicker ? `<div class="kicker" data-a="up">${s.kicker}</div>` : ''}
     <h2 data-a="up">${s.title ?? ''}</h2>
     ${s.subtitle ? `<p class="sub" data-a="up">${rt(s.subtitle)}</p>` : ''}
   </header>`;
+// Cabecera de los slides: la del estilo activo si define header(), si no la base
+const hd = s => (G.style?.header ? G.style.header(s) : baseHd(s));
 // Composición de marca: gran disco naranja con anillos orbitales
 const rings = (i, cls = '') => `
   <div class="disc ${cls}" aria-hidden="true">
@@ -1307,7 +1392,9 @@ const TYPES = {
   table: { render: (s) => {
     const rows = s.rows || [], hs = s.headers || [];
     const tf = rows.length > 6 ? 21 : rows.length > 4 ? 23 : 26, tp = rows.length > 6 ? 14 : rows.length > 4 ? 18 : 24;
-    const green = /^(positivo|excelente|alto|bueno|ok|sí|si|positive|excellent|high|good|yes|done)$/i, amber = /^(estable|medio|neutral|pendiente|stable|medium|pending)$/i, red = /^(negativo|bajo|crítico|critico|riesgo|negative|low|critical|risk|no)$/i;
+    const green = /^(positivo|excelente|alto|bueno|ok|sí|si|conseguido|conseguida|alcanzado|alcanzada|completado|completada|superado|superada|positive|excellent|high|good|yes|done|achieved|passed)$/i,
+      amber = /^(estable|medio|neutral|pendiente|parcial|parcialmente conseguido|no evaluado|en curso|stable|medium|pending|partial|not evaluated)$/i,
+      red = /^(negativo|bajo|crítico|critico|riesgo|no conseguido|no conseguida|no alcanzado|fallido|fallida|negative|low|critical|risk|no|failed|not achieved)$/i;
     const fmt = (v, ci) => {
       const t = String(v ?? '').trim();
       if (green.test(t)) return `<span class="chip g">${ic('trend-up', 'bold')}${t}</span>`;
@@ -1512,7 +1599,7 @@ const TYPES = {
     const st = (s.steps || []).slice(0, 5), n = st.length || 1;
     return `<div class="inner">${hd(s)}<div class="body center"><div class="pr" style="--n:${n}">${st.map((k, i) => `
       <div class="pr-step">
-        <div class="chev" data-a="left" style="--cc:${n > 1 ? RAMP[Math.round(i / (n - 1) * 3)] : RAMP[3]}">${ic(k.icon || 'circle')}<div><small>${pad(i + 1)}</small><h4>${k.title}</h4></div></div>
+        <div class="chev" data-a="left" style="--cc:${n > 1 ? RAMP[Math.round(i / (n - 1) * 3)] : RAMP[3]}">${ic(k.icon || 'circle')}<div><h4>${k.title}</h4></div></div>
         <div class="pr-desc" data-a="up">${rt(k.desc || '')}</div>
       </div>`).join('')}</div></div></div>`; } },
 
@@ -1549,6 +1636,41 @@ const TYPES = {
       <pre style="--cf:${cf}px"><code>${lines.map((l, i) => `<span class="ln ${marks.has(i + 1) ? 'hl' : ''}" data-a="fade" style="--d:${700 + i * 70}"><b class="no">${i + 1}</b>${hl(l)}${i === lines.length - 1 ? '<span class="cur"></span>' : ''}</span>`).join('')}</code></pre>
     </div>${s.caption ? `<p class="cap" data-a="up" style="--d:1200">${ic('info')} ${s.caption}</p>` : ''}</div></div>`; } },
 
+  aside: { render: (s) => {
+    const it = (s.items || []).slice(0, 8).map(k => typeof k === 'string' ? { text: k } : k), side = (s.side || []).slice(0, 4);
+    const list = it.length ? `<ul class="as-list ${it.length > 4 && !s.card ? 'two' : ''}">${it.map((k, i) => `<li data-a="up">${s.numbered ? `<b class="as-no">${i + 1}</b>` : ic(k.icon || 'check-circle', 'fill')}<div>${k.title ? `<strong>${k.title}</strong>` : ''}${rt(k.text || '')}</div></li>`).join('')}</ul>` : '';
+    const card = s.card ? `<div class="card as-card" data-a="up">${s.card.title ? `<div class="as-lab">${s.card.title}</div>` : ''}<p>${rt(s.card.text || '')}</p></div>` : '';
+    const blk = b => `<div class="as-blk" data-a="left">${b.label ? `<div class="as-lab">${b.label}</div>` : ''}
+      ${b.value ? `<div class="as-val count" data-count="${b.value}">${b.value}</div>` : ''}${b.text ? `<p>${rt(b.text)}</p>` : ''}
+      ${b.items ? `<ul>${b.items.map(x => `<li>${x}</li>`).join('')}</ul>` : ''}</div>`;
+    return `<div class="inner">${hd(s)}<div class="body asb">
+      <div class="as-main">${s.text ? `<p class="as-lead" data-a="up">${rt(s.text)}</p>` : ''}${list}${card}</div>
+      ${side.length ? `<div class="as-side">${side.map(blk).join('')}</div>` : ''}
+    </div></div>`; } },
+
+  figure: { render: (s) => {
+    const im = (s.images || (s.image ? [{ image: s.image, caption: s.caption }] : [])).slice(0, 3), pts = (s.points || []).slice(0, 5);
+    const fr = k => `${(k.fit || s.fit) === 'cover' ? 'cover' : ''} ${(k.bg || s.bg) === 'dark' ? 'dk' : ''}`;
+    return `<div class="inner">${hd(s)}<div class="body fgb ${pts.length ? 'pts' : ''}">
+      <div class="fg-col"><div class="fg-imgs" style="--cols:${im.map(k => `minmax(0,${+k.span || 1}fr)`).join(' ') || '1fr'}">${im.map(k => `
+        <figure class="fg-it" data-a="reveal"><div class="fg-fr ${fr(k)}"><img src="${k.image}" alt="${strip(k.caption || s.title || '')}" onerror="${FB('Imagen')}"></div>
+        ${k.caption ? `<figcaption>${k.caption}</figcaption>` : ''}</figure>`).join('')}</div>
+        ${s.source ? `<p class="fg-src" data-a="fade">${s.source}</p>` : ''}</div>
+      ${pts.length ? `<ol class="fg-pts">${pts.map((p, i) => `<li data-a="left"><span class="fg-mk">${p.icon ? ic(p.icon, 'bold') : i + 1}</span><div><h4>${p.title ?? ''}</h4>${p.text ? `<p>${rt(p.text)}</p>` : ''}</div></li>`).join('')}</ol>` : ''}
+    </div></div>`; } },
+
+  scorecard: { render: (s) => {
+    const it = (s.items || []).slice(0, 10), L = s.labels || {};
+    const st = { done: ['sc-ok', 'check-circle', L.done || 'Conseguido'], partial: ['sc-part', 'circle-half', L.partial || 'Parcial'], fail: ['sc-bad', 'x-circle', L.fail || 'No conseguido'], na: ['sc-na', 'question', L.na || 'No evaluado'] };
+    const key = k => st[k.status] ? k.status : 'na';
+    const tally = Object.keys(st).map(k => [k, it.filter(x => key(x) === k).length]).filter(([, n]) => n);
+    return `<div class="inner">${hd(s)}<div class="body scb">
+      <div class="sc-sum" data-a="up">${tally.map(([k, n]) => `<span class="sc-tal ${st[k][0]}">${ic(st[k][1], 'fill')}<b>${n}</b>${st[k][2]}</span>`).join('')}
+        <div class="sc-bar">${tally.map(([k, n]) => `<span class="${st[k][0]}" style="--f:${n}"></span>`).join('')}</div></div>
+      <ul class="sc-list ${it.length > 5 ? 'two' : ''}" style="--r:${Math.ceil(it.length / 2)}">${it.map(k => { const [c, i, l] = st[key(k)];
+        return `<li data-a="up" class="${c}">${ic(i, 'fill')}<div><h4>${k.title}</h4>${k.evidence ? `<small>${rt(k.evidence)}</small>` : ''}</div><em>${k.label || l}</em></li>`; }).join('')}</ul>
+    </div></div>`; } },
+
   closing: { theme: 'dark', nofoot: 1, render: (s, c) => {
     const ct = (s.contacts || []).map(k => typeof k === 'string' ? { text: k } : k);
     return `${rings(c.i, 'low')}<div class="inner closing">
@@ -1570,32 +1692,90 @@ const THEMES = {
   ocean:     { label: 'Océano',    a: '#0072CE', b: '#0B1F33' },
   esmeralda: { label: 'Esmeralda', a: '#0A8754', b: '#0E2A21' },
   violeta:   { label: 'Violeta',   a: '#6D28D9', b: '#17102E' },
-  carmin:    { label: 'Carmín',    a: '#D81B4A', b: '#1C0B12' }
+  carmin:    { label: 'Carmín',    a: '#D81B4A', b: '#1C0B12' },
+  argos:     { label: 'Argos',     a: '#5BB88F', b: '#091B33' }
 };
-const G = { theme: 'classic', anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '' };
+const G = { theme: 'classic', style: null, styleId: 'default', styleErr: '', styleThemes: [], types: null, source: null, build: 0, anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '' };
+
+const baseDecor = () => '<div class="blob"></div><div class="orb o1"></div><div class="orb o2"></div>';
+const baseChrome = (s, c) => `${c.logo ? `<div class="logo">${c.logo}</div>` : ''}${c.nofoot ? '' : `<div class="foot"><span>${c.deckTitle}</span>${c.meta.date ? `<s></s><span>${c.meta.date}</span>` : ''}</div><div class="pg"><b>${pad(c.i + 1)}</b> / ${pad(c.total)}</div>`}`;
+
+/* ---------- Estilos de presentación ----------
+   Un estilo (styles/<id>.js) cambia la maquetación, no solo los colores: CSS propio, fuentes, cabecera, chrome,
+   decoración y renderers por tipo de slide. Los tipos que no redefine usan los de TYPES.
+   Lo que no es fiable (deck subido, enlace…) solo puede elegir un archivo de styles/ por su id: nunca una URL. */
+const STYLE_ID = /^[a-z0-9][a-z0-9-]*$/;
+const styleFactories = new Map(), styleDefs = new Map(), styleLoads = new Map();
+window.registerStyle = fn => { const id = document.currentScript?.getAttribute('src')?.match(/([^/]+)\.js$/)?.[1]; if (id) styleFactories.set(id, fn); };
+const styleAPI = () => ({ ic, words, stmtWords, hd, cell, rt, pad, strip, ramp, numOf, initials, rings, hl, tone, FB, base: { types: TYPES, header: baseHd, chrome: baseChrome, decor: baseDecor } });
+function loadStyle(id) {
+  if (styleDefs.has(id)) return Promise.resolve(styleDefs.get(id));
+  if (!STYLE_ID.test(String(id))) return Promise.reject(new Error(`Nombre de estilo no válido: "${id}"`));
+  if (!styleLoads.has(id)) styleLoads.set(id, new Promise((ok, ko) => {
+    const sc = document.createElement('script'); sc.src = `styles/${id}.js`;
+    sc.onload = () => {
+      try {
+        const def = styleFactories.get(id)?.(styleAPI());
+        if (!def) throw new Error(`styles/${id}.js debe llamar a registerStyle(function (api) { ... return { ... }; })`);
+        styleDefs.set(id, def); ok(def);
+      } catch (e) { ko(e); }
+    };
+    sc.onerror = () => ko(new Error(`No se encontró styles/${id}.js`));
+    document.head.appendChild(sc);
+  }).finally(() => styleLoads.delete(id)));
+  return styleLoads.get(id);
+}
+function applyStyle(id, def) {
+  G.styleThemes.forEach(k => delete THEMES[k]);
+  const own = def?.themes || {};
+  G.style = def; G.styleId = id; G.styleThemes = Object.keys(own);
+  Object.assign(THEMES, own);
+  G.types = { ...TYPES };
+  Object.entries(def?.types || {}).forEach(([k, t]) => { G.types[k] = { ...TYPES[k], ...t }; });
+  const vars = Object.entries(own).map(([k, t]) => `html[data-theme="${k}"]{${Object.entries(t.vars || {}).map(([n, v]) => `${n}:${v}`).join(';')}}`).join('\n');
+  $('#style-css').textContent = vars + '\n' + (def?.css || '');
+  document.documentElement.dataset.style = id;
+  renderPicker();
+  $('#style-fonts')?.remove();
+  if (!def?.fonts?.length) return null;
+  return new Promise(ok => {
+    const l = document.createElement('link'); l.id = 'style-fonts'; l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?' + def.fonts.map(x => 'family=' + encodeURI(x).replace(/%20/g, '+')).join('&') + '&display=swap';
+    l.onload = l.onerror = ok; setTimeout(ok, 2500);       // sin red no se bloquea el deck: quedan las fuentes de respaldo
+    document.head.appendChild(l);
+  });
+}
+function setStyle(id) {
+  if (id === G.styleId || !G.source) return;
+  if (document.body.classList.contains('ov')) closeOverview();
+  buildPresentation(G.source, { untrusted: G.untrusted, share: G.share, style: id }).then(() => { if (!G.styleErr) toast('Estilo: ' + styleList().find(x => x.id === G.styleId)?.label); });
+}
+const styleList = () => { const l = [{ id: 'default', label: 'Base' }, ...(window.SLIDES_STYLES || [])]; if (!l.some(x => x.id === G.styleId)) l.push({ id: G.styleId, label: G.style?.label || G.styleId }); return l; };
+function cycleStyle() { const l = styleList(), k = l.findIndex(x => x.id === G.styleId); setStyle(l[(k + 1) % l.length].id); }
 
 function slideHTML(s, i, isStatic = false) {
-  const T = TYPES[s.type];
+  const T = (G.types || TYPES)[s.type];
   const meta = G.deck.meta || {};
   const total = G.deck.slides.length;
-  let body = '';
+  const c = { i, meta, total, sec: G.secNo[i], static: isStatic, nofoot: !!(T && T.nofoot),
+    logo: meta.logo ? `<img src="${meta.logo}" alt="logo">` : (meta.brand || ''), deckTitle: strip(meta.title || G.deck.slides[0]?.title || '') };
+  let body = '', decor = baseDecor(), chrome = '';
   try {
+    if (G.style?.decor) decor = G.style.decor(s, c);
+    if (s.chrome !== false) chrome = (G.style?.chrome || baseChrome)(s, c);
     if (!T) throw new Error(`Tipo de slide no soportado: "${s.type}"`);
-    body = T.render(s, { i, meta, sec: G.secNo[i], static: isStatic });
+    body = T.render(s, c);
   } catch (e) {
     console.error(`Slide ${i + 1}:`, e);
     body = `<div class="inner err"><i class="ph ph-warning-octagon"></i><h3>No se pudo renderizar el slide ${i + 1}</h3><p>${e.message}</p></div>`;
   }
   const mode = ['light', 'dark', 'orange'].includes(s.theme) ? s.theme : (T?.theme || 'light');
   const cls = mode === 'light' && G.forceDark ? 'dark' : mode === 'light' ? '' : mode;
-  const logo = meta.logo ? `<img src="${meta.logo}" alt="logo">` : (meta.brand || '');
-  const deckTitle = strip(meta.title || G.deck.slides[0]?.title || '');
-  const foot = (T && T.nofoot) || s.chrome === false ? '' : `<div class="foot"><span>${deckTitle}</span>${meta.date ? `<s></s><span>${meta.date}</span>` : ''}</div><div class="pg"><b>${pad(i + 1)}</b> / ${pad(total)}</div>`;
   const fx = T && T.fx && s.fx !== false ? '<canvas class="fx"></canvas>' : '';
   return `<section class="slide t-${s.type} ${cls} ${isStatic ? 'static' : ''}" data-i="${i}" data-mode="${mode}">
-    <div class="blob"></div><div class="orb o1"></div><div class="orb o2"></div>${fx}
+    ${decor}${fx}
     ${body}
-    <div class="chrome">${s.chrome === false || !logo ? '' : `<div class="logo">${logo}</div>`}${foot}</div>
+    <div class="chrome">${chrome}</div>
   </section>`;
 }
 
@@ -1613,15 +1793,31 @@ function fitSlide(el) {
 
 // opts.untrusted → deck de origen no fiable: texto saneado y animaciones con código desactivadas (ver sección 9)
 function buildPresentation(data, opts = {}) {
+  const build = ++G.build;
+  G.source = data; G.styleErr = '';
+  const id = opts.style || new URLSearchParams(location.search).get('style') || data.meta?.style || 'default';
+  const start = (sid, def) => { const fonts = applyStyle(sid, def); return fonts ? fonts.then(() => { if (build === G.build) renderDeck(data, opts); }) : (renderDeck(data, opts), Promise.resolve()); };
+  if (id === 'default') return start('default', null);
+  return loadStyle(id).then(def => { if (build === G.build) return start(id, def); }).catch(e => {
+    console.error(e); G.styleErr = e.message; toast('Estilo no disponible: ' + e.message, true);
+    if (build === G.build) return start('default', null);
+  });
+}
+function renderDeck(data, opts) {
   stopAll();
+  G.fontBody = cssVar('--font-body');
   G.untrusted = !!opts.untrusted; G.animOK = !G.untrusted; G.share = opts.share || '';
   try { G.json = JSON.stringify(data); } catch (e) { G.json = ''; }
   if (G.untrusted) data = sanitizeDeck(data);
   G.deck = data;
-  setTheme(new URLSearchParams(location.search).get('theme') || data.meta?.theme || 'classic', true);
+  setTheme(new URLSearchParams(location.search).get('theme') || data.meta?.theme || G.style?.theme || 'classic', true);
+  // meta.mode (o el mode del estilo) fija el modo inicial del deck (T lo sigue alternando); al cargar otro deck sin mode se vuelve a claro
+  const deckMode = data.meta?.mode || G.style?.mode;
+  if (['dark', 'light'].includes(deckMode)) { G.forceDark = deckMode === 'dark'; G.deckMode = true; }
+  else if (G.deckMode) { G.forceDark = false; G.deckMode = false; }
   let sec = 0;
   G.secNo = data.slides.map(s => s.type === 'section' ? ++sec : 0);
-  stage.dataset.tr = ['slide', 'fade', 'zoom'].includes(data.meta?.transition) ? data.meta.transition : 'slide';
+  stage.dataset.tr = ['slide', 'fade', 'zoom'].includes(data.meta?.transition) ? data.meta.transition : G.style?.transition || 'slide';
   document.title = strip(data.meta?.title || data.slides[0]?.title || 'Presentación');
   slidesEl.innerHTML = data.slides.map((s, i) => slideHTML(s, i)).join('');
   G.els = $$('.slide', slidesEl);
@@ -1639,6 +1835,7 @@ function buildPresentation(data, opts = {}) {
   const fromHash = hashSlide();
   go(fromHash > 0 && fromHash <= G.els.length ? fromHash - 1 : 0, true);
   $('#dock [data-act=theme]').classList.toggle('on', G.forceDark);
+  $('#dock [data-act=theme] i').className = 'ph ' + (G.forceDark ? 'ph-sun' : 'ph-moon-stars');
 }
 
 /* ============================================================
@@ -1755,6 +1952,100 @@ const animHelpers = {
   hexA: (h, a) => hexA(h, a),
   mix: (a, b, t) => mixHex(a, b, t)
 };
+/* ---------- Sonido para animaciones (api.sound): Web Audio sintetizado, sin archivos ni red ----------
+   Un único AudioContext con volumen maestro (tecla M = silenciar). Cada animación suena por su propio bus,
+   que se apaga al salir del slide. En capturas (miniaturas/PDF) y con movimiento reducido no suena nada. */
+const KS_SR = 22050;                      // la cuerda se sintetiza a 22 kHz: suficiente (hay un paso bajo a 6 kHz) y la mitad de memoria
+const Snd = {
+  ac: null, master: null, muted: false, cache: new Map(),
+  ctx() {
+    if (this.ac) return this.ac;
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    try {
+      this.ac = new AC();
+      const comp = this.ac.createDynamicsCompressor(), lp = this.ac.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 6000;
+      this.master = this.ac.createGain(); this.master.gain.value = this.muted ? 0 : .8;
+      this.master.connect(lp); lp.connect(comp); comp.connect(this.ac.destination);
+    } catch (e) { this.ac = null; }
+    return this.ac;
+  },
+  resume() { if (this.ac && this.ac.state === 'suspended') this.ac.resume().catch(() => {}); },
+  setMuted(m) { this.muted = m; if (this.master) this.master.gain.setTargetAtTime(m ? 0 : .8, this.ac.currentTime, .03); },
+  // cuerda pulsada (Karplus-Strong) con periodo entero; el tono exacto se ajusta con playbackRate
+  ksBuffer(P, decay, bright) {
+    const key = `${P}|${decay}|${bright}`; if (this.cache.has(key)) return this.cache.get(key);
+    const sr = KS_SR, n = Math.ceil(sr * Math.min(3.5, decay)), buf = this.ac.createBuffer(1, n, sr), d = buf.getChannelData(0);
+    const loss = Math.pow(.001, P / (sr * decay)), a = .15 + .7 * bright; let lp = 0;
+    for (let i = 0; i < P && i < n; i++) { lp += a * ((Math.random() * 2 - 1) - lp); d[i] = lp; }
+    for (let i = P; i < n; i++) d[i] = loss * .5 * (d[i - P] + (i - P - 1 >= 0 ? d[i - P - 1] : 0));
+    let pk = 0; for (let i = 0; i < Math.min(n, P * 4); i++) pk = Math.max(pk, Math.abs(d[i]));
+    const fo = Math.min(n, Math.round(sr * .15));                              // final suave si se corta antes de apagarse
+    for (let i = 0; i < n; i++) d[i] *= (pk > 0 ? 1 / pk : 1) * (i > n - fo ? (n - i) / fo : 1);
+    if (this.cache.size >= 40) this.cache.delete(this.cache.keys().next().value);   // ≤ 40 búferes (≈ 12 MB como máximo)
+    this.cache.set(key, buf); return buf;
+  }
+};
+const NO_VOICE = { freq() {}, stop() {} };
+function soundApi(anim) {
+  const ok = () => !anim.static && !reduced && anim.run && !Snd.muted && Snd.ctx() && Snd.ac.state !== 'closed';
+  const bus = () => {
+    if (anim.bus) return anim.bus;
+    anim.bus = Snd.ac.createGain(); anim.bus.connect(Snd.master); return anim.bus;
+  };
+  const when = o => Snd.ac.currentTime + Math.max(0, o.delay || 0);
+  const out = (gain, pan, t) => {
+    const g = Snd.ac.createGain(); g.gain.setValueAtTime(gain, t);
+    if (pan && Snd.ac.createStereoPanner) { const p = Snd.ac.createStereoPanner(); p.pan.value = Math.max(-1, Math.min(1, pan)); g.connect(p); p.connect(bus()); }
+    else g.connect(bus());
+    return g;
+  };
+  const S = {
+    get on() { return ok(); },
+    // pluck(frecuencia en Hz, { gain, decay (s), bright 0–1, delay (s), pan −1…1 }) → voz { freq(f, glide), stop(fade) }
+    pluck(f, o = {}) {
+      if (!ok() || !(f > 20 && f < 5000)) return NO_VOICE;
+      Snd.resume();
+      const sr = KS_SR, P = Math.max(2, Math.round(sr / f - .5)), base = sr / (P + .5), t = when(o);   // el filtro promedio añade medio periodo
+      const src = Snd.ac.createBufferSource(); src.buffer = Snd.ksBuffer(P, Math.round((o.decay ?? 3) * 10) / 10, Math.round((o.bright ?? .5) * 10) / 10);
+      src.playbackRate.value = f / base;
+      const g = out(o.gain ?? .5, o.pan, t); src.connect(g); src.start(t);
+      return {
+        freq(nf, glide = .05) { if (nf > 20) src.playbackRate.setTargetAtTime(nf / base, Snd.ac.currentTime, glide); },
+        stop(fade = .08) { const n = Snd.ac.currentTime; g.gain.cancelScheduledValues(n); g.gain.setTargetAtTime(0, n, fade); try { src.stop(n + fade * 6); } catch (e) { /* ya parado */ } }
+      };
+    },
+    // strum([frecuencias], { spread (s entre cuerdas), gain, decay, bright, delay }) — en el orden dado
+    strum(fs, o = {}) { (fs || []).forEach((f, i) => S.pluck(f, { ...o, delay: (o.delay || 0) + i * (o.spread ?? .014), gain: (o.gain ?? .35) * (1 - i * .04) })); },
+    // click({ accent, gain, delay }) — golpe de metrónomo
+    click(o = {}) {
+      if (!ok()) return; Snd.resume();
+      const t = when(o), osc = Snd.ac.createOscillator(), g = out(0, 0, t);
+      osc.frequency.value = o.accent ? 1760 : 1320;
+      g.gain.setValueAtTime(o.gain ?? .35, t); g.gain.exponentialRampToValueAtTime(.001, t + .06);
+      osc.connect(g); osc.start(t); osc.stop(t + .08);
+    },
+    // tone(frecuencia, { type, dur, gain, delay }) — tono simple con envolvente
+    tone(f, o = {}) {
+      if (!ok()) return; Snd.resume();
+      const t = when(o), d = o.dur ?? .3, osc = Snd.ac.createOscillator(), g = out(0, o.pan, t);
+      osc.type = o.type || 'sine'; osc.frequency.value = f;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(o.gain ?? .25, t + .01); g.gain.exponentialRampToValueAtTime(.001, t + d);
+      osc.connect(g); osc.start(t); osc.stop(t + d + .05);
+    }
+  };
+  return S;
+}
+function toggleSound(force) {
+  Snd.setMuted(force ?? !Snd.muted);
+  try { localStorage.setItem('slides-muted', Snd.muted ? '1' : '0'); } catch (e) { /* almacenamiento no disponible */ }
+  const b = $('#dock [data-act=sound]'); if (b) { b.classList.toggle('on', Snd.muted); $('i', b).className = 'ph ' + (Snd.muted ? 'ph-speaker-slash' : 'ph-speaker-high'); }
+  if (force === undefined) { if (!Snd.muted) { Snd.ctx(); Snd.resume(); } toast(Snd.muted ? 'Sonido silenciado (M)' : 'Sonido activado (M)'); }
+}
+try { if (localStorage.getItem('slides-muted') === '1') toggleSound(true); } catch (e) { /* noop */ }
+// los navegadores solo dejan sonar el audio tras un gesto del usuario
+['keydown', 'pointerdown', 'touchend'].forEach(ev => addEventListener(ev, () => Snd.resume(), { passive: true }));
+
 class Anim {
   constructor(el, slide, i) { this.el = el; this.s = slide; this.i = i; this.cv = $('.an-cv', el); this.root = $('.an-root', el); this.err = $('.an-err', el); this.run = false; this.gen = 0; this.inst = null; }
   resolve() {
@@ -1776,9 +2067,9 @@ class Anim {
     const colors = { brand, brandL: cssVar('--brand-l'), brandXl: cssVar('--brand-xl'), brandD: cssVar('--brand-d'), ink, sec: cssVar('--sec'),
       accent: orange ? '#ffffff' : brand, fg: on ? '#ffffff' : ink, bg: orange ? brand : dark ? ink : '#ffffff', muted: on ? 'rgba(255,255,255,.62)' : '#696969', dark: on };
     return { canvas: this.cv, ctx: cx, root: this.root, W: 1920, H: 1080, colors, theme: G.theme, params: this.s.params || {}, static: !!this.static, reduced,
-      pointer: { get x() { return pointer.x; }, get y() { return pointer.y; }, get down() { return ptrDown; } },
+      pointer: { get x() { return pointer.x; }, get y() { return pointer.y; }, get down() { return ptrDown; } }, sound: soundApi(this),
       clear: () => cx.clearRect(0, 0, 1920, 1080),
-      text: (str, x, y, o = {}) => { cx.save(); cx.font = `${o.weight || 600} ${o.size || 32}px ${o.font || "'Inter',sans-serif"}`; cx.fillStyle = o.color || colors.fg;
+      text: (str, x, y, o = {}) => { cx.save(); cx.font = `${o.weight || 600} ${o.size || 32}px ${o.font || G.fontBody}`; cx.fillStyle = (o.color && !colors.dark ? readableOnLight(o.color) : o.color) || colors.fg;
         cx.textAlign = o.align || 'left'; cx.textBaseline = o.base || 'alphabetic'; cx.globalAlpha = o.alpha ?? 1; cx.fillText(String(str), x, y); cx.restore(); },
       ...animHelpers };
   }
@@ -1803,7 +2094,10 @@ class Anim {
     } catch (e) { if (gen === this.gen) this.fail(e); }
   }
   release() { this.stop(); if (this.cv) this.cv.width = this.cv.height = 0; }
-  stop() { this.run = false; cancelAnimationFrame(this.raf); this.gen++; try { this.inst?.destroy?.(); } catch (e) { /* noop */ } this.inst = null; }
+  stop() {
+    this.run = false; cancelAnimationFrame(this.raf); this.gen++; try { this.inst?.destroy?.(); } catch (e) { /* noop */ } this.inst = null;
+    if (this.bus) { const b = this.bus; this.bus = null; try { b.gain.setTargetAtTime(0, Snd.ac.currentTime, .04); } catch (e) { /* noop */ } setTimeout(() => b.disconnect(), 400); }
+  }
   fail(e) {
     if (e?.blocked) {
       this.run = false; cancelAnimationFrame(this.raf);
@@ -1818,6 +2112,19 @@ class Anim {
 /* ============================================================
    7. GRÁFICOS (Chart.js)
    ============================================================ */
+// Etiquetas de animaciones con colores pensados para fondo oscuro: en slides claras se oscurecen hasta contraste 4.5:1 (el blanco se respeta: suele ir sobre una píldora)
+const readableCache = new Map();
+function readableOnLight(col) {
+  if (typeof col !== 'string' || !/^#[0-9a-f]{6}$/i.test(col) || /^#f{6}$/i.test(col)) return col;
+  if (readableCache.has(col)) return readableCache.get(col);
+  const rgb = [1, 3, 5].map(i => parseInt(col.slice(i, i + 2), 16));
+  const lum = c => { const [r, g, b] = c.map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }); return .2126 * r + .7152 * g + .0722 * b; };
+  let k = 1, out = rgb;
+  while (1.05 / (lum(out) + .05) < 4.5 && k > 0) { k -= .04; out = rgb.map(v => Math.round(v * Math.max(k, 0))); }
+  const hex = '#' + out.map(v => v.toString(16).padStart(2, '0')).join('');
+  readableCache.set(col, hex);
+  return hex;
+}
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const mixHex = (a, b, t) => { const p = h => { const m = /^#([0-9a-f]{6})$/i.exec(h); const n = m ? parseInt(m[1], 16) : 0; return [n >> 16, n >> 8 & 255, n & 255]; };
   const [x, y] = [p(a), p(b)]; return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
@@ -1851,7 +2158,7 @@ function makeChart(cv, cfg, dark, animate, dpr) {
   if (typeof Chart === 'undefined') return null;
   const box = cv.parentElement; cv.width = box.clientWidth; cv.height = box.clientHeight;
   const fg = dark ? '#ffffff' : cssVar('--ink'), muted = dark ? 'rgba(255,255,255,.62)' : '#696969', grid = dark ? 'rgba(255,255,255,.1)' : `rgba(${cssVar('--ink-rgb')},.08)`;
-  Chart.defaults.font.family = "'Inter',sans-serif"; Chart.defaults.color = muted; Chart.defaults.font.size = 20;
+  Chart.defaults.font.family = cssVar('--font-body'); Chart.defaults.color = muted; Chart.defaults.font.size = 20;
   let type = cfg.type || 'bar';
   const horiz = type === 'hbar' || type === 'horizontalBar';
   const isArea = type === 'area';
@@ -1980,7 +2287,7 @@ $('#overview').addEventListener('click', e => { if (e.target.id === 'overview') 
 function setTheme(name, quiet) {
   if (!THEMES[name]) name = 'classic';
   G.theme = name; document.documentElement.dataset.theme = name;
-  $$('#themes button').forEach(b => b.classList.toggle('on', b.dataset.t === name));
+  $$('#themes button[data-t]').forEach(b => b.classList.toggle('on', b.dataset.t === name));
   if (!quiet && G.els.length) { G.fx.get(G.cur)?.stop(); G.fx.get(G.cur)?.start(); G.anims.get(G.cur)?.start(); resetCharts(false); }
   if (!quiet) toast('Tema: ' + THEMES[name].label);
 }
@@ -1989,8 +2296,12 @@ function togglePalette(force) {
   const on = force ?? !document.body.classList.contains('themes');
   document.body.classList.toggle('themes', on); $('#dock [data-act=palette]').classList.toggle('on', on);
 }
-$('#themes').innerHTML = Object.entries(THEMES).map(([k, t]) => `<button data-t="${k}"><i style="--a:${t.a};--b:${t.b}"></i>${t.label}</button>`).join('');
-$('#themes').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { setTheme(b.dataset.t); togglePalette(false); } });
+function renderPicker() {
+  const st = styleList();
+  $('#themes').innerHTML = (st.length > 1 ? `<div class="pk-row">${st.map(x => `<button data-y="${x.id}" class="${x.id === G.styleId ? 'on' : ''}">${ic('layout')}${x.label}</button>`).join('')}</div>` : '')
+    + `<div class="pk-row">${Object.entries(THEMES).map(([k, t]) => `<button data-t="${k}" class="${k === G.theme ? 'on' : ''}"><i style="--a:${t.a};--b:${t.b}"></i>${t.label}</button>`).join('')}</div>`;
+}
+$('#themes').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; b.dataset.y ? setStyle(b.dataset.y) : setTheme(b.dataset.t); togglePalette(false); });
 document.addEventListener('pointerdown', e => { if (document.body.classList.contains('themes') && !e.target.closest('#themes,#dock')) togglePalette(false); });
 
 function toggleTheme() {
@@ -2040,7 +2351,7 @@ addEventListener('afterprint', printDone);
 $('#dock').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   ({ prev, next, overview: () => document.body.classList.contains('ov') ? closeOverview() : openOverview(),
-     palette: () => togglePalette(), notes: () => { document.body.classList.toggle('notes'); b.classList.toggle('on'); }, theme: toggleTheme, fs: toggleFS,
+     palette: () => togglePalette(), notes: () => { document.body.classList.toggle('notes'); b.classList.toggle('on'); }, theme: toggleTheme, fs: toggleFS, sound: () => toggleSound(),
      load: () => $('#file').click(), paste: openPaste, share: copyLink, print: doPrint, help: () => document.body.classList.add('help') })[b.dataset.act]?.();
 });
 $('#help').addEventListener('click', () => document.body.classList.remove('help'));
@@ -2058,8 +2369,10 @@ addEventListener('keydown', e => {
     case 'g': case 'G': case 'o': case 'O': ov ? closeOverview() : openOverview(); break;
     case 'f': case 'F': toggleFS(); break;
     case 'c': case 'C': cycleTheme(); break;
+    case 's': case 'S': cycleStyle(); break;
     case 'l': case 'L': copyLink(); break;
     case 't': case 'T': toggleTheme(); break;
+    case 'm': case 'M': toggleSound(); break;
     case 'n': case 'N': document.body.classList.toggle('notes'); $('#dock [data-act=notes]').classList.toggle('on'); break;
     case '?': case 'h': case 'H': document.body.classList.toggle('help'); break;
     case 'Escape': if (ov) closeOverview(); document.body.classList.remove('help', 'paste'); togglePalette(false); break;
@@ -2268,7 +2581,8 @@ addEventListener('load', async () => {
    Revisa: errores de render, desbordes (auto-encogidos), imágenes rotas y animaciones que fallan.
    ============================================================ */
 async function auditDeck({ animations = true, wait = 1600 } = {}) {
-  const issues = [], prev = G.cur, s = G.scale;
+  const issues = [], prev = G.cur, s = G.scale, safe = { bottom: 985, right: 1815, ...G.style?.safe };
+  if (G.styleErr) issues.push({ slide: 0, type: 'style', severity: 'error', message: G.styleErr });
   const add = (i, severity, message) => issues.push({ slide: i + 1, type: G.deck.slides[i]?.type, severity, message });
   G.els.forEach((el, i) => {
     const err = $('.err p', el); if (err) add(i, 'error', 'Slide failed to render: ' + err.textContent);
@@ -2283,8 +2597,8 @@ async function auditDeck({ animations = true, wait = 1600 } = {}) {
       const z = $$('.body > *', el).map(c => c.style.zoom).find(Boolean);
       el.classList.remove('static');
       if (z) add(i, 'warning', `Content overflowed and was auto-shrunk (zoom ${(+z).toFixed(2)}): shorten text or split the slide`);
-      if (mb > 985) add(i, 'warning', `Content reaches y=${Math.round(mb)}px (safe area ends at ~985px)`);
-      if (mr > 1815) add(i, 'warning', `Content reaches x=${Math.round(mr)}px (safe area ends at ~1815px)`);
+      if (mb > safe.bottom) add(i, 'warning', `Content reaches y=${Math.round(mb)}px (safe area ends at ~${safe.bottom}px)`);
+      if (mr > safe.right) add(i, 'warning', `Content reaches x=${Math.round(mr)}px (safe area ends at ~${safe.right}px)`);
     }
     $$('img', el).forEach(im => { if (im.complete && /placehold\.co/.test(im.currentSrc || im.src) && !/placehold\.co/.test(G.deck.slides[i]?.image || '')) add(i, 'warning', 'An image failed to load and a placeholder is shown: ' + (G.deck.slides[i]?.image || '(see slide)')); });
   });
@@ -2294,9 +2608,9 @@ async function auditDeck({ animations = true, wait = 1600 } = {}) {
     else if (!a.run && !reduced) add(i, 'error', 'Animation is not running');
   }
   if (animations) Slides.go(prev >= 0 ? prev : 0);
-  return { ok: !issues.some(x => x.severity === 'error'), slides: G.els.length, theme: G.theme, issues };
+  return { ok: !issues.some(x => x.severity === 'error'), slides: G.els.length, theme: G.theme, style: G.styleId, issues };
 }
-window.Slides = { load: buildPresentation, go, next, prev, audit: auditDeck };
+window.Slides = { load: buildPresentation, go, next, prev, audit: auditDeck, setStyle, styles: () => styleList().map(x => x.id) };
 </script>
 </body>
 </html>

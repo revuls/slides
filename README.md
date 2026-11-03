@@ -1,12 +1,13 @@
 # Slides
 
-A **JSON-driven web presentation engine**: write a deck as one JSON file and present it in the browser with animated transitions, charts, counters, six color themes, speaker notes, PDF export and **full-screen JavaScript animations**. It ships with a complete set of **AI agents and skills** that work with **Claude Code, GitHub Copilot and Codex**, so an assistant can research, write, animate and review presentations for you.
+A **JSON-driven web presentation engine**: write a deck as one JSON file and present it in the browser with animated transitions, charts, counters, interchangeable layout styles, color themes, speaker notes, PDF export and **full-screen JavaScript animations**. It ships with a complete set of **AI agents and skills** that work with **Claude Code, GitHub Copilot and Codex**, so an assistant can research, write, animate and review presentations for you.
 
 - **One HTML file, no build.** `index.html` is vanilla HTML/CSS/JS. Open it, or serve the folder.
-- **40 slide types** — covers, KPIs, charts, timelines, Gantt, funnels, org charts, comparisons, galleries, code, video and more.
+- **43 slide types** — covers, KPIs, charts, timelines, Gantt, funnels, org charts, comparisons, galleries, code, video, technical figures, objective scorecards and more.
 - **Animated by default** — directional transitions, staggered entrances, counters that count up, drawing charts, word-by-word titles, tilt cards.
 - **Looping canvas animations** that fill a whole slide, to explain processes, algorithms and systems visually.
-- **6 themes** (`classic`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`) switchable live.
+- **Layout styles** (`editorial`, `suizo`, `minimal` or your own): one file in `styles/` changes the markup, grid, type and chrome of a whole deck, without touching its JSON.
+- **7 themes** (`classic`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`, `argos`) switchable live.
 - **Agent-ready**: skills, agents, validator and an in-browser audit that any AI tool can run.
 
 > The sample decks in `data/` are written in Spanish; the engine, tooling and documentation are in English.
@@ -33,6 +34,7 @@ No Node? `python3 -m http.server 8765` works too. You can also open `index.html`
 
 | Deck | Topic | Slides | Animations | Theme |
 |---|---|---|---|---|
+| `data/aprender-guitarra.json` | Learn to play the guitar (beginners, with sound) | 28 | 6 | `classic` |
 | `data/electricidad-basica.json` | Basic electricity (technical training showcase) | 29 | 6 | `ocean` |
 | `data/sistema-solar.json` | The Solar System | 20 | 4 | `violeta` |
 | `data/segunda-guerra-mundial.json` | World War II | 24 | 3 | `marino` |
@@ -40,6 +42,7 @@ No Node? `python3 -m http.server 8765` works too. You can also open `index.html`
 | `data/historia-ia-generativa.json` | History of generative AI | 26 | 0 | `violeta` |
 | `data/revolucion-francesa.json` | The French Revolution | 29 | 0 | `carmin` |
 | `data/demo-animaciones.json` | Animation showcase | 5 | 3 | `classic` |
+| `data/demo-estilos.json` | Style showcase: press `S` to compare layouts | 11 | 0 | `papel` (`editorial` style) |
 | `data/plantilla-animacion.json` | **Template** for a deck with an animation | 3 | 1 | `classic` |
 | `data/llm-wiki.json` | Original sample (LLM Wiki, compiled vs RAG) | 11 | 0 | `classic` |
 
@@ -56,15 +59,17 @@ With no `?src=` the engine shows a built-in demo deck.
 | `G` | Overview grid |
 | `F` | Full screen |
 | `T` | Dark mode for light slides |
-| `C` | Cycle color themes (the palette button opens a picker) |
+| `S` | Cycle presentation styles (the palette button opens a picker) |
+| `C` | Cycle color themes (same picker) |
 | `N` | Speaker notes |
+| `M` | Mute / unmute animation sound (remembered in this browser) |
 | `?` | Shortcut help · `Esc` closes panels |
 
 The control dock stays out of the way while you navigate: move the mouse to the bottom edge to reveal it (Load JSON, PDF, themes, full screen…).
 
 **On a phone**: use landscape. Swipe or tap the left/right quarter of the slide to change slide, and the ≡ button at the top opens the menu (overview, themes, paste JSON, share link…). The slide fills the screen (no frame, notch-safe); in portrait a banner suggests rotating, since a 1920×1080 canvas is too small to read in portrait. On iPhone, *Share → Add to Home Screen* gives a full-screen app (Safari has no Fullscreen API). Heavy effects (glass blur) are turned off on touch devices.
 
-URL options: `?src=data/x.json` · `&theme=ocean` · `#5` (open on slide 5).
+URL options: `?src=data/x.json` · `&style=editorial` · `&theme=ocean` · `#5` (open on slide 5).
 
 **Open a deck without a server** (e.g. from an AI chat): press `Ctrl/Cmd+V` anywhere on the page, or use the clipboard button in the dock, and paste the JSON (a ```json fenced block copied from a chat works). Everything happens in the browser; nothing is uploaded.
 
@@ -72,7 +77,7 @@ URL options: `?src=data/x.json` · `&theme=ocean` · `#5` (open on slide 5).
 
 **Export to PDF**: open the deck in Chrome/Edge → printer button in the dock (or `Ctrl/Cmd+P`) → *Save as PDF* → Landscape, margins *None*, *Background graphics* on. One 1920×1080 page per slide; animation slides print as a still frame.
 
-**Without the print dialog**: `npm run export:pdf -- data/<deck>.json [out.pdf]` (headless Chrome/Edge/Chromium, no dependencies; set `CHROME_PATH` if it is not found, `--theme=ocean` to override the theme).
+**Without the print dialog**: `npm run export:pdf -- data/<deck>.json [out.pdf]` (headless Chrome/Edge/Chromium, no dependencies; set `CHROME_PATH` if it is not found, `--theme=ocean` or `--style=editorial` to override them).
 
 ---
 
@@ -116,9 +121,22 @@ npm run validate                  # every deck in data/
 node scripts/validate-deck.mjs data/my-deck.json
 ```
 
+### Styles
+
+`meta.style` sets the layout of the whole deck: `editorial` (printed magazine, sidebar spreads) `suizo` (poster type on a hard grid) or `minimal` (white page, square corners, hairlines). Without it, the deck uses the engine's own look. A style is one file that can replace the markup of any slide type, the header, the footer and the CSS; types it does not replace are inherited, so every deck works in every style.
+
+To make one, copy the template and register it:
+
+```bash
+cp styles/_plantilla.js styles/my-style.js
+npm run sync
+```
+
+Then open `?src=data/demo-estilos.json&style=my-style`. Full guide: the `create-style` skill, or ask an assistant to create one from a description or a reference.
+
 ### Themes
 
-`meta.theme`: `classic` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
+`meta.theme`: `classic` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green, dark by default with `meta.mode`). `meta.mode: "dark"` makes every slide dark by default (`T` still toggles). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
 
 ---
 
@@ -146,9 +164,9 @@ registerAnimation(function (api) {
 });
 ```
 
-`api` provides the canvas context, theme-aware colors, slide `params`, pointer position, helpers (`rand`, `lerp`, `ease`, `hexA`, `mix`, `text`…) and a DOM root for SVG/HTML animations. Start from [`animations/_plantilla.js`](animations/_plantilla.js); the full API, recipes and the bundled examples are documented in the `create-animation` skill.
+`api` provides the canvas context, theme-aware colors, slide `params`, pointer position, synthesized sound (`api.sound.pluck`, `strum`, `click`, `tone`; muted with `M`), helpers (`rand`, `lerp`, `ease`, `hexA`, `mix`, `text`…) and a DOM root for SVG/HTML animations. Start from [`animations/_plantilla.js`](animations/_plantilla.js); the full API, recipes and the bundled examples are documented in the `create-animation` skill.
 
-Bundled animations: neural network, bubble sort, LLM-wiki compile/lint, WWII alliances/Eastern Front/D-Day, solar-system formation/orbits/sizes, Moon phases.
+Bundled animations: guitar (vibrating string, tuner, tablature, chords, strumming — with sound), neural network, bubble sort, LLM-wiki compile/lint, WWII alliances/Eastern Front/D-Day, solar-system formation/orbits/sizes, Moon phases.
 
 > **Security**: animation slides can execute JavaScript from the deck, so decks are **trusted only when loaded with `?src=` from the same origin as the page** (you host them) or through `Slides.load()`. Anything else (uploaded, dragged, pasted, `#d=` links, `?src=` from another domain) runs in **safe mode**: text is sanitized (only basic inline HTML, no attributes/scripts), animations with inline `code` or a `src` outside `animations/*.js` are disabled until the viewer clicks *Activar animaciones…*. Animations in `animations/` referenced by name keep working in safe mode, so prefer `src` over `code` for decks you plan to share. Never put a deck you did not review in your own `data/` folder.
 
@@ -180,6 +198,7 @@ prompt.en.js                              prompts for any chat LLM   (generated;
 | `create-presentation` | Brief → storyline → slide types → deck JSON → validate → preview. Includes the full slide catalog. |
 | `create-animation` | Designs and writes looping canvas animations (API, recipes, safe zones, testing). |
 | `review-presentation` | QA: validator + in-browser `Slides.audit()` + content, facts and accessibility checklist, with a report format. |
+| `create-style` | Creating presentation styles: layout, markup, type and chrome for a whole deck. |
 | `theming` | Choosing and creating themes, slide modes, logos, contrast checks. |
 | `research-topic` | Verified, sourced fact packs before writing factual decks. |
 | `extend-engine` | Safe changes to `index.html`, validator and docs (architecture map, gotchas, checklists). |

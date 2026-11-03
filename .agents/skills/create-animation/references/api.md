@@ -25,6 +25,7 @@ For inline `"code"` use only the body (no wrapper).
 | `static` | `true` when rendering a snapshot (overview thumbnail, PDF export): the engine calls `frame` ~90–150 times at 30 fps, then freezes. |
 | `reduced` | `true` if the OS asks for reduced motion (the engine renders a still frame). |
 | `theme` | Active theme name (`classic`, `ocean`…). |
+| `sound` | Synthesized audio (see *Sound*). Every call is a silent no-op when muted (`M`), in snapshots, with reduced motion or without Web Audio. |
 
 ## Gotchas
 
@@ -32,6 +33,33 @@ For inline `"code"` use only the body (no wrapper).
 - **Clamp time**: the first frame can receive a slightly negative `t`; start `frame` with `t = Math.max(0, t)` if you index arrays by `t`.
 - **Optional `params.at`**: `const c = api.static ? (params.at ?? 9) : t % CYC;` lets a test deck render any moment of the loop in the PDF/thumbnails (`npm run export:pdf` is the quickest way to inspect one).
 - **Stateful motion** (e.g. electrons whose speed changes): accumulate `off += speed * dt` instead of using `t`, so a speed change does not make them jump.
+
+## Sound
+
+Synthesized with Web Audio (no files, no network). One shared context; each animation plays through its own bus, faded out when the slide is left. Browsers only start audio after a user gesture (any key or click, e.g. moving to the slide).
+
+| Call | Description |
+|---|---|
+| `sound.pluck(freq, { gain=.5, decay=3, bright=.5, delay=0, pan=0 })` | Plucked string (Karplus-Strong), exact pitch. Returns a voice `{ freq(f, glide=.05), stop(fade=.08) }` (glide the pitch while it rings, e.g. a tuning peg). |
+| `sound.strum([freqs], { spread=.014, gain=.35, decay, bright, delay })` | Plucks the notes in the given order, `spread` seconds apart (low→high = down-strum). |
+| `sound.click({ accent, gain=.35, delay })` | Metronome tick (`accent` = higher pitch for beat 1). |
+| `sound.tone(freq, { type='sine', dur=.3, gain=.25, delay })` | Short tone with an envelope. |
+| `sound.on` | `true` if sound will actually play. |
+
+Fire sounds on **events**, not every frame: keep the previous loop time and check whether the current one crossed an instant (handles the loop wrap):
+
+```js
+let pc = -1e-3;
+const cross = (c, a) => pc <= c ? pc < a && a <= c : a > pc || a <= c;
+function frame(dt, t) {
+  const c = api.static ? 9 : t % CYC;
+  if (cross(c, 2.5)) api.sound.pluck(220, { decay: 3 });
+  pc = c;
+  // …draw…
+}
+```
+
+Standard-tuning open strings (Hz): E2 82.41 · A2 110 · D3 146.83 · G3 196 · B3 246.94 · E4 329.63; each fret multiplies by 2^(1/12). See `animations/guitarra-*.js`.
 
 ## Utilities
 
@@ -44,7 +72,7 @@ For inline `"code"` use only the body (no wrapper).
 | `TAU`, `PI` | Constants. |
 | `hexA(hex, alpha)` | `#rrggbb` → `rgba(...)`. **Hex colors only.** |
 | `mix(hexA, hexB, t)` | Blend two hex colors. |
-| `text(str, x, y, opts)` | Draw text. `opts`: `size` (32), `weight` (600), `color` (fg), `align` (`left|center|right`), `base` (`alphabetic|middle|top`), `alpha`, `font`. |
+| `text(str, x, y, opts)` | Draw text. `opts`: `size` (32), `weight` (600), `color` (fg), `align` (`left|center|right`), `base` (`alphabetic|middle|top`), `alpha`, `font`. On light slides, a `#rrggbb` color other than white is darkened to 4.5:1 contrast. |
 | `clear()` | `ctx.clearRect(0, 0, W, H)`. |
 
 ## Lifecycle

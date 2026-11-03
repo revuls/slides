@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * export-pdf.mjs — export a deck to PDF without opening the print dialog (headless Chrome/Edge/Chromium, no npm dependencies).
- * Usage: node scripts/export-pdf.mjs data/<deck>.json [out.pdf] [--theme=ocean]
+ * Usage: node scripts/export-pdf.mjs data/<deck>.json [out.pdf] [--theme=ocean] [--style=editorial]
  * Set CHROME_PATH if the browser is not found automatically. Needs network access for fonts/icons (same as the app).
  */
 import { createServer } from 'node:http';
@@ -16,7 +16,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const opts = Object.fromEntries(args.filter(a => a.startsWith('--')).map(a => a.slice(2).split('=')));
 const [deckArg, outArg] = args.filter(a => !a.startsWith('--'));
-if (!deckArg) { console.error('Usage: node scripts/export-pdf.mjs data/<deck>.json [out.pdf] [--theme=name]'); process.exit(1); }
+if (!deckArg) { console.error('Usage: node scripts/export-pdf.mjs data/<deck>.json [out.pdf] [--theme=name] [--style=name]'); process.exit(1); }
 const deck = resolve(deckArg);
 if (!existsSync(deck)) { console.error(`Deck not found: ${deckArg}`); process.exit(1); }
 const out = resolve(outArg || deck.replace(/\.json$/i, '') + '.pdf');
@@ -46,7 +46,7 @@ const server = createServer(async (req, res) => {
   } catch { res.writeHead(404).end('Not found'); }
 }).listen(0, '127.0.0.1');
 await new Promise(r => server.once('listening', r));
-const url = `http://127.0.0.1:${server.address().port}/?src=${encodeURIComponent(rel)}&print${opts.theme ? '&theme=' + encodeURIComponent(opts.theme) : ''}`;
+const url = `http://127.0.0.1:${server.address().port}/?src=${encodeURIComponent(rel)}&print${opts.theme ? '&theme=' + encodeURIComponent(opts.theme) : ''}${opts.style ? '&style=' + encodeURIComponent(opts.style) : ''}`;
 
 const profile = await mkdtemp(join(tmpdir(), 'slides-pdf-')), tmpPdf = join(profile, 'out.pdf');   // Chrome writes here; the real output is only replaced on success
 // Chrome writes the PDF but may not exit on its own: wait for a non-empty, stable file, then close it.

@@ -11,13 +11,16 @@ RULES
 2. Write slide text in the same language as my content. Be executive, clear and persuasive; sentence case; titles ≤ 8 words; text blocks ≤ 40 words. Inline HTML (`<strong>`, `<br>`) is allowed.
 3. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`): the engine animates them counting up.
 4. Icons: Phosphor icon names (`"ph-rocket-launch"`, `"ph-chart-bar"`); use only common, real names.
-5. Images: never invent photo URLs (they break). Use `https://placehold.co/1600x900?text=Short+description` placeholders, or prefer slide types that need no image. I will replace them later.
+5. Images: never invent photo URLs (they break). Use `https://placehold.co/1600x900?text=Short+description` placeholders, or prefer slide types that need no image. I will replace them later. If I provide my own figures (plans, schematics, screenshots, photos), reference them by relative path (e.g. `assets/my-project/schematic.jpg`) and show them with `figure`.
 6. Never invent statistics, quotes or sources. If I gave no data, use qualitative wording or mark estimates with `≈` or ranges.
-7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`, `animation`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Use 1–3 `animation` slides only where motion teaches something.
+7. Structure the story: open with `cover`, separate blocks with `section`, alternate visual slides (`hero`, `big-number`, `charts`, `gallery`, `figure`, `animation`) with text slides, vary the rhythm (never the same type three times in a row), and close with `closing`. Use 1–3 `animation` slides only where motion teaches something.
 8. Add `notes` (speaker notes) to the important slides.
+9. For reports, technical projects and academic defences use `aside` (main content + labelled side facts), `figure` (whole plans, schematics and screenshots) and `scorecard` (objectives vs results, each with its evidence).
 
 
-THEMES (`meta.theme`): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
+STYLES (`meta.style`, the layout and typography of the whole deck; every slide type works in every style): `default` (rounded cards, gradients; used when `meta.style` is omitted) · `editorial` (printed magazine: serif type on paper, hairline rules, sidebar spreads; for essays, culture, reports and storytelling) · `minimal` (very clean: white background, square corners, black type, hairlines and generous empty space; for business, product and technical talks) · `suizo` (bold Swiss poster: heavy capitals, hard grid that fills the slide, flat color blocks; for keynotes, launches and manifestos). Pick the one that fits the audience.
+
+THEMES (`meta.theme`, the colors): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green; pair it with `"mode": "dark"`). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
 
 # Slide type catalog
 
@@ -38,7 +41,9 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 {
   "meta": {
     "title": "Short title (footer and browser tab)", "date": "Month Year", "author": "Name or team",
-    "theme": "classic | marino | ocean | esmeralda | violeta | carmin",
+    "style": "optional layout style: a file name in styles/, e.g. editorial | suizo | minimal",
+    "theme": "classic | marino | ocean | esmeralda | violeta | carmin | argos",
+    "mode": "light | dark (optional: default mode of every light slide; T toggles)",
     "transition": "slide | fade | zoom",
     "brand": "Text shown as the logo (none by default)", "logo": "https://… image URL"
   },
@@ -46,7 +51,7 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 }
 ```
 
-**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
+**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`) or the author's own files under `assets/<deck>/`, relative to `index.html` (the validator checks they exist); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
 
 **Default modes**: `cover`, `section`, `closing` → dark · `statement` → orange · `hero`, `quote`, `big-number`, `animation` → dark · everything else → light.
 
@@ -275,6 +280,33 @@ Use text names or generic icons; never fabricate real third-party logos.
 ```
 `highlight` holds 1-based line numbers.
 
+## Technical and academic slides
+
+### `aside` — main content + labelled side column (template-style brief)
+```json
+{"type":"aside","kicker":"…","title":"…","text":"Lead paragraph (optional)","numbered":false,
+ "items":[{"icon":"ph-check-circle","title":"…","text":"…"}],
+ "card":{"title":"LABEL","text":"Highlighted box under the list (optional)"},
+ "side":[{"label":"LABEL","value":"2 min","text":"…"},{"label":"LABEL","items":["…","…"]}]}
+```
+Main column needs `text`, `items` (≤ 8; strings allowed; two columns above 4 when there is no `card`) or `card`. `side` holds ≤ 4 blocks, each with `value` (big counter), `text` and/or `items`.
+
+### `figure` — 1–3 whole images (plans, schematics, screenshots, own photos) + numbered annotations
+```json
+{"type":"figure","title":"…","images":[{"image":"assets/deck/plan.jpg","caption":"…","span":2,"bg":"dark","fit":"cover"}],
+ "source":"Own work · scale 1:1","points":[{"title":"…","text":"…","icon":"ph-lightning (optional; numbers otherwise)"}]}
+```
+Images are shown whole (`object-fit: contain`) on a white frame; `bg:"dark"` uses a panel frame for photos, `fit:"cover"` fills the frame. `span` weights the width of each image. `points` (≤ 5) form a side column. A single `"image"` + `"caption"` also works.
+
+### `scorecard` — objectives vs results with status and evidence (≤ 10)
+```json
+{"type":"scorecard","title":"…","items":[{"title":"Stable flight","status":"done | partial | fail | na","evidence":"…","label":"optional custom pill"}],
+ "labels":{"done":"Conseguido","partial":"Parcial","fail":"No conseguido","na":"No evaluado"}}
+```
+Shows a tally per status and a stacked bar; more than 5 items flow in two columns (top to bottom). Default labels are Spanish; override them with `labels`.
+
+`table` cells also colour status words: `Conseguido`/`Achieved` (green), `Parcial`/`No evaluado`/`Pending` (amber), `No conseguido`/`Failed` (red).
+
 ## Full-screen animation
 
 ### `animation` — looping canvas animation that fills the slide
@@ -285,7 +317,7 @@ Use text names or generic icons; never fabricate real third-party logos.
 ```
 Provide **either** `"code"` (array of JavaScript lines: only the *body* of the function) **or** `"src"` (path relative to `index.html` to a file that wraps its code in `registerAnimation(function (api) { … })`). `params` is a free object read as `api.params`. `overlay:false` hides the title card; `chrome:false` hides logo/footer/page number for a pure full-screen scene. See the animation code rules below.
 
-Bundled animations: `animations/_plantilla.js` (interactive particles, template), `red-neuronal.js` (params `layers`, `names`, `outputs`), `ordenacion.js` (`count`, `speed`), `llm-wiki-compilar.js`, `llm-wiki-lint.js`, `ww2-bandos.js`, `ww2-frente-oriental.js`, `ww2-dday.js`, `sol-nacimiento.js`, `sol-orbitas.js`, `sol-escala.js`, `luna-fases.js`.
+Bundled animations: `animations/_plantilla.js` (interactive particles, template), `red-neuronal.js` (params `layers`, `names`, `outputs`), `ordenacion.js` (`count`, `speed`), `llm-wiki-compilar.js`, `llm-wiki-lint.js`, `ww2-bandos.js`, `ww2-frente-oriental.js`, `ww2-dday.js`, `sol-nacimiento.js`, `sol-orbitas.js`, `sol-escala.js`, `luna-fases.js`, `guitarra-cuerda.js`, `guitarra-afinar.js`, `guitarra-tablatura.js`, `guitarra-acordes.js` (`chords`, `mode`, `bpm`), `guitarra-rasgueo.js` (`pattern`, `bpm`) — the guitar ones play synthesized sound (muted with `M`).
 
 # Animation code
 
@@ -302,6 +334,7 @@ Either way the code receives `api` and must **return** `{ frame }` (or a bare fu
 ## Rules
 
 - No network, `eval`, cookies, storage or DOM access outside `api.root` (the validator warns). No external libraries.
+- Sound only through `api.sound` (synthesized, no audio files; the presenter mutes it with `M`). Never create your own `AudioContext`. Use it where hearing the idea helps (pitch, rhythm, a click per event), keep it quiet, and make the animation fully understandable without sound.
 - Colors only from `api.colors` (they follow the active theme and dark/light mode). Natural colors for real objects (planets, sky) are fine as constants.
 - Keep it light: < ~300 drawn objects per frame, avoid large `shadowBlur`, no per-frame allocations in hot loops.
 - Seed any randomness (`sd = (sd * 16807) % 2147483647`) so every loop looks the same.
@@ -336,6 +369,7 @@ For inline `"code"` use only the body (no wrapper).
 | `static` | `true` when rendering a snapshot (overview thumbnail, PDF export): the engine calls `frame` ~90–150 times at 30 fps, then freezes. |
 | `reduced` | `true` if the OS asks for reduced motion (the engine renders a still frame). |
 | `theme` | Active theme name (`classic`, `ocean`…). |
+| `sound` | Synthesized audio (see *Sound*). Every call is a silent no-op when muted (`M`), in snapshots, with reduced motion or without Web Audio. |
 
 ## Gotchas
 
@@ -343,6 +377,33 @@ For inline `"code"` use only the body (no wrapper).
 - **Clamp time**: the first frame can receive a slightly negative `t`; start `frame` with `t = Math.max(0, t)` if you index arrays by `t`.
 - **Optional `params.at`**: `const c = api.static ? (params.at ?? 9) : t % CYC;` lets a test deck render any moment of the loop in the PDF/thumbnails (`npm run export:pdf` is the quickest way to inspect one).
 - **Stateful motion** (e.g. electrons whose speed changes): accumulate `off += speed * dt` instead of using `t`, so a speed change does not make them jump.
+
+## Sound
+
+Synthesized with Web Audio (no files, no network). One shared context; each animation plays through its own bus, faded out when the slide is left. Browsers only start audio after a user gesture (any key or click, e.g. moving to the slide).
+
+| Call | Description |
+|---|---|
+| `sound.pluck(freq, { gain=.5, decay=3, bright=.5, delay=0, pan=0 })` | Plucked string (Karplus-Strong), exact pitch. Returns a voice `{ freq(f, glide=.05), stop(fade=.08) }` (glide the pitch while it rings, e.g. a tuning peg). |
+| `sound.strum([freqs], { spread=.014, gain=.35, decay, bright, delay })` | Plucks the notes in the given order, `spread` seconds apart (low→high = down-strum). |
+| `sound.click({ accent, gain=.35, delay })` | Metronome tick (`accent` = higher pitch for beat 1). |
+| `sound.tone(freq, { type='sine', dur=.3, gain=.25, delay })` | Short tone with an envelope. |
+| `sound.on` | `true` if sound will actually play. |
+
+Fire sounds on **events**, not every frame: keep the previous loop time and check whether the current one crossed an instant (handles the loop wrap):
+
+```js
+let pc = -1e-3;
+const cross = (c, a) => pc <= c ? pc < a && a <= c : a > pc || a <= c;
+function frame(dt, t) {
+  const c = api.static ? 9 : t % CYC;
+  if (cross(c, 2.5)) api.sound.pluck(220, { decay: 3 });
+  pc = c;
+  // …draw…
+}
+```
+
+Standard-tuning open strings (Hz): E2 82.41 · A2 110 · D3 146.83 · G3 196 · B3 246.94 · E4 329.63; each fret multiplies by 2^(1/12). See `animations/guitarra-*.js`.
 
 ## Utilities
 
@@ -355,7 +416,7 @@ For inline `"code"` use only the body (no wrapper).
 | `TAU`, `PI` | Constants. |
 | `hexA(hex, alpha)` | `#rrggbb` → `rgba(...)`. **Hex colors only.** |
 | `mix(hexA, hexB, t)` | Blend two hex colors. |
-| `text(str, x, y, opts)` | Draw text. `opts`: `size` (32), `weight` (600), `color` (fg), `align` (`left|center|right`), `base` (`alphabetic|middle|top`), `alpha`, `font`. |
+| `text(str, x, y, opts)` | Draw text. `opts`: `size` (32), `weight` (600), `color` (fg), `align` (`left|center|right`), `base` (`alphabetic|middle|top`), `alpha`, `font`. On light slides, a `#rrggbb` color other than white is darkened to 4.5:1 contrast. |
 | `clear()` | `ctx.clearRect(0, 0, W, H)`. |
 
 ## Lifecycle

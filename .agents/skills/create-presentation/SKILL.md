@@ -13,7 +13,7 @@ A deck is one JSON file `{ "meta": {...}, "slides": [...] }` in `data/`, rendere
    audience, goal, duration (≈ 1 slide per minute; 12–20 slides is typical), language, tone, must-include facts. Write slide text in the language of the request.
 2. **Gather facts** for factual topics (history, science, technology, business) with the `research-topic` skill. Never invent statistics, quotes, dates or sources. Mark estimates with `≈` or ranges and say so in the slide or `notes`.
 3. **Outline the story** before writing JSON: hook → context → 3–5 sections → takeaway → close. One idea per slide. Choose the slide type for each beat from the table below; read [`references/slide-types.md`](references/slide-types.md) for exact fields and limits.
-4. **Pick a theme** with the `theming` skill (default `classic`). Set `meta.brand` (text) or `meta.logo` (image URL) if the deck should show a logo.
+4. **Pick a style and a theme.** `meta.style` sets the layout (`editorial`, `suizo`, `minimal`, the other files in `styles/`, or omit it for the engine's own look; a new one comes from the `create-style` skill). `meta.theme` sets the colors, see the `theming` skill; a style brings its own default palette, so set `meta.theme` only to override it. Set `meta.brand` (text) or `meta.logo` (image URL) if the deck should show a logo.
 5. **Add 1–3 animation slides** where motion teaches something (see *Where animation helps*). Prefer an existing file in `animations/` via `"src"`; otherwise use the `create-animation` skill.
 6. **Write the file** `data/<kebab-case-name>.json` (UTF-8, 2-space indent). Add `notes` to key slides.
 7. **Validate**: `node scripts/validate-deck.mjs data/<file>.json` — fix every error and review every warning.
@@ -40,6 +40,9 @@ A deck is one JSON file `{ "meta": {...}, "slides": [...] }` in `data/`, rendere
 | Exact values to compare | `table` |
 | Conversion or drop-off | `funnel` |
 | Tasks and status | `checklist` or `bars` |
+| Objectives vs results (achieved / partial / failed) | `scorecard` |
+| Main content + labelled side facts (template-style brief) | `aside` |
+| Plans, schematics, screenshots, own photos (no cropping) | `figure` |
 | 2×2 reasoning (SWOT…) | `matrix` |
 | Evidence from people | `testimonials`, `quote`, `team` |
 | Atmosphere / context photo | `hero`, `image-text`, `gallery`, `image-cards`, `compare` |
@@ -55,7 +58,7 @@ Use `animation` when time or space is the point: a process unfolding (training, 
 - Titles ≤ 8 words, text blocks ≤ 40 words, sentence case; numbers with their unit inside the string so they animate (`"+15%"`, `"2.4M"`).
 - Vary the rhythm: never the same type three times in a row; alternate dense and visual slides; ≤ 5 slides per section.
 - Open with `cover`, close with `closing`; use `section` slides to structure decks above ~10 slides.
-- Images: only absolute `https://` URLs (Unsplash or placehold.co). Do not claim an image shows something specific you cannot verify. Never invent third-party logos.
+- Images: absolute `https://` URLs (Unsplash or placehold.co), or the author's own files committed under `assets/<deck>/` and referenced relative to `index.html` (e.g. figures extracted from a report). Do not claim an image shows something specific you cannot verify. Never invent third-party logos.
 - Sensitive subjects (genocide, war, disasters, health): factual, respectful, sourced; no sensational wording.
 - Quotes: short (< 15 words), attributed, translations flagged as such.
 - Do not edit `index.html` to make a deck work; if a feature is missing, use the `extend-engine` skill.

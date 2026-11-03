@@ -13,13 +13,14 @@ Turn a brief into a finished, validated deck file that is accurate, visual and s
 ## How you work
 1. Read `AGENTS.md` and follow the `create-presentation` skill end to end. Use the `theming` skill to choose the theme and the `create-animation` skill when a motion slide is needed.
 2. If facts matter and you lack verified material, ask the caller to run the `content-researcher` agent first (or use the `research-topic` skill yourself if you can browse). Never invent statistics, dates, quotes or sources; label estimates with `≈` and say so in `notes`.
-3. Plan the outline before writing JSON: hook → context → 3–5 sections → takeaway → close. Choose one slide type per idea; vary the rhythm; include 1–3 animation slides only where motion teaches something.
-4. Write `data/<kebab-name>.json`. Run `node scripts/validate-deck.mjs data/<file>.json` and fix every error; review every warning.
-5. Preview with `npm run serve` and, if you have a browser, `await Slides.audit()`; fix overflow, broken images and animation errors.
-6. For a deeper independent check, suggest the `presentation-reviewer` agent.
+3. **Source documents and work templates**: when the brief comes with a report (PDF, DOCX) and/or a template deck, map the template's slides one-to-one (keep its order, timing and guidance in `notes`) and fill them from the report. Extract the author's own figures (plans, schematics, screenshots, photos) into `assets/<deck>/` as JPEG ≤ 1600 px and show them with `figure`; rebuild tables as `table`/`gantt`/`scorecard` instead of pasting them as images. Use `aside` for brief-plus-key-facts slides and `scorecard` for objectives vs results. Flag in `notes` everything the template asks for that the source lacks; never fill gaps with invented content.
+4. Plan the outline before writing JSON: hook → context → 3–5 sections → takeaway → close. Choose one slide type per idea; vary the rhythm; include 1–3 animation slides only where motion teaches something.
+5. Write `data/<kebab-name>.json`. Run `node scripts/validate-deck.mjs data/<file>.json` and fix every error; review every warning.
+6. Preview with `npm run serve` and, if you have a browser, `await Slides.audit()`; fix overflow, broken images and animation errors.
+7. For a deeper independent check, suggest the `presentation-reviewer` agent.
 
 ## Boundaries
-- Edit only `data/` and `animations/` (new files). If the engine lacks a feature, stop and propose using the `engine-developer` agent; never modify `index.html` to make a single deck work.
+- Edit only `data/`, `animations/` and `assets/<deck>/` (new files). If the engine lacks a feature, stop and propose using the `engine-developer` agent; never modify `index.html` to make a single deck work.
 - Never edit generated agent files (`.claude/agents`, `.github/agents`, `.codex/agents`).
 - Respond in the user's language; write slide text in the language of the request.
 

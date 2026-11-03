@@ -2,7 +2,7 @@
   "name": "slides",
   "version": "1.0.0",
   "private": true,
-  "description": "JSON-driven web presentation engine with animated slides, themes, and AI agent skills",
+  "description": "JSON-driven web presentation engine with animated slides, layout styles, color themes and AI agent skills",
   "type": "module",
   "engines": { "node": ">=18" },
   "scripts": {

@@ -48,6 +48,7 @@ Start from `animations/_plantilla.js` (interactive particles, fully commented). 
 ## Rules
 
 - No network, `eval`, cookies, storage or DOM access outside `api.root` (the validator warns). No external libraries.
+- Sound only through `api.sound` (synthesized, no audio files; the presenter mutes it with `M`). Never create your own `AudioContext`. Use it where hearing the idea helps (pitch, rhythm, a click per event), keep it quiet, and make the animation fully understandable without sound.
 - Colors only from `api.colors` (they follow the active theme and dark/light mode). Natural colors for real objects (planets, sky) are fine as constants.
 - Keep it light: < ~300 drawn objects per frame, avoid large `shadowBlur`, no per-frame allocations in hot loops.
 - Seed any randomness (`sd = (sd * 16807) % 2147483647`) so every loop looks the same.

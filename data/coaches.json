@@ -1,0 +1,529 @@
+{
+  "meta": {
+    "theme": "classic",
+    "mode": "dark",
+    "title": "From great coaches to great engineering managers",
+    "date": "October 2026",
+    "author": "Engineering leadership",
+    "transition": "fade"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Leadership principles",
+      "title": "Great coaches build great teams",
+      "subtitle": "What the world's best sports coaches can teach us about leading engineers, developing talent and delivering outstanding results."
+    },
+    {
+      "type": "hero",
+      "kicker": "The big idea",
+      "title": "Leadership is not about playing the game",
+      "subtitle": "The best leaders create the conditions for others to perform at their best.",
+      "image": "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1920&q=85"
+    },
+    {
+      "type": "agenda",
+      "title": "Our leadership playbook",
+      "subtitle": "Five lessons from the pitch to the engineering organisation.",
+      "items": [
+        {
+          "title": "Build a shared vision",
+          "desc": "Align everyone around a meaningful objective."
+        },
+        {
+          "title": "Develop individual talent",
+          "desc": "Understand strengths, motivations and potential."
+        },
+        {
+          "title": "Create the right environment",
+          "desc": "Make trust, accountability and collaboration possible."
+        },
+        {
+          "title": "Adapt your leadership",
+          "desc": "Change your approach to fit the people and situation."
+        },
+        {
+          "title": "Win through the team",
+          "desc": "Measure success through collective performance."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": "01",
+      "title": "The architects of winning teams",
+      "subtitle": "Five influential coaches. Five perspectives on leadership."
+    },
+    {
+      "type": "image-cards",
+      "title": "Five coaches, five leadership philosophies",
+      "subtitle": "Different styles, one common challenge: turning individual talent into collective performance.",
+      "cards": [
+        {
+          "image": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=85",
+          "tag": "Shared purpose",
+          "title": "Pep Guardiola",
+          "text": "Builds positional structure, collective understanding and coordinated decision-making. Analogy: architectural clarity in engineering."
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=800&q=85",
+          "tag": "People first",
+          "title": "Carlo Ancelotti",
+          "text": "Known for interpersonal intelligence, composure and adapting his approach to different personalities. Analogy: leadership tailored to each engineer."
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=85",
+          "tag": "High standards",
+          "title": "Jürgen Klopp",
+          "text": "Emphasises energy, emotional connection and collective commitment. Analogy: building an engaged engineering culture."
+        },
+        {
+          "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=85",
+          "tag": "Adaptability",
+          "title": "Alex Ferguson",
+          "text": "Combined long-term team building, discipline and renewal across generations. Analogy: developing sustainable engineering capability."
+        }
+      ]
+    },
+    {
+      "type": "image-text",
+      "kicker": "The strategist",
+      "title": "Pep Guardiola: design the system",
+      "subtitle": "Make the right decisions easier through shared principles.",
+      "image": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1100&q=85",
+      "layout": "right-image",
+      "text": "On the pitch, positional play creates structure without prescribing every movement.\n\nIn engineering, architecture, engineering standards and clear interfaces serve a similar purpose.\n\n<strong>Lesson for engineering managers:</strong> establish guardrails and shared principles so squads can make autonomous decisions without losing alignment."
+    },
+    {
+      "type": "features",
+      "title": "From Guardiola to engineering",
+      "subtitle": "Translate tactical clarity into engineering effectiveness.",
+      "cards": [
+        {
+          "icon": "ph-git-branch",
+          "title": "Architecture",
+          "text": "Define boundaries, interfaces and technical principles that reduce unnecessary complexity.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-compass",
+          "title": "Direction",
+          "text": "Connect technical decisions to business outcomes and strategic priorities.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-arrows-left-right",
+          "title": "Coordination",
+          "text": "Help squads integrate their work without creating unnecessary dependencies.",
+          "style": "orange"
+        }
+      ]
+    },
+    {
+      "type": "image-text",
+      "kicker": "The people leader",
+      "title": "Carlo Ancelotti: understand the individual",
+      "subtitle": "Different people need different kinds of leadership.",
+      "image": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1100&q=85",
+      "layout": "left-image",
+      "text": "Ancelotti is associated with calm authority, relationship building and managing strong personalities.\n\nEngineers also differ in experience, confidence, ambition and preferred working styles.\n\n<strong>Lesson for engineering managers:</strong> adapt coaching, feedback and delegation to the individual while maintaining consistent expectations."
+    },
+    {
+      "type": "split-text",
+      "title": "Equality is not identical treatment",
+      "subtitle": "Fair leadership means giving people what they need to succeed.",
+      "connector": "arrow",
+      "columns": [
+        {
+          "title": "One-size-fits-all",
+          "icon": "ph-users-three",
+          "text": "Same level of guidance for everyone. Experienced engineers feel constrained, while developing engineers may lack support."
+        },
+        {
+          "title": "Situational leadership",
+          "icon": "ph-user-focus",
+          "text": "Adjust autonomy, feedback and support to capability, context and individual needs."
+        }
+      ]
+    },
+    {
+      "type": "image-text",
+      "kicker": "The culture builder",
+      "title": "Jürgen Klopp: create collective energy",
+      "subtitle": "Performance improves when people believe in the team and their contribution.",
+      "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1100&q=85",
+      "layout": "right-image",
+      "text": "Klopp's leadership is closely associated with emotional connection, collective intensity and a recognisable team identity.\n\nEngineering teams also need a sense of belonging, shared ownership and a common purpose.\n\n<strong>Lesson for engineering managers:</strong> build psychological safety, celebrate collaboration and make the team's contribution visible."
+    },
+    {
+      "type": "quote",
+      "text": "High performance is not simply a collection of talented individuals. It is talent working together toward a shared purpose.",
+      "author": "A leadership principle",
+      "role": "Applied to sports and engineering"
+    },
+    {
+      "type": "image-text",
+      "kicker": "The long-term builder",
+      "title": "Alex Ferguson: build for the future",
+      "subtitle": "Winning today matters. Building a team that can keep winning matters more.",
+      "image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1100&q=85",
+      "layout": "left-image",
+      "text": "Ferguson's long tenure at Manchester United involved rebuilding squads, developing young players and sustaining high standards across different eras.\n\nEngineering organisations also need to renew skills, strengthen succession and avoid dependence on a few key individuals.\n\n<strong>Lesson for engineering managers:</strong> invest in mentoring, knowledge sharing, technical depth and sustainable team structures."
+    },
+    {
+      "type": "image-text",
+      "kicker": "The talent developer",
+      "title": "Arsène Wenger: make potential visible",
+      "subtitle": "Great leaders help people become better than they thought possible.",
+      "image": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1100&q=85",
+      "layout": "right-image",
+      "text": "Wenger became known for talent development, a long-term football philosophy and attention to professional preparation.\n\nEngineers grow when challenging assignments, constructive feedback and learning opportunities are deliberately designed.\n\n<strong>Lesson for engineering managers:</strong> connect individual development plans to real opportunities, not just training courses."
+    },
+    {
+      "type": "section",
+      "number": "02",
+      "title": "The engineering manager's role",
+      "subtitle": "The analogy is useful because both roles develop people, shape systems and enable performance."
+    },
+    {
+      "type": "versus",
+      "title": "Player versus coach, engineer versus manager",
+      "subtitle": "The manager's value increasingly comes from enabling others.",
+      "left": {
+        "title": "Individual contributor",
+        "icon": "ph-code",
+        "items": [
+          "Solves technical problems directly.",
+          "Optimises personal delivery and expertise.",
+          "Makes decisions within their own scope.",
+          "Measures impact through individual contribution."
+        ]
+      },
+      "right": {
+        "title": "Engineering manager",
+        "icon": "ph-users-three",
+        "items": [
+          "Builds the conditions for teams to solve problems.",
+          "Optimises collective delivery and capability.",
+          "Creates clarity around decisions and ownership.",
+          "Measures impact through sustainable team outcomes."
+        ]
+      },
+      "verdict": "A manager does not need to make every play. They need to help the team make better plays."
+    },
+    {
+      "type": "features",
+      "title": "The four responsibilities of an engineering coach",
+      "subtitle": "Translate leadership philosophy into everyday management practices.",
+      "cards": [
+        {
+          "icon": "ph-target",
+          "title": "Set direction",
+          "text": "Connect business strategy, product outcomes and engineering priorities.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-users",
+          "title": "Grow people",
+          "text": "Coach engineers, develop technical leaders and build future capability.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-git-merge",
+          "title": "Improve the system",
+          "text": "Remove friction, strengthen engineering practices and clarify ownership.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-shield-check",
+          "title": "Protect sustainability",
+          "text": "Balance delivery, quality, operational resilience and engineering health.",
+          "style": "navy"
+        }
+      ]
+    },
+    {
+      "type": "matrix",
+      "title": "Balance delivery and development",
+      "subtitle": "Strong engineering leadership manages both dimensions rather than sacrificing one for the other.",
+      "axes": {
+        "x": "Short-term delivery → Long-term capability",
+        "y": "Low team health → High team health"
+      },
+      "quadrants": [
+        {
+          "title": "Sustainable excellence",
+          "icon": "ph-trophy",
+          "tone": "orange",
+          "items": [
+            "Reliable delivery",
+            "Strong engineering practices",
+            "Continuous learning"
+          ]
+        },
+        {
+          "title": "Capability without focus",
+          "icon": "ph-lightbulb",
+          "tone": "blue",
+          "items": [
+            "Learning without priorities",
+            "Excessive experimentation",
+            "Unclear business outcomes"
+          ]
+        },
+        {
+          "title": "Fragile delivery",
+          "icon": "ph-warning",
+          "tone": "navy",
+          "items": [
+            "Heroic individual effort",
+            "Accumulating technical debt",
+            "Burnout risk"
+          ]
+        },
+        {
+          "title": "Chronic underperformance",
+          "icon": "ph-trend-down",
+          "tone": "navy",
+          "items": [
+            "Missed commitments",
+            "Low engagement",
+            "Limited improvement"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": "03",
+      "title": "Turn philosophy into practice",
+      "subtitle": "Leadership is visible in decisions, routines and the environment teams experience every day."
+    },
+    {
+      "type": "process",
+      "title": "The engineering leadership cycle",
+      "subtitle": "A repeatable loop for improving team performance.",
+      "steps": [
+        {
+          "icon": "ph-compass",
+          "title": "Align",
+          "desc": "Clarify purpose, outcomes and priorities."
+        },
+        {
+          "icon": "ph-magnifying-glass",
+          "title": "Understand",
+          "desc": "Assess team health, capability and constraints."
+        },
+        {
+          "icon": "ph-chats-circle",
+          "title": "Coach",
+          "desc": "Give feedback, develop skills and delegate decisions."
+        },
+        {
+          "icon": "ph-wrench",
+          "title": "Enable",
+          "desc": "Remove obstacles and improve the engineering system."
+        },
+        {
+          "icon": "ph-chart-line-up",
+          "title": "Learn",
+          "desc": "Review outcomes, adapt and improve continuously."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Connect coaching to engineering outcomes",
+      "subtitle": "Translate leadership behaviours into observable signals without reducing performance to a single metric.",
+      "headers": [
+        "Coaching principle",
+        "Engineering practice",
+        "Observable signal"
+      ],
+      "highlight": 1,
+      "rows": [
+        [
+          "Shared vision",
+          "Align roadmaps and technical priorities",
+          "Teams understand why work matters"
+        ],
+        [
+          "Individual development",
+          "Use feedback and development plans",
+          "Skills and ownership expand"
+        ],
+        [
+          "Collective commitment",
+          "Improve collaboration and psychological safety",
+          "Problems surface earlier"
+        ],
+        [
+          "High standards",
+          "Strengthen testing, reviews and observability",
+          "Quality issues are detected earlier"
+        ],
+        [
+          "Long-term thinking",
+          "Manage technical debt and succession",
+          "Less dependence on key individuals"
+        ],
+        [
+          "Adaptability",
+          "Inspect delivery and change practices",
+          "Teams respond to changing conditions"
+        ]
+      ]
+    },
+    {
+      "type": "cycle",
+      "title": "Build a culture of continuous improvement",
+      "subtitle": "Like elite teams, engineering organisations improve through deliberate practice.",
+      "center": "Team performance",
+      "steps": [
+        {
+          "icon": "ph-target",
+          "title": "Set goals",
+          "desc": "Define clear outcomes."
+        },
+        {
+          "icon": "ph-person-simple-run",
+          "title": "Practice",
+          "desc": "Apply skills to real work."
+        },
+        {
+          "icon": "ph-chat-circle-text",
+          "title": "Get feedback",
+          "desc": "Discuss evidence without blame."
+        },
+        {
+          "icon": "ph-chart-line-up",
+          "title": "Improve",
+          "desc": "Change habits and remove friction."
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": "04",
+      "title": "Measure what really matters",
+      "subtitle": "Good coaches look beyond the scoreboard. Engineering managers should do the same."
+    },
+    {
+      "type": "features",
+      "title": "A balanced engineering scorecard",
+      "subtitle": "Combine delivery outcomes with the health of the system that produces them.",
+      "cards": [
+        {
+          "icon": "ph-rocket-launch",
+          "title": "Delivery",
+          "text": "Lead time, deployment frequency, predictability and progress toward product outcomes.",
+          "style": "orange"
+        },
+        {
+          "icon": "ph-check-circle",
+          "title": "Quality and resilience",
+          "text": "Change failure rate, recovery time, incidents and operational readiness.",
+          "style": "navy"
+        },
+        {
+          "icon": "ph-graduation-cap",
+          "title": "People and capability",
+          "text": "Skill growth, engagement, knowledge sharing and sustainable workload.",
+          "style": "orange"
+        }
+      ]
+    },
+    {
+      "type": "split-text",
+      "title": "Avoid the scoreboard trap",
+      "subtitle": "Metrics should guide improvement, not replace judgement.",
+      "connector": "arrow",
+      "columns": [
+        {
+          "title": "Measure activity",
+          "icon": "ph-list-checks",
+          "text": "Count commits, tickets and hours without understanding value. This can encourage gaming and local optimisation."
+        },
+        {
+          "title": "Understand outcomes",
+          "icon": "ph-chart-line-up",
+          "text": "Combine delivery data, quality indicators and team feedback. Use trends to discover problems and improve the system."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "The leadership mindset",
+      "text": "Your success is not what you can deliver alone. It is what your *team can achieve sustainably* without depending on you for every decision."
+    },
+    {
+      "type": "section",
+      "number": "05",
+      "title": "Your next leadership move",
+      "subtitle": "Bring the coaching mindset into your next team conversation."
+    },
+    {
+      "type": "checklist",
+      "title": "A practical 30-day challenge",
+      "subtitle": "Start with small actions that improve clarity, capability and autonomy.",
+      "items": [
+        {
+          "text": "Agree on one meaningful team outcome.",
+          "owner": "Engineering manager",
+          "date": "Week 1",
+          "status": "todo"
+        },
+        {
+          "text": "Hold individual conversations about strengths and development.",
+          "owner": "Engineering manager",
+          "date": "Week 1",
+          "status": "todo"
+        },
+        {
+          "text": "Identify and remove one recurring engineering obstacle.",
+          "owner": "Manager and team",
+          "date": "Week 2",
+          "status": "todo"
+        },
+        {
+          "text": "Delegate one meaningful decision to the team.",
+          "owner": "Engineering manager",
+          "date": "Week 3",
+          "status": "todo"
+        },
+        {
+          "text": "Review delivery, quality and team feedback together.",
+          "owner": "Manager and team",
+          "date": "Week 4",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "The goal is not to create a team that needs a great manager. It is to create a team that becomes great through the environment its manager builds.",
+      "author": "The engineering coaching mindset",
+      "role": "A principle for engineering leaders"
+    },
+    {
+      "type": "closing",
+      "title": "Coach the system. Grow the people. Enable the team.",
+      "subtitle": "The best engineering managers combine strategic clarity, individual development and collective accountability to build teams that deliver lasting value.",
+      "contacts": [
+        {
+          "icon": "ph-compass",
+          "text": "Lead with purpose"
+        },
+        {
+          "icon": "ph-users-three",
+          "text": "Develop people"
+        },
+        {
+          "icon": "ph-rocket-launch",
+          "text": "Deliver sustainable impact"
+        }
+      ],
+      "cta": "What will you change first?"
+    }
+  ]
+}

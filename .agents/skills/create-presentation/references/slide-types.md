@@ -17,7 +17,9 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 {
   "meta": {
     "title": "Short title (footer and browser tab)", "date": "Month Year", "author": "Name or team",
-    "theme": "classic | marino | ocean | esmeralda | violeta | carmin",
+    "style": "optional layout style: a file name in styles/, e.g. editorial | suizo | minimal",
+    "theme": "classic | marino | ocean | esmeralda | violeta | carmin | argos",
+    "mode": "light | dark (optional: default mode of every light slide; T toggles)",
     "transition": "slide | fade | zoom",
     "brand": "Text shown as the logo (none by default)", "logo": "https://… image URL"
   },
@@ -25,7 +27,7 @@ Every slide is an object with a `type` and the fields below. Inline HTML (`<stro
 }
 ```
 
-**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
+**Writing rules (apply to every type)**: titles ≤ 8 words, text blocks ≤ 40 words, sentence case. Numeric values carry their unit inside the string (`"+15%"`, `"2.4M"`, `"120M€"`, `"≈27M"`) because the engine animates them counting up from zero. Icons are [Phosphor](https://phosphoricons.com) names with or without the `ph-` prefix (`"ph-rocket-launch"`). Images are absolute `https://` URLs (Unsplash `https://images.unsplash.com/photo-…` or `https://placehold.co/…`) or the author's own files under `assets/<deck>/`, relative to `index.html` (the validator checks they exist); a failing image is replaced by a placeholder automatically. Colors by keyword: `orange` (brand), `navy` (ink), `blue` (secondary), plus `amber`, `sky`, `gray` in charts.
 
 **Default modes**: `cover`, `section`, `closing` → dark · `statement` → orange · `hero`, `quote`, `big-number`, `animation` → dark · everything else → light.
 
@@ -254,6 +256,33 @@ Use text names or generic icons; never fabricate real third-party logos.
 ```
 `highlight` holds 1-based line numbers.
 
+## Technical and academic slides
+
+### `aside` — main content + labelled side column (template-style brief)
+```json
+{"type":"aside","kicker":"…","title":"…","text":"Lead paragraph (optional)","numbered":false,
+ "items":[{"icon":"ph-check-circle","title":"…","text":"…"}],
+ "card":{"title":"LABEL","text":"Highlighted box under the list (optional)"},
+ "side":[{"label":"LABEL","value":"2 min","text":"…"},{"label":"LABEL","items":["…","…"]}]}
+```
+Main column needs `text`, `items` (≤ 8; strings allowed; two columns above 4 when there is no `card`) or `card`. `side` holds ≤ 4 blocks, each with `value` (big counter), `text` and/or `items`.
+
+### `figure` — 1–3 whole images (plans, schematics, screenshots, own photos) + numbered annotations
+```json
+{"type":"figure","title":"…","images":[{"image":"assets/deck/plan.jpg","caption":"…","span":2,"bg":"dark","fit":"cover"}],
+ "source":"Own work · scale 1:1","points":[{"title":"…","text":"…","icon":"ph-lightning (optional; numbers otherwise)"}]}
+```
+Images are shown whole (`object-fit: contain`) on a white frame; `bg:"dark"` uses a panel frame for photos, `fit:"cover"` fills the frame. `span` weights the width of each image. `points` (≤ 5) form a side column. A single `"image"` + `"caption"` also works.
+
+### `scorecard` — objectives vs results with status and evidence (≤ 10)
+```json
+{"type":"scorecard","title":"…","items":[{"title":"Stable flight","status":"done | partial | fail | na","evidence":"…","label":"optional custom pill"}],
+ "labels":{"done":"Conseguido","partial":"Parcial","fail":"No conseguido","na":"No evaluado"}}
+```
+Shows a tally per status and a stacked bar; more than 5 items flow in two columns (top to bottom). Default labels are Spanish; override them with `labels`.
+
+`table` cells also colour status words: `Conseguido`/`Achieved` (green), `Parcial`/`No evaluado`/`Pending` (amber), `No conseguido`/`Failed` (red).
+
 ## Full-screen animation
 
 ### `animation` — looping canvas animation that fills the slide
@@ -264,4 +293,4 @@ Use text names or generic icons; never fabricate real third-party logos.
 ```
 Provide **either** `"code"` (array of JavaScript lines: only the *body* of the function) **or** `"src"` (path relative to `index.html` to a file that wraps its code in `registerAnimation(function (api) { … })`). `params` is a free object read as `api.params`. `overlay:false` hides the title card; `chrome:false` hides logo/footer/page number for a pure full-screen scene. See the `create-animation` skill for the API.
 
-Bundled animations: `animations/_plantilla.js` (interactive particles, template), `red-neuronal.js` (params `layers`, `names`, `outputs`), `ordenacion.js` (`count`, `speed`), `llm-wiki-compilar.js`, `llm-wiki-lint.js`, `ww2-bandos.js`, `ww2-frente-oriental.js`, `ww2-dday.js`, `sol-nacimiento.js`, `sol-orbitas.js`, `sol-escala.js`, `luna-fases.js`.
+Bundled animations: `animations/_plantilla.js` (interactive particles, template), `red-neuronal.js` (params `layers`, `names`, `outputs`), `ordenacion.js` (`count`, `speed`), `llm-wiki-compilar.js`, `llm-wiki-lint.js`, `ww2-bandos.js`, `ww2-frente-oriental.js`, `ww2-dday.js`, `sol-nacimiento.js`, `sol-orbitas.js`, `sol-escala.js`, `luna-fases.js`, `guitarra-cuerda.js`, `guitarra-afinar.js`, `guitarra-tablatura.js`, `guitarra-acordes.js` (`chords`, `mode`, `bpm`), `guitarra-rasgueo.js` (`pattern`, `bpm`) — the guitar ones play synthesized sound (muted with `M`).

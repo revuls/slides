@@ -10,7 +10,7 @@ description: Serve, preview, present, export and publish decks from this reposit
 ```bash
 npm run serve            # node scripts/serve.mjs → http://localhost:8765
 ```
-Open a deck: `http://localhost:8765/?src=data/<deck>.json` (add `&theme=ocean` to override the theme, `#5` to jump to slide 5).
+Open a deck: `http://localhost:8765/?src=data/<deck>.json` (add `&style=editorial` or `&theme=ocean` to override the style or the theme, `#5` to jump to slide 5).
 No Node? `python3 -m http.server 8765` works the same.
 
 Opening `index.html` **without a server** (`file://`) also works, with one limit: `?src=` needs HTTP. Load a deck with the **Load JSON** button (move the mouse to the bottom edge to reveal the dock) or drag the `.json` file onto the window. Animation files in `animations/` load fine because they are `<script>` tags; keep the folder next to `index.html`.
@@ -24,8 +24,10 @@ Opening `index.html` **without a server** (`file://`) also works, with one limit
 | `G` | Overview grid (click a thumbnail to jump) |
 | `F` | Full screen |
 | `T` | Toggle dark mode for all light slides |
-| `C` | Cycle color themes (the palette button opens a picker) |
+| `S` | Cycle presentation styles (the palette button opens a picker) |
+| `C` | Cycle color themes (same picker) |
 | `N` | Speaker notes panel |
+| `M` | Mute / unmute animation sound (also a speaker button in the dock; remembered per browser) |
 | `?` | Shortcut help · `Esc` closes panels |
 
 The control dock stays hidden while you navigate; it appears when the mouse approaches the bottom edge. Presenting tips: press `F`, check animations once on the actual projector/laptop, keep notes open on a second screen if you have one.
@@ -39,7 +41,7 @@ The control dock stays hidden while you navigate; it appears when the mouse appr
 **Without the print dialog** (scripts, CI, agents):
 
 ```bash
-npm run export:pdf -- data/<deck>.json [out.pdf] [--theme=ocean]   # default output: next to the deck
+npm run export:pdf -- data/<deck>.json [out.pdf] [--theme=ocean] [--style=editorial]   # default output: next to the deck
 ```
 It serves the repo on a random port and runs headless Chrome/Edge/Chromium against `?src=…&print`, which puts every slide in its final state. Set `CHROME_PATH` if the browser is not found; `--wait=<ms>` raises the virtual-time budget for very large decks. Needs network for fonts/icons. Check the result with `pdfinfo` (pages = slides).
 

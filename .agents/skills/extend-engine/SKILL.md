@@ -19,12 +19,12 @@ The engine is **one file**, `index.html` (HTML + CSS + vanilla JS, no build). Ex
 | `1. DATOS POR DEFECTO` | `defaultJSON`: demo deck shown when no deck is loaded. |
 | `2. HELPERS` | `ic()`, `words()`, `hd()` (slide header), `cell()` (tilt wrapper), `rt()`, `hl()` code highlighter. |
 | `3. TIPOS DE SLIDE` | `TYPES = { name: { theme?, fx?, nofoot?, render(slide, ctx) } }` — one HTML renderer per type. |
-| `4. ESTADO + RENDER` | `THEMES`, global state `G`, `slideHTML()`, `fitSlide()` (auto-shrink), `buildPresentation()`. |
+| `4. ESTADO + RENDER` | `THEMES`, global state `G`, styles (`registerStyle`, `loadStyle`, `applyStyle`, `G.types`), `slideHTML()`, `fitSlide()` (auto-shrink), `buildPresentation()` (loads the style, may be async) and `renderDeck()`. |
 | `5–6b` | Counters, particles (`FX`), full-screen animations (`Anim`, `registerAnimation`). |
 | `7. GRÁFICOS` | Chart.js wrappers (palette read from CSS variables). |
 | `8. NAVEGACIÓN`, `9. CARGA DE JSON`, `10. INICIO`, `11. AUDITORÍA` | Navigation, overview, shortcuts, loading (file/drag-drop/paste/`#d=` link/`?src=`), trust model + `sanitizeDeck()`, share links, `Slides.audit()`. |
 
-Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `untrusted`), `Slides.go(n)`, `Slides.next()`, `Slides.prev()`, `await Slides.audit()`.
+Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `untrusted`; returns a promise), `Slides.go(n)`, `Slides.next()`, `Slides.prev()`, `await Slides.audit()`, `Slides.setStyle(id)`, `Slides.styles()`.
 
 ## Conventions and gotchas (learned the hard way)
 
@@ -38,6 +38,7 @@ Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `un
 - Text fields accept inline HTML; titles can be split word-by-word by `words()` (plain text only).
 - Slides must keep working in `static` mode (overview thumbnails, print): do not depend on running timers for visibility.
 - Escape nothing twice. Trusted decks (same-origin `?src=`, `Slides.load()`) are rendered as-is (inline HTML, animation JS). **Untrusted decks** (upload, drop, paste, `#d=` link, cross-origin `?src=`) go through `sanitizeDeck()` (section 9) and `G.animOK=false`: any new field that is rendered inside an HTML attribute or as a URL must stay safe after sanitizing (double quotes become `”`, URL-like strings are percent-encoded); never add `href`, `iframe src`, `innerHTML` or event-handler sinks fed by deck data without extending the sanitizer and testing a hostile deck.
+- **Look lives in `styles/`**: a new layout is a style (`create-style` skill), not engine code. Renderers must look types up in `G.types`, not `TYPES`, and call `hd()`, so styles can replace them. A style helper that must be reachable from style files goes in `styleAPI()`. Deck data picks a style only through `STYLE_ID`-checked ids: keep it that way.
 - Keep the UI strings in English; deck content is the author's language. (Some legacy UI strings are Spanish; leave them unless asked.)
 
 ## Add a slide type — checklist
@@ -54,6 +55,7 @@ Public runtime API: `Slides.load(deck, { untrusted: true })` (trusted unless `un
 
 ## Other changes
 
+- **New look**: see the `create-style` skill.
 - **New theme**: see the `theming` skill.
 - **New shortcut/UI**: add to the `keydown` handler and the help overlay (`#help`); keep the dock hidden unless the mouse approaches the bottom edge.
 - **New animation helper**: add to `animHelpers`/`Anim.api()` and document it in `.agents/skills/create-animation/references/api.md`.

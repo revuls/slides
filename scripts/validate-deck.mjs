@@ -14,9 +14,10 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { resolve, dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { STYLE_ID, listStyles, loadStyle } from './load-style.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const THEMES = ['classic', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin'];
+const THEMES = ['classic', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin', 'argos'];
 const MODES = ['light', 'dark', 'orange'];
 const TRANSITIONS = ['slide', 'fade', 'zoom'];
 const COLORS = ['orange', 'navy', 'blue', 'amber', 'sky', 'gray'];
@@ -26,6 +27,7 @@ const isStr = v => typeof v === 'string' && v.trim() !== '';
 const isArr = Array.isArray;
 const words = v => String(v ?? '').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
 const isUrl = v => /^https?:\/\//i.test(v);
+const isLocal = v => !/^[a-z]+:|^\/\//i.test(v) && existsSync(resolve(ROOT, v));   // image file in the repo, relative to index.html
 
 /* Per-type rules.
    req: required string fields · any: at least one of these · arr: { field: [min, max, itemRule] }  (aliases separated by "|") */
@@ -69,7 +71,10 @@ const R = {
   'image-cards': { req: ['title'], arr: { 'cards|items': [2, 4, { req: ['image', 'title'], url: ['image'] }] } },
   video: { req: ['title'], custom: 'video' },
   logos: { req: ['title'], arr: { 'items|logos': [1, 8, { str: true }] } },
-  animation: { custom: 'animation' }
+  animation: { custom: 'animation' },
+  aside: { req: ['title'], custom: 'aside' },
+  figure: { req: ['title'], custom: 'figure' },
+  scorecard: { req: ['title'], arr: { items: [1, 10, { req: ['title'], enums: { status: ['done', 'partial', 'fail', 'na'] } }] } }
 };
 export const KNOWN_TYPES = Object.keys(R);
 
@@ -81,7 +86,21 @@ function validateDeck(deck, file) {
   if (!deck || typeof deck !== 'object') { E(0, 'Deck must be a JSON object'); return out; }
   const meta = deck.meta ?? {};
   if (!isArr(deck.slides) || !deck.slides.length) { E(0, '"slides" must be a non-empty array'); return out; }
-  if (meta.theme && !THEMES.includes(meta.theme)) E(0, `meta.theme "${meta.theme}" is not one of: ${THEMES.join(', ')}`);
+  // meta.style: the style file may add palettes and slide types (or replace the rules of a built-in type)
+  let style = null;
+  if (meta.style != null && meta.style !== 'default') {
+    if (!STYLE_ID.test(String(meta.style))) E(0, `meta.style "${meta.style}" is not a valid style id (lowercase letters, digits and dashes)`);
+    else {
+      const r = loadStyle(meta.style);
+      if (r.error) E(0, `meta.style "${meta.style}": ${r.error}. Available: default, ${listStyles().join(', ')}`);
+      else style = r.def;
+    }
+  }
+  const rules = { ...R };
+  Object.entries(style?.types ?? {}).forEach(([k, t]) => { if (t.rules || !rules[k]) rules[k] = t.rules ?? {}; });
+  const themes = [...THEMES, ...Object.keys(style?.themes ?? {})];
+  if (meta.theme && !themes.includes(meta.theme)) E(0, `meta.theme "${meta.theme}" is not one of: ${themes.join(', ')}`);
+  if (meta.mode && !['light', 'dark'].includes(meta.mode)) E(0, `meta.mode "${meta.mode}" must be "light" or "dark"`);
   if (meta.transition && !TRANSITIONS.includes(meta.transition)) E(0, `meta.transition "${meta.transition}" is not one of: ${TRANSITIONS.join(', ')}`);
   if (!meta.title) W(0, 'meta.title is missing (used in the footer and the browser tab)');
 
@@ -96,8 +115,8 @@ function validateDeck(deck, file) {
   slides.forEach((s, idx) => {
     const i = idx + 1;
     if (!s || typeof s !== 'object') return E(i, 'Slide must be an object');
-    const T = R[s.type];
-    if (!T) return E(i, `Unknown slide type "${s.type}". Known types: ${KNOWN_TYPES.join(', ')}`);
+    const T = rules[s.type];
+    if (!T) return E(i, `Unknown slide type "${s.type}". Known types: ${Object.keys(rules).join(', ')}`);
     if (s.theme && !MODES.includes(s.theme)) E(i, `theme "${s.theme}" must be one of: ${MODES.join(', ')}`);
     if (s.type !== 'animation' && s.type !== 'section' && s.type !== 'cover' && s.type !== 'closing' && !s.notes) { /* notes optional */ }
     if (idx > 0 && types[idx - 1] === s.type && s.type !== 'section') W(i, `Same slide type "${s.type}" twice in a row: vary the rhythm`);
@@ -114,7 +133,7 @@ function checkRule(obj, rule, slide, E, W, path = '') {
   const label = f => (path ? `${path}.` : '') + f;
   (rule.req ?? []).forEach(f => { if (!isStr(obj[f]) && typeof obj[f] !== 'number') E(slide, `Missing required field "${label(f)}"`); });
   if (rule.any && !rule.any.some(f => isStr(obj[f]))) E(slide, `One of ${rule.any.map(label).join(' / ')} is required`);
-  (rule.url ?? []).forEach(f => { if (isStr(obj[f]) && !isUrl(obj[f])) W(slide, `"${label(f)}" should be an absolute http(s) URL`); });
+  (rule.url ?? []).forEach(f => { if (isStr(obj[f]) && !isUrl(obj[f]) && !isLocal(obj[f])) W(slide, `"${label(f)}" should be an absolute http(s) URL or an existing file relative to index.html`); });
   Object.entries(rule.enums ?? {}).forEach(([f, vals]) => { if (obj[f] != null && !vals.includes(obj[f])) E(slide, `"${label(f)}" must be one of: ${vals.join(', ')} (got "${obj[f]}")`); });
   (rule.digits ?? []).forEach(f => { if (isStr(obj[f]) && !/\d/.test(obj[f])) W(slide, `"${label(f)}" ("${obj[f]}") has no digit: it will not animate as a counter`); });
   (rule.num ?? []).forEach(f => { if (obj[f] == null || isNaN(parseFloat(String(obj[f]).replace(',', '.')))) E(slide, `"${label(f)}" must be a number`); });
@@ -131,7 +150,7 @@ function checkRule(obj, rule, slide, E, W, path = '') {
       ['text', 'desc'].forEach(f => { if (words(it[f]) > 55) W(slide, `"${key}[${k}].${f}" has ${words(it[f])} words (aim for ≤ 40)`); });
     });
   });
-  ['text', 'subtitle'].forEach(f => { if (rule === R[obj.type] && words(obj[f]) > 80) W(slide, `"${f}" has ${words(obj[f])} words (aim for ≤ 60)`); });
+  ['text', 'subtitle'].forEach(f => { if (!path && words(obj[f]) > 80) W(slide, `"${f}" has ${words(obj[f])} words (aim for ≤ 60)`); });
 }
 
 const custom = {
@@ -184,6 +203,19 @@ const custom = {
     });
     if (s.today != null && !(s.today >= 0 && s.today <= n)) W(i, `"today" should be between 0 and ${n}`);
   },
+  aside(s, i, E, W) {
+    if (!s.text && !(s.items ?? []).length && !s.card) E(i, 'aside needs "text", "items" or "card" in the main column');
+    if ((s.side ?? []).length > 4) W(i, `"side" has ${s.side.length} blocks (max 4)`);
+    (s.side ?? []).forEach((b, k) => { if (!b || typeof b !== 'object' || !(b.value || b.text || isArr(b.items))) E(i, `side[${k}] needs "value", "text" or "items"`); });
+  },
+  figure(s, i, E, W) {
+    const im = s.images ?? (s.image ? [{ image: s.image }] : []);
+    if (!isArr(im) || !im.length) return E(i, 'figure needs "image" or "images" (1–3)');
+    if (im.length > 3) W(i, `"images" has ${im.length} items (max 3)`);
+    im.forEach((k, j) => { if (!isStr(k?.image)) E(i, `images[${j}].image is required`); else if (!isUrl(k.image) && !isLocal(k.image)) W(i, `images[${j}].image "${k.image}" is neither an http(s) URL nor an existing file`); });
+    if ((s.points ?? []).length > 5) W(i, `"points" has ${s.points.length} items (max 5)`);
+    (s.points ?? []).forEach((p, k) => { if (!isStr(p?.title)) E(i, `points[${k}].title is required`); });
+  },
   video(s, i, E, W) { if (!s.src && !s.poster) W(i, 'Video has neither "src" nor "poster": it will show an empty placeholder'); },
   animation(s, i, E, W) {
     if (s.libs) W(i, '"libs" is not supported by this engine version (three.js support was removed)');
@@ -207,11 +239,36 @@ const custom = {
       if (!/return\s*\{?\s*frame|return\s+[a-zA-Z_$][\w$]*\s*;?\s*$|return\s*\(?\s*function/m.test(code) && !/return\s*\{[^}]*frame/.test(code)) W(i, 'The animation should end with `return { frame }` (frame(dt, t) draws each frame)');
       if (/\b(fetch|XMLHttpRequest|WebSocket|eval|importScripts)\s*\(/.test(code)) W(i, 'Animation code uses network/eval APIs: avoid them (security and portability)');
       if (/\bdocument\.(cookie|location)|localStorage|sessionStorage/.test(code)) W(i, 'Animation code touches cookies/storage: avoid it');
+      if (/\b(AudioContext|webkitAudioContext|new\s+Audio)\b/.test(code)) W(i, 'Animation creates its own audio: use api.sound (shared context, mute key M, stops when leaving the slide)');
       if (/#[0-9a-fA-F]{6}\b/.test(code) && !/colors/.test(code)) W(i, 'Hard-coded colors found: prefer api.colors so the animation follows the active theme');
     }
     if (!s.title && !s.caption && s.overlay !== false) { /* pure full-screen is fine */ }
   }
 };
+
+/* Style files: they must load, and everything a deck can reach through them must exist */
+function validateStyle(id) {
+  const out = [], E = message => out.push({ severity: 'error', slide: 0, message }), W = message => out.push({ severity: 'warning', slide: 0, message });
+  if (!STYLE_ID.test(id)) E(`The file name "${id}" is not a valid style id (lowercase letters, digits and dashes)`);
+  const { def, error } = loadStyle(id);
+  if (error) { E(error); return out; }
+  if (!isStr(def.label)) E('The style needs a "label" (shown in the style picker)');
+  if (!isStr(def.description)) W('The style should have a "description" (shown to the AI in the chat prompts)');
+  const themes = [...THEMES, ...Object.keys(def.themes ?? {})];
+  if (def.theme && !themes.includes(def.theme)) E(`"theme" must be one of: ${themes.join(', ')} (got "${def.theme}")`);
+  if (def.mode && !['light', 'dark'].includes(def.mode)) E('"mode" must be "light" or "dark"');
+  Object.entries(def.themes ?? {}).forEach(([k, t]) => { ['label', 'a', 'b'].forEach(f => { if (!isStr(t[f])) E(`themes.${k}.${f} is required`); }); if (!t.vars?.['--brand'] || !t.vars?.['--ink']) E(`themes.${k}.vars needs at least --brand and --ink`); });
+  Object.entries(def.types ?? {}).forEach(([k, t]) => {
+    if (!R[k] && typeof t.render !== 'function') E(`types.${k} is a new slide type, so it needs a render(s, c) function`);
+    if (!R[k] && !t.rules) W(`types.${k} has no "rules": the validator cannot check its fields`);
+    if (t.theme && !MODES.includes(t.theme)) E(`types.${k}.theme must be one of: ${MODES.join(', ')}`);
+  });
+  ['header', 'chrome', 'decor'].forEach(h => { if (def[h] != null && typeof def[h] !== 'function') E(`"${h}" must be a function`); });
+  const css = String(def.css ?? '');
+  if (/@import/.test(css)) E('css must not use @import: list web fonts in "fonts"');
+  if (css.match(/#[\w-]+/g)?.some(m => /^#[0-9a-fA-F]{3,8}$/.test(m) && !/^#f{3}(f{3})?$/i.test(m))) W('css has hard-coded colors: use theme tokens (var(--brand)…) and put palettes in "themes"');
+  return out;
+}
 
 /* ---------- CLI ---------- */
 function collect(args) {
@@ -231,6 +288,11 @@ function main() {
     errors += issues.filter(x => x.severity === 'error').length; warnings += issues.filter(x => x.severity === 'warning').length;
     report.push({ file: relative(ROOT, f), issues });
   }
+  if (!argv.some(a => !a.startsWith('--'))) for (const id of listStyles()) {
+    const issues = validateStyle(id);
+    errors += issues.filter(x => x.severity === 'error').length; warnings += issues.filter(x => x.severity === 'warning').length;
+    report.push({ file: `styles/${id}.js`, issues });
+  }
   if (json) console.log(JSON.stringify({ ok: errors === 0 && (!strict || warnings === 0), errors, warnings, files: report }, null, 2));
   else {
     for (const r of report) {
@@ -238,7 +300,7 @@ function main() {
       console.log(`${e ? '✗' : '✓'} ${r.file}  ${e} error(s), ${w} warning(s)`);
       r.issues.sort((a, b) => a.slide - b.slide).forEach(x => console.log(`    ${x.severity === 'error' ? 'ERROR  ' : 'warning'}  ${x.slide ? `slide ${x.slide}: ` : ''}${x.message}`));
     }
-    console.log(`\n${files.length} deck(s) · ${errors} error(s) · ${warnings} warning(s)`);
+    console.log(`\n${report.length} file(s) · ${errors} error(s) · ${warnings} warning(s)`);
   }
   if (errors || (strict && warnings)) process.exitCode = 1;
 }

@@ -4,21 +4,22 @@ El diseño usa una identidad visual limpia y moderna (naranja #FF6200, tinta cas
 
 REGLAS ESTRICTAS PARA EL JSON:
 1. La salida debe ser ÚNICAMENTE el código JSON. No incluyas explicaciones antes ni después.
-2. Utiliza siempre imágenes genéricas de Unsplash (https://images.unsplash.com/photo-...) o Placehold (https://placehold.co/...).
+2. Utiliza siempre imágenes genéricas de Unsplash (https://images.unsplash.com/photo-...) o Placehold (https://placehold.co/...). Si el autor aporta sus propias figuras (planos, esquemas, capturas, fotos de un informe), refiérelas con su ruta relativa (p. ej. "assets/proyecto/esquema.jpg") y muéstralas con el tipo "figure".
 3. Para los iconos, utiliza nombres válidos de la librería Phosphor Icons (ej: "ph-chart-bar", "ph-users", "ph-rocket-launch").
 4. El JSON debe tener un objeto principal con dos propiedades: "meta" y "slides".
 5. Sé conciso: títulos de máx. 8 palabras, textos de máx. 40 palabras por bloque. Se admite HTML inline básico en los textos (<strong>, <br>).
 6. Los valores numéricos de métricas deben incluir su unidad dentro del string (ej: "+15%", "2.4M", "120M€"): el motor los anima contando desde cero.
-7. Estructura la historia: abre con "cover", usa "section" para separar bloques, alterna slides visuales (hero, big-number, charts, gallery, animation) con slides de texto, y cierra con "closing".
+7. Estructura la historia: abre con "cover", usa "section" para separar bloques, alterna slides visuales (hero, big-number, charts, gallery, figure, animation) con slides de texto, y cierra con "closing".
+8. Para memorias, proyectos técnicos o defensas académicas usa "aside" (contenido + columna de datos clave), "figure" (planos, esquemas y capturas completos) y "scorecard" (objetivos frente a resultados con su evidencia).
 
 ESQUEMA DEL JSON:
 
 {
-  "meta": { "theme": "classic" | "marino" | "ocean" | "esmeralda" | "violeta" | "carmin", "title": "Título corto (opcional)", "date": "Mes Año", "author": "Nombre o Departamento", "transition": "slide" | "fade" | "zoom", "logo": "URL de imagen del logo oficial (opcional)" },
+  "meta": { "theme": "classic" | "marino" | "ocean" | "esmeralda" | "violeta" | "carmin" | "argos", "mode": "light" | "dark" (opcional), "title": "Título corto (opcional)", "date": "Mes Año", "author": "Nombre o Departamento", "transition": "slide" | "fade" | "zoom", "logo": "URL de imagen del logo oficial (opcional)" },
   "slides": [ ...array de objetos slide... ]
 }
 
-TEMAS DE COLOR (meta.theme): "classic" (naranja + tinta, por defecto), "marino" (naranja + azul marino), "ocean" (azul + tinta marina), "esmeralda" (verde), "violeta" (morado) y "carmin" (rojo). Elige el que mejor encaje con el tema de la presentación (p. ej. "esmeralda" para sostenibilidad, "carmin" para historia, "violeta" para tecnología). Ningún tema muestra logo por defecto: indica "meta.brand" (texto) o "meta.logo" (URL de imagen) si lo quieres.
+TEMAS DE COLOR (meta.theme): "classic" (naranja + tinta, por defecto), "marino" (naranja + azul marino), "ocean" (azul + tinta marina), "esmeralda" (verde), "violeta" (morado), "carmin" (rojo) y "argos" (azul marino + verde, pensado para defensas técnicas; combínalo con "mode": "dark"). "meta.mode": "dark" hace oscuros por defecto todos los slides claros. Elige el que mejor encaje con el tema de la presentación (p. ej. "esmeralda" para sostenibilidad, "carmin" para historia, "violeta" para tecnología). Ningún tema muestra logo por defecto: indica "meta.brand" (texto) o "meta.logo" (URL de imagen) si lo quieres.
 
 CAMPOS OPCIONALES VÁLIDOS EN CUALQUIER SLIDE:
 - "notes": "Notas del orador (se ven con la tecla N)"
@@ -156,9 +157,28 @@ TIPOS DE SLIDES PERMITIDOS (elige los que mejor se adapten al contenido):
 39. LOGOS / PARTNERS (hasta 8; cada item es un nombre o {"name", "image", "icon"}):
 {"type": "logos", "title": "...", "subtitle": "...", "items": [ {"name": "...", "icon": "ph-..."} ]}
 
+--- TIPOS PARA PROYECTOS TÉCNICOS Y ACADÉMICOS ---
+
+40. CONTENIDO + COLUMNA LATERAL DE DATOS (como una ficha de trabajo: texto, lista y recuadro a la izquierda; datos etiquetados a la derecha):
+{"type": "aside", "kicker": "...", "title": "...", "text": "Párrafo inicial (opcional)", "numbered": false,
+ "items": [ {"icon": "ph-check-circle", "title": "...", "text": "..."} ],
+ "card": {"title": "ETIQUETA", "text": "Recuadro destacado bajo la lista (opcional)"},
+ "side": [ {"label": "ETIQUETA", "value": "2 min", "text": "..."}, {"label": "ETIQUETA", "items": ["...", "..."]} ]}
+(la columna principal necesita "text", "items" (máx 8; pueden ser textos simples) o "card"; "side" admite hasta 4 bloques, cada uno con "value" (cifra grande animada), "text" y/o "items")
+
+41. FIGURA (1 a 3 imágenes completas sin recortar: planos, esquemas, capturas, fotos propias; con anotaciones numeradas opcionales):
+{"type": "figure", "title": "...", "images": [ {"image": "URL o ruta", "caption": "...", "span": 2, "bg": "dark", "fit": "cover"} ],
+ "source": "Elaboración propia (opcional)", "points": [ {"title": "...", "text": "...", "icon": "ph-... (opcional; si no, números)"} ]}
+("span" reparte el ancho entre imágenes; "bg": "dark" enmarca fotos sobre fondo oscuro; "fit": "cover" rellena el marco; "points" máx 5)
+
+42. OBJETIVOS FRENTE A RESULTADOS (máx 10; "status": "done" | "partial" | "fail" | "na"):
+{"type": "scorecard", "title": "...", "subtitle": "...", "items": [ {"title": "Objetivo", "status": "done", "evidence": "Qué lo demuestra"} ],
+ "labels": {"done": "Conseguido", "partial": "Parcial", "fail": "No conseguido", "na": "No evaluado"}}
+(muestra un recuento por estado y una barra; "labels" es opcional. En las tablas, las celdas "Conseguido", "Parcial", "No evaluado" y "No conseguido" también se colorean)
+
 --- ANIMACIÓN JAVASCRIPT A PANTALLA COMPLETA ---
 
-40. ANIMACIÓN (un canvas en bucle que ocupa todo el slide; úsalo 1 o 2 veces por presentación para explicar visualmente un concepto: un proceso, un algoritmo, un sistema físico, una red, un flujo de datos...):
+43. ANIMACIÓN (un canvas en bucle que ocupa todo el slide; úsalo 1 o 2 veces por presentación para explicar visualmente un concepto: un proceso, un algoritmo, un sistema físico, una red, un flujo de datos...):
 {"type": "animation", "kicker": "Etiqueta (opcional)", "title": "Título (opcional)", "caption": "Frase didáctica que explica lo que se ve (opcional)",
  "params": {"speed": 1}, "overlay": true, "chrome": true, "theme": "dark",
  "code": ["línea 1 de JavaScript", "línea 2", "..."]}

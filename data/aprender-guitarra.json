@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "title": "Aprende a tocar la guitarra",
+    "date": "Octubre 2026",
+    "author": "Curso para principiantes",
+    "theme": "classic",
+    "brand": "Guitarra",
+    "transition": "slide"
+  },
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Curso para principiantes",
+      "title": "Aprende a tocar la guitarra",
+      "subtitle": "De cero a tus primeras canciones, paso a paso y con animaciones",
+      "notes": "Deck didáctico para principiantes absolutos, pensado para guitarra clásica o acústica y para personas diestras. Incluye cinco animaciones: la cuerda que vibra, el afinador, la tablatura, los acordes y el rasgueo. Las animaciones tienen sonido sintetizado (cuerdas, acordes y metrónomo): pulsa M para silenciarlo. El navegador solo deja sonar el audio después de una tecla o un clic."
+    },
+    {
+      "type": "agenda",
+      "title": "Qué vamos a ver",
+      "subtitle": "Cinco bloques, de sujetar la guitarra a tocar una progresión",
+      "items": [
+        { "title": "Conoce tu guitarra", "desc": "Tipos, partes y por qué suena" },
+        { "title": "Afinar y colocarse", "desc": "Las seis cuerdas, el afinador y la postura" },
+        { "title": "Leer sin solfeo", "desc": "Diagramas de acordes y tablaturas" },
+        { "title": "Tus primeros acordes", "desc": "Cinco posiciones abiertas y cómo cambiar" },
+        { "title": "Ritmo y práctica", "desc": "Rasgueo, metrónomo y un plan para el primer mes" }
+      ]
+    },
+    {
+      "type": "statement",
+      "kicker": "La idea clave",
+      "text": "Para empezar no necesitas *talento*: necesitas *constancia* y unos minutos al día.",
+      "source": "La práctica corta y diaria vence a la sesión larga de cada fin de semana",
+      "notes": "Mensaje motivador. Es un consejo pedagógico habitual, no una estadística."
+    },
+    {
+      "type": "section",
+      "title": "Conoce tu guitarra",
+      "subtitle": "Tipos, partes y por qué suena"
+    },
+    {
+      "type": "features",
+      "title": "Tres guitarras, una misma técnica",
+      "subtitle": "Los acordes y las tablaturas son iguales en las tres.",
+      "cards": [
+        { "icon": "ph-guitar", "title": "Clásica", "text": "Cuerdas de nylon, suaves para los dedos, y mástil ancho. Sonido cálido. Muy buena para empezar.", "style": "orange" },
+        { "icon": "ph-music-notes", "title": "Acústica", "text": "Cuerdas de acero y mástil más estrecho. Sonido brillante y potente; al principio cuesta más a las yemas.", "style": "navy" },
+        { "icon": "ph-plugs", "title": "Eléctrica", "text": "Cuerdas finas y mástil estrecho: se pisa con poca fuerza. Necesita amplificador para oírse bien.", "style": "orange" }
+      ],
+      "notes": "No hay una guitarra «correcta» para empezar: la mejor es la que te apetece coger cada día. Si dudas, la clásica es la más amable con los dedos."
+    },
+    {
+      "type": "icons",
+      "title": "Las partes de la guitarra",
+      "subtitle": "Lo que necesitas nombrar para seguir el curso.",
+      "icons": [
+        { "icon": "ph-wrench", "title": "Clavijas", "desc": "En la pala: tensan o aflojan cada cuerda", "color": "orange" },
+        { "icon": "ph-line-segment", "title": "Cejuela", "desc": "Pieza donde empiezan las cuerdas", "color": "navy" },
+        { "icon": "ph-ruler", "title": "Mástil y diapasón", "desc": "Donde pisa la mano izquierda", "color": "blue" },
+        { "icon": "ph-dots-three-vertical", "title": "Trastes", "desc": "Barras metálicas: cada una, un semitono", "color": "orange" },
+        { "icon": "ph-circle", "title": "Boca", "desc": "Salida del sonido de la caja", "color": "navy" },
+        { "icon": "ph-speaker-high", "title": "Caja", "desc": "Amplifica la vibración de las cuerdas", "color": "blue" },
+        { "icon": "ph-anchor", "title": "Puente", "desc": "Donde se anclan las cuerdas", "color": "orange" },
+        { "icon": "ph-hand-pointing", "title": "Cuerdas", "desc": "Seis: de la 6ª (grave) a la 1ª (aguda)", "color": "navy" }
+      ]
+    },
+    {
+      "type": "animation",
+      "kicker": "Por qué suena",
+      "title": "La cuerda vibra; el traste la acorta",
+      "caption": "Cuanto más corta es la parte que vibra, más aguda es la nota. En el traste 12 vibra la mitad: la misma nota, una octava más alta.",
+      "src": "animations/guitarra-cuerda.js",
+      "notes": "5ª cuerda: La (A2) = 110 Hz al aire. Traste 5: ≈ 75 % de longitud, Re (D3) ≈ 146,8 Hz. Traste 12: 50 %, La (A3) = 220 Hz. Los trastes están dibujados en su posición real (cada traste divide la longitud restante por la raíz duodécima de 2). Vibración ralentizada y exagerada."
+    },
+    {
+      "type": "big-number",
+      "kicker": "Una regla para todo el mástil",
+      "value": "12",
+      "label": "trastes para subir una octava",
+      "desc": "Cada traste sube un semitono. Doce semitonos después, la nota se repite, el doble de aguda.",
+      "notes": "Por eso el traste 12 suele llevar una marca doble en el diapasón."
+    },
+    {
+      "type": "section",
+      "title": "Afinar y colocarse",
+      "subtitle": "Las seis cuerdas, el afinador y la postura"
+    },
+    {
+      "type": "table",
+      "title": "La afinación estándar",
+      "subtitle": "De la cuerda más grave a la más aguda (La = 440 Hz).",
+      "highlight": 1,
+      "headers": ["Cuerda", "Nota", "Cifrado", "Frecuencia"],
+      "rows": [
+        ["6ª (la más gruesa)", "Mi grave", "E2", "82,4 Hz"],
+        ["5ª", "La", "A2", "110 Hz"],
+        ["4ª", "Re", "D3", "146,8 Hz"],
+        ["3ª", "Sol", "G3", "196 Hz"],
+        ["2ª", "<span>Si</span>", "B3", "246,9 Hz"],
+        ["1ª (la más fina)", "Mi agudo", "E4", "329,6 Hz"]
+      ],
+      "notes": "Cifrado americano: A = La, B = Si, C = Do, D = Re, E = Mi, F = Fa, G = Sol. El número indica la octava. Las dos cuerdas Mi están separadas dos octavas."
+    },
+    {
+      "type": "animation",
+      "kicker": "Afinar",
+      "title": "Cuerda a cuerda, con afinador",
+      "caption": "Pulsa una cuerda y mira la aguja: si está grave, tensa; si está aguda, afloja. Afina siempre subiendo hacia la nota.",
+      "src": "animations/guitarra-afinar.js",
+      "notes": "Un afinador cromático (de pinza o app de móvil) es lo más sencillo. Un cent es la centésima parte de un semitono. Truco: si te pasas, afloja por debajo de la nota y vuelve a subir; la cuerda se mantiene mejor afinada. Las desviaciones de la animación son de ejemplo."
+    },
+    {
+      "type": "bullets",
+      "title": "Una buena postura evita tensiones",
+      "subtitle": "Sentado, para empezar. Revísala al inicio de cada práctica.",
+      "items": [
+        { "icon": "ph-chair", "title": "Espalda recta", "text": "Guitarra apoyada en la pierna y pegada al cuerpo, sin inclinarla para mirar." },
+        { "icon": "ph-hand", "title": "Pulgar detrás del mástil", "text": "Más o menos a la altura del dedo medio, sin agarrar el mástil como un martillo." },
+        { "icon": "ph-hand-pointing", "title": "Yemas, junto al traste", "text": "Pisa con la punta del dedo, justo antes del traste, con la presión justa para que suene." },
+        { "icon": "ph-wave-sine", "title": "Muñeca suelta", "text": "La mano derecha rasguea desde la muñeca, no desde el hombro." }
+      ],
+      "notes": "Para zurdos: todo vale igual con la guitarra invertida (guitarra para zurdos o cuerdas cambiadas de orden)."
+    },
+    {
+      "type": "section",
+      "title": "Leer sin solfeo",
+      "subtitle": "Diagramas de acordes y tablaturas"
+    },
+    {
+      "type": "split-text",
+      "title": "Dos mapas del mástil",
+      "subtitle": "Casi todo el material para guitarra usa uno de los dos.",
+      "connector": false,
+      "columns": [
+        { "title": "Diagrama de acorde", "icon": "ph-grid-four", "text": "El mástil en vertical: líneas verticales = cuerdas (6ª a la izquierda), horizontales = trastes. Los puntos dicen qué dedo pisa. X = no tocar, O = al aire." },
+        { "title": "Tablatura", "icon": "ph-list", "text": "Seis líneas horizontales = cuerdas; la de arriba es la 1ª (la más aguda). Cada número es el traste que pisas; 0 = al aire. Se lee de izquierda a derecha." }
+      ]
+    },
+    {
+      "type": "icons",
+      "title": "Los dedos tienen número",
+      "subtitle": "Los diagramas indican la mano izquierda con estos números.",
+      "icons": [
+        { "icon": "ph-number-circle-one", "title": "Índice", "desc": "El que más trabaja: muchos acordes empiezan por él.", "color": "orange" },
+        { "icon": "ph-number-circle-two", "title": "Medio", "desc": "Fuerte y largo: ideal para las cuerdas graves.", "color": "navy" },
+        { "icon": "ph-number-circle-three", "title": "Anular", "desc": "Suele pisar uno o dos trastes más allá que el índice.", "color": "blue" },
+        { "icon": "ph-number-circle-four", "title": "Meñique", "desc": "Al principio cuesta; poco a poco gana fuerza.", "color": "orange" }
+      ],
+      "notes": "El pulgar no lleva número en la mano izquierda. En guitarra clásica la mano derecha usa letras: p (pulgar), i (índice), m (medio), a (anular)."
+    },
+    {
+      "type": "animation",
+      "kicker": "Tablatura",
+      "title": "Tu primera escala, leída en tablatura",
+      "caption": "Sigue el cursor: cada número te dice qué traste pisar en qué cuerda. Así suena la escala de Do mayor.",
+      "src": "animations/guitarra-tablatura.js",
+      "notes": "Escala de Do mayor en primera posición: Do (5ª, traste 3), Re (4ª al aire), Mi (4ª, 2), Fa (4ª, 3), Sol (3ª al aire), La (3ª, 2), Si (2ª al aire), Do (2ª, 1). Un dedo por traste: traste 1 → índice, 2 → medio, 3 → anular."
+    },
+    {
+      "type": "section",
+      "title": "Tus primeros acordes",
+      "subtitle": "Cinco posiciones abiertas y cómo cambiar entre ellas"
+    },
+    {
+      "type": "animation",
+      "kicker": "Acordes abiertos",
+      "title": "Cinco acordes para empezar",
+      "caption": "Mim, Lam, Do, Sol y Re. Mira cómo viaja cada dedo de un acorde al siguiente.",
+      "src": "animations/guitarra-acordes.js",
+      "params": { "chords": ["Em", "Am", "C", "G", "D"], "mode": "shapes" },
+      "notes": "Se llaman «abiertos» porque combinan cuerdas pisadas y cuerdas al aire. Fíjate en el paso Lam → Do: los dedos 1 y 2 no se mueven. Sol se muestra con la digitación 2-1-3, muy habitual al empezar (otra común es 3-2-4)."
+    },
+    {
+      "type": "table",
+      "title": "Chuleta de posiciones",
+      "subtitle": "Traste de cada cuerda, de la 6ª a la 1ª (x = no se toca, 0 = al aire).",
+      "highlight": 2,
+      "headers": ["Acorde", "Cifrado", "6ª → 1ª", "Dedos"],
+      "rows": [
+        ["Mi menor", "Em", "0 2 2 0 0 0", "2 y 3"],
+        ["La menor", "Am", "x 0 2 2 1 0", "1, 2 y 3"],
+        ["Do mayor", "C", "x 3 2 0 1 0", "1, 2 y 3"],
+        ["Sol mayor", "G", "3 2 0 0 0 3", "1, 2 y 3"],
+        ["Re mayor", "D", "x x 0 2 3 2", "1, 2 y 3"]
+      ],
+      "notes": "Empieza por Mim y Lam: con dos o tres dedos y sin estiramientos. Re es el más exigente porque solo se tocan cuatro cuerdas."
+    },
+    {
+      "type": "process",
+      "title": "Cómo cambiar de acorde más rápido",
+      "subtitle": "El cambio, no el acorde, es lo que de verdad hay que practicar.",
+      "steps": [
+        { "icon": "ph-eye", "title": "Mira antes", "desc": "Piensa en el siguiente acorde un tiempo antes de llegar." },
+        { "icon": "ph-hand-grabbing", "title": "Todos a la vez", "desc": "Levanta y coloca los dedos como un bloque, no uno a uno." },
+        { "icon": "ph-anchor-simple", "title": "Dedo guía", "desc": "Si un dedo se repite, déjalo quieto o deslízalo sin soltar." },
+        { "icon": "ph-timer", "title": "Un minuto", "desc": "Alterna dos acordes durante 60 segundos y cuenta los cambios." }
+      ],
+      "notes": "El ejercicio del minuto es muy motivador: apunta cuántos cambios limpios haces y repite cada día."
+    },
+    {
+      "type": "animation",
+      "kicker": "Progresión",
+      "title": "Sol · Re · Mim · Do",
+      "caption": "Cuatro tiempos por acorde, un rasgueo por tiempo. Esta progresión (I–V–vi–IV) aparece en muchísimas canciones pop.",
+      "src": "animations/guitarra-acordes.js",
+      "params": { "chords": ["G", "D", "Em", "C"], "mode": "progression", "bpm": 60 },
+      "notes": "En grados de la tonalidad de Sol: I (Sol), V (Re), vi (Mim) y IV (Do). Empieza a 60 pulsaciones por minuto; sube 5 bpm solo cuando los cambios salgan limpios."
+    },
+    {
+      "type": "section",
+      "title": "Ritmo y práctica",
+      "subtitle": "Rasgueo, metrónomo y un plan para el primer mes"
+    },
+    {
+      "type": "animation",
+      "kicker": "Rasgueo",
+      "title": "La mano nunca se para",
+      "caption": "Baja en cada número y sube en cada «y». El patrón solo decide cuándo tocas las cuerdas y cuándo pasas por el aire.",
+      "src": "animations/guitarra-rasgueo.js",
+      "params": { "pattern": "D-DU-UDU", "bpm": 70 },
+      "notes": "Patrón ↓ ↓↑ ↑↓↑ en 4/4, uno de los más usados en pop y folk. Cuenta «1 y 2 y 3 y 4 y» en voz alta. Al principio, rasguea con una púa fina o con el lateral del índice."
+    },
+    {
+      "type": "charts",
+      "title": "Una sesión de 20 minutos",
+      "subtitle": "Mejor 20 minutos cada día que dos horas el domingo.",
+      "charts": [
+        {
+          "type": "doughnut",
+          "title": "Reparto orientativo (minutos)",
+          "labels": ["Calentar y afinar", "Acordes y cambios", "Rasgueo con metrónomo", "Una canción"],
+          "data": [3, 7, 5, 5],
+          "center": { "value": "20 min", "label": "al día" }
+        }
+      ],
+      "notes": "Es una propuesta orientativa, no una regla. Lo importante es practicar casi a diario y terminar siempre con algo que suene a música."
+    },
+    {
+      "type": "timeline",
+      "title": "Tu primer mes, semana a semana",
+      "subtitle": "Plan orientativo: avanza a tu ritmo.",
+      "steps": [
+        { "date": "Semana 1", "title": "Postura y afinación", "desc": "Mim y Lam; pulsar cuerdas limpias" },
+        { "date": "Semana 2", "title": "Do, Sol y Re", "desc": "Cambios lentos, ejercicio del minuto" },
+        { "date": "Semana 3", "title": "Ritmo", "desc": "Rasgueo con metrónomo a 60–70 bpm" },
+        { "date": "Semana 4", "title": "Primera canción", "desc": "Sol–Re–Mim–Do de principio a fin" }
+      ]
+    },
+    {
+      "type": "versus",
+      "title": "Errores frecuentes al empezar",
+      "subtitle": "Casi todos se corrigen yendo más despacio.",
+      "left": {
+        "title": "Evita",
+        "icon": "ph-x-circle",
+        "items": ["Apretar las cuerdas con toda la fuerza", "Tocar rápido aunque suene sucio", "Parar el ritmo para cambiar de acorde", "Sesiones largas y de tarde en tarde"]
+      },
+      "right": {
+        "title": "Mejor",
+        "icon": "ph-check-circle",
+        "items": ["La presión justa para que la nota suene", "Lento y limpio; la velocidad llega sola", "Mantener la mano derecha aunque falle la izquierda", "Ratos cortos casi todos los días"]
+      },
+      "verdict": "Si una nota «zumba», acerca el dedo al traste antes de apretar más."
+    },
+    {
+      "type": "faq",
+      "title": "Preguntas habituales",
+      "subtitle": "Lo que casi todo el mundo se pregunta la primera semana.",
+      "items": [
+        { "q": "¿Es normal que me duelan las yemas?", "a": "Sí, las primeras semanas, hasta que se endurece la piel. El dolor en muñeca o antebrazo no lo es: para y revisa la postura." },
+        { "q": "¿Necesito saber solfeo?", "a": "No para empezar. Con diagramas y tablaturas puedes tocar muchas canciones; el solfeo puede venir después." },
+        { "q": "¿Clásica o acústica?", "a": "Las dos sirven. La clásica es más suave para los dedos; la acústica suena más brillante." },
+        { "q": "¿Cuánto tardaré en tocar canciones?", "a": "Varía mucho de una persona a otra. Lo que más influye es practicar con regularidad." }
+      ]
+    },
+    {
+      "type": "closing",
+      "title": "¡A tocar!",
+      "subtitle": "Afina, pon el metrónomo a 60 y toca Sol–Re–Mim–Do durante cinco minutos. Hoy mismo.",
+      "cta": "Empieza hoy"
+    }
+  ]
+}

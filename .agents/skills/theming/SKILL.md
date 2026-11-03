@@ -1,11 +1,13 @@
 ---
 name: theming
-description: Choose, apply or create color themes for the slides engine (classic, marino, ocean, esmeralda, violeta, carmin), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
+description: Choose, apply or create color themes for the slides engine (classic, marino, ocean, esmeralda, violeta, carmin, argos), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
 ---
 
 # Theming
 
-## The six themes
+A theme only changes colors. To change the layout, markup or typography of a deck, use the `create-style` skill. Themes work on top of any style, and a style can add its own palettes through its `themes` field.
+
+## The seven themes
 
 | `meta.theme` | Look | Good for |
 |---|---|---|
@@ -15,8 +17,9 @@ description: Choose, apply or create color themes for the slides engine (classic
 | `esmeralda` | Green `#0A8754` | Sustainability, health, nature |
 | `violeta` | Purple `#6D28D9` | Innovation, AI, space |
 | `carmin` | Crimson `#D81B4A` | History, culture, urgency |
+| `argos` | Navy `#091B33` + green `#5BB88F` (fills `#2E7D5B`) | Technical/academic defences; mirrors a dark work template: green side stripe, flat kicker, navy panels. Use with `"mode": "dark"` |
 
-Set in the deck: `"meta": { "theme": "violeta" }`. Override at runtime with `?theme=ocean` in the URL, the palette button in the dock, or the `C` key (cycles themes).
+Set in the deck: `"meta": { "theme": "violeta" }`. Add `"mode": "dark"` (or `"light"`) to choose the default mode of every light slide; `T` still toggles it. Override at runtime with `?theme=ocean` in the URL, the palette button in the dock, or the `C` key (cycles themes).
 
 Match the theme to the subject; keep one theme per deck.
 
