@@ -17,7 +17,7 @@ import vm from 'node:vm';
 import { STYLE_ID, listStyles, loadStyle } from './load-style.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const THEMES = ['classic', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin', 'argos'];
+const THEMES = ['classic', 'marino', 'ocean', 'esmeralda', 'violeta', 'carmin', 'argos', 'masilla'];
 const MODES = ['light', 'dark', 'orange'];
 const TRANSITIONS = ['slide', 'fade', 'zoom'];
 const COLORS = ['orange', 'navy', 'blue', 'amber', 'sky', 'gray'];

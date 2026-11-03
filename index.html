@@ -39,6 +39,8 @@ html[data-theme="violeta"]{--brand:#6D28D9;--brand-t:#A78BFA;--brand-l:#9461F0;-
 html[data-theme="carmin"]{--brand:#D81B4A;--brand-t:#FF6B8A;--brand-l:#FF5C7F;--brand-xl:#FFB3C2;--brand-d:#A9103A;--brand-rgb:216,27,74;--ink:#1C0B12;--ink-rgb:28,11,18;--sec:#D97706;--tint-warm:#FFF0F3;--tint-blue:#FBF4F6}
 html[data-theme="argos"]{--brand:#2E7D5B;--brand-t:#5BB88F;--brand-l:#5BB88F;--brand-xl:#B6E3CC;--brand-d:#22604A;--brand-rgb:46,125,91;--ink:#091B33;--ink-rgb:9,27,51;--sec:#356081;--tint-warm:#EAF6F0;--tint-blue:#EEF4FA;
   --panel:#113456;--panel-bd:#356081;--mist:#B6CDDE;--snow:#F4F9FF}
+html[data-theme="masilla"]{--brand:#256F82;--brand-t:#6FB9CC;--brand-l:#256F82;--brand-xl:#BFDDE5;--brand-d:#1B5363;--brand-rgb:37,111,130;--ink:#0A0A0A;--ink-rgb:10,10,10;--sec:#6E685F;--tint-warm:#D3CEC6;--tint-blue:#D3CEC6;
+  --ground:#DEDAD3;--surface:#D3CEC6;--stone:#5C5852;--night:#1E1E1C}
 *{box-sizing:border-box}
 html,body{overscroll-behavior:none;touch-action:manipulation}
 html,body{margin:0;height:100%;overflow:hidden;background:#0c0c0c;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#333}
@@ -787,6 +789,18 @@ html[data-theme="argos"] .orb,html[data-theme="argos"] .blob{display:none}
 html[data-theme="argos"] .kicker{background:none;padding:0;border-radius:0;letter-spacing:.16em;font-weight:800;margin-bottom:22px}
 html[data-theme="argos"] .hd .acc{display:none}
 html[data-theme="argos"] .dark .mv{background:linear-gradient(135deg,var(--brand-t),var(--brand-xl));-webkit-background-clip:text;background-clip:text}
+
+/* tema masilla — paleta "Putty and black" de tasteskill: fondo plano, tinta negra, un solo acento; sin degradados, brillos ni sombras */
+html[data-theme="masilla"] .slide:not(.dark):not(.orange){--bg:var(--ground);--text:var(--ink);--muted:var(--stone);--card:var(--surface);--card-bd:transparent;--soft:var(--surface);--line:#C4BFB6;--shadow:none;
+  --accent:var(--brand-d);--tag-fg:var(--brand-d);--logo:var(--ink);background:var(--ground)}
+html[data-theme="masilla"] .slide.dark{--fg:var(--ground);--text:var(--ground);--muted:rgba(222,218,211,.72);--card:var(--night);--card-bd:transparent;--soft:var(--night);--line:rgba(222,218,211,.2);--shadow:none;--logo:var(--ground);background:var(--ink)}
+html[data-theme="masilla"] .slide.orange{--muted:rgba(255,255,255,.92);--card-bd:transparent;--shadow:none;background:var(--brand)}
+html[data-theme="masilla"] .orb,html[data-theme="masilla"] .blob,html[data-theme="masilla"] .hd .acc,html[data-theme="masilla"] .t-agenda::after,html[data-theme="masilla"] .b-fill::after{display:none}
+html[data-theme="masilla"] .disc .d-o{background:var(--brand);box-shadow:none}
+html[data-theme="masilla"] .b-fill{background:var(--bc,var(--brand))}
+html[data-theme="masilla"] .orange em{color:#fff}
+html[data-theme="masilla"] .kicker{background:none;padding:0;border-radius:0;letter-spacing:0;text-transform:none;font-size:24px;font-weight:600}
+html[data-theme="masilla"] .mv,html[data-theme="masilla"] .bn-v span{background:none;color:var(--fg);filter:none}
 
 /* ============================================================
    UI: DOCK / OVERLAYS
@@ -1693,7 +1707,8 @@ const THEMES = {
   esmeralda: { label: 'Esmeralda', a: '#0A8754', b: '#0E2A21' },
   violeta:   { label: 'Violeta',   a: '#6D28D9', b: '#17102E' },
   carmin:    { label: 'Carmín',    a: '#D81B4A', b: '#1C0B12' },
-  argos:     { label: 'Argos',     a: '#5BB88F', b: '#091B33' }
+  argos:     { label: 'Argos',     a: '#5BB88F', b: '#091B33' },
+  masilla:   { label: 'Masilla',   a: '#256F82', b: '#0A0A0A' }
 };
 const G = { theme: 'classic', style: null, styleId: 'default', styleErr: '', styleThemes: [], types: null, source: null, build: 0, anims: new Map(), thumbAnims: [], deck: null, els: [], cur: -1, forceDark: false, scale: .6, secNo: [], charts: new Map(), thumbCharts: [], fx: new Map(), timers: [], untrusted: false, animOK: true, json: '', share: '' };
 
@@ -2165,8 +2180,8 @@ function makeChart(cv, cfg, dark, animate, dpr) {
   if (horiz) type = 'bar'; if (isArea) type = 'line';
   const labels = cfg.labels || [];
   const sets = cfg.datasets || [{ label: cfg.title, data: cfg.data || [], color: 'orange' }];
-  const grad = (ctx, c, h) => { const ch = ctx.chart, a = ch.chartArea; if (!a) return c; const g = h ? ch.ctx.createLinearGradient(a.left, 0, a.right, 0) : ch.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, c); g.addColorStop(1, hexA(c, .55)); return g; };
-  const areaG = (ctx, c) => { const ch = ctx.chart, a = ch.chartArea; if (!a) return hexA(c, .2); const g = ch.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, hexA(c, .3)); g.addColorStop(1, hexA(c, 0)); return g; };
+  const grad = (ctx, c, h) => { const ch = ctx.chart, a = ch.chartArea; if (!a || G.theme === 'masilla') return c; const g = h ? ch.ctx.createLinearGradient(a.left, 0, a.right, 0) : ch.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, c); g.addColorStop(1, hexA(c, .55)); return g; };
+  const areaG = (ctx, c) => { const ch = ctx.chart, a = ch.chartArea; if (!a || G.theme === 'masilla') return hexA(c, .2); const g = ch.ctx.createLinearGradient(0, a.top, 0, a.bottom); g.addColorStop(0, hexA(c, .3)); g.addColorStop(1, hexA(c, 0)); return g; };
 
   let data, options = {
     responsive: false, devicePixelRatio: dpr, maintainAspectRatio: false,

@@ -19,4 +19,4 @@ RULES
 
 STYLES (`meta.style`, the layout and typography of the whole deck; every slide type works in every style): {{STYLES}}. Pick the one that fits the audience.
 
-THEMES (`meta.theme`, the colors): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green; pair it with `"mode": "dark"`). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.
+THEMES (`meta.theme`, the colors): `classic` (orange + ink, default) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green; pair it with `"mode": "dark"`) · `masilla` (putty + black + one teal accent, flat). Pick the one that fits the subject. No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL) if you want one.

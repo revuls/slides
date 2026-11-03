@@ -15,11 +15,11 @@ REGLAS ESTRICTAS PARA EL JSON:
 ESQUEMA DEL JSON:
 
 {
-  "meta": { "theme": "classic" | "marino" | "ocean" | "esmeralda" | "violeta" | "carmin" | "argos", "mode": "light" | "dark" (opcional), "title": "Título corto (opcional)", "date": "Mes Año", "author": "Nombre o Departamento", "transition": "slide" | "fade" | "zoom", "logo": "URL de imagen del logo oficial (opcional)" },
+  "meta": { "theme": "classic" | "marino" | "ocean" | "esmeralda" | "violeta" | "carmin" | "argos" | "masilla", "mode": "light" | "dark" (opcional), "title": "Título corto (opcional)", "date": "Mes Año", "author": "Nombre o Departamento", "transition": "slide" | "fade" | "zoom", "logo": "URL de imagen del logo oficial (opcional)" },
   "slides": [ ...array de objetos slide... ]
 }
 
-TEMAS DE COLOR (meta.theme): "classic" (naranja + tinta, por defecto), "marino" (naranja + azul marino), "ocean" (azul + tinta marina), "esmeralda" (verde), "violeta" (morado), "carmin" (rojo) y "argos" (azul marino + verde, pensado para defensas técnicas; combínalo con "mode": "dark"). "meta.mode": "dark" hace oscuros por defecto todos los slides claros. Elige el que mejor encaje con el tema de la presentación (p. ej. "esmeralda" para sostenibilidad, "carmin" para historia, "violeta" para tecnología). Ningún tema muestra logo por defecto: indica "meta.brand" (texto) o "meta.logo" (URL de imagen) si lo quieres.
+TEMAS DE COLOR (meta.theme): "classic" (naranja + tinta, por defecto), "marino" (naranja + azul marino), "ocean" (azul + tinta marina), "esmeralda" (verde), "violeta" (morado), "carmin" (rojo), "argos" (azul marino + verde, pensado para defensas técnicas; combínalo con "mode": "dark") y "masilla" (masilla + negro + un acento verde azulado, plano). "meta.mode": "dark" hace oscuros por defecto todos los slides claros. Elige el que mejor encaje con el tema de la presentación (p. ej. "esmeralda" para sostenibilidad, "carmin" para historia, "violeta" para tecnología). Ningún tema muestra logo por defecto: indica "meta.brand" (texto) o "meta.logo" (URL de imagen) si lo quieres.
 
 CAMPOS OPCIONALES VÁLIDOS EN CUALQUIER SLIDE:
 - "notes": "Notas del orador (se ven con la tecla N)"

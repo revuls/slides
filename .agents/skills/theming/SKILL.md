@@ -1,13 +1,13 @@
 ---
 name: theming
-description: Choose, apply or create color themes for the slides engine (classic, marino, ocean, esmeralda, violeta, carmin, argos), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
+description: Choose, apply or create color themes for the slides engine (classic, marino, ocean, esmeralda, violeta, carmin, argos, masilla), slide modes (light, dark, orange), logos and accessible contrast. Use when asked about colors, branding, look and feel, dark mode, logos, or to add a new theme.
 ---
 
 # Theming
 
 A theme only changes colors. To change the layout, markup or typography of a deck, use the `create-style` skill. Themes work on top of any style, and a style can add its own palettes through its `themes` field.
 
-## The seven themes
+## The eight themes
 
 | `meta.theme` | Look | Good for |
 |---|---|---|
@@ -18,6 +18,7 @@ A theme only changes colors. To change the layout, markup or typography of a dec
 | `violeta` | Purple `#6D28D9` | Innovation, AI, space |
 | `carmin` | Crimson `#D81B4A` | History, culture, urgency |
 | `argos` | Navy `#091B33` + green `#5BB88F` (fills `#2E7D5B`) | Technical/academic defences; mirrors a dark work template: green side stripe, flat kicker, navy panels. Use with `"mode": "dark"` |
+| `masilla` | Putty `#DEDAD3` + black ink `#0A0A0A` + one teal accent `#256F82` | Talks where type and numbers carry the slide; flat, with no gradients, glows or shadows. Palette dealt by tasteskill v2 ("Putty and black") |
 
 Set in the deck: `"meta": { "theme": "violeta" }`. Add `"mode": "dark"` (or `"light"`) to choose the default mode of every light slide; `T` still toggles it. Override at runtime with `?theme=ocean` in the URL, the palette button in the dock, or the `C` key (cycles themes).
 

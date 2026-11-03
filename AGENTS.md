@@ -4,7 +4,7 @@ Instructions for AI coding agents (Codex, GitHub Copilot, Claude Code and others
 
 ## What this repository is
 
-A **JSON-driven web presentation engine**. `index.html` (single file, vanilla HTML/CSS/JS, no build step) renders a deck from a JSON file: 43 slide types, layout **styles** (`styles/*.js`), 7 color themes, animated counters/charts, a vector overview, speaker notes, PDF export, and full-screen **JavaScript canvas animations**. Decks live in `data/`, animations in `animations/`.
+A **JSON-driven web presentation engine**. `index.html` (single file, vanilla HTML/CSS/JS, no build step) renders a deck from a JSON file: 43 slide types, layout **styles** (`styles/*.js`), 8 color themes, animated counters/charts, a vector overview, speaker notes, PDF export, and full-screen **JavaScript canvas animations**. Decks live in `data/`, animations in `animations/`.
 
 ## Commands
 

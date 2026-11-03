@@ -11,5 +11,9 @@ window.SLIDES_STYLES = [
   {
     "id": "suizo",
     "label": "Suizo"
+  },
+  {
+    "id": "taste",
+    "label": "Taste"
   }
 ];

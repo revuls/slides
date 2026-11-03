@@ -6,8 +6,8 @@ A **JSON-driven web presentation engine**: write a deck as one JSON file and pre
 - **43 slide types** — covers, KPIs, charts, timelines, Gantt, funnels, org charts, comparisons, galleries, code, video, technical figures, objective scorecards and more.
 - **Animated by default** — directional transitions, staggered entrances, counters that count up, drawing charts, word-by-word titles, tilt cards.
 - **Looping canvas animations** that fill a whole slide, to explain processes, algorithms and systems visually.
-- **Layout styles** (`editorial`, `suizo`, `minimal` or your own): one file in `styles/` changes the markup, grid, type and chrome of a whole deck, without touching its JSON.
-- **7 themes** (`classic`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`, `argos`) switchable live.
+- **Layout styles** (`editorial`, `suizo`, `minimal`, `taste` or your own): one file in `styles/` changes the markup, grid, type and chrome of a whole deck, without touching its JSON.
+- **8 themes** (`classic`, `marino`, `ocean`, `esmeralda`, `violeta`, `carmin`, `argos`, `masilla`) switchable live.
 - **Agent-ready**: skills, agents, validator and an in-browser audit that any AI tool can run.
 
 > The sample decks in `data/` are written in Spanish; the engine, tooling and documentation are in English.
@@ -123,7 +123,7 @@ node scripts/validate-deck.mjs data/my-deck.json
 
 ### Styles
 
-`meta.style` sets the layout of the whole deck: `editorial` (printed magazine, sidebar spreads) `suizo` (poster type on a hard grid) or `minimal` (white page, square corners, hairlines). Without it, the deck uses the engine's own look. A style is one file that can replace the markup of any slide type, the header, the footer and the CSS; types it does not replace are inherited, so every deck works in every style.
+`meta.style` sets the layout of the whole deck: `editorial` (printed magazine, sidebar spreads) `suizo` (poster type on a hard grid) `minimal` (white page, square corners, hairlines) or `taste` (black capitals in Red Hat, flat colour fields, one figure per screen; defaults to the `masilla` theme). Without it, the deck uses the engine's own look. A style is one file that can replace the markup of any slide type, the header, the footer and the CSS; types it does not replace are inherited, so every deck works in every style.
 
 To make one, copy the template and register it:
 
@@ -136,7 +136,7 @@ Then open `?src=data/demo-estilos.json&style=my-style`. Full guide: the `create-
 
 ### Themes
 
-`meta.theme`: `classic` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green, dark by default with `meta.mode`). `meta.mode: "dark"` makes every slide dark by default (`T` still toggles). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
+`meta.theme`: `classic` (default: orange + ink) · `marino` (orange + navy) · `ocean` (blue) · `esmeralda` (green) · `violeta` (purple) · `carmin` (crimson) · `argos` (navy + green, dark by default with `meta.mode`) · `masilla` (putty + black + teal, flat). `meta.mode: "dark"` makes every slide dark by default (`T` still toggles). A slide can also set its own mode (`"theme": "light" | "dark" | "orange"`). No theme shows a logo by default: set `meta.brand` (text) or `meta.logo` (image URL). Details and how to add a theme: the `theming` skill.
 
 ---
 
